@@ -18,7 +18,7 @@ Zhang, Jun, Graham Cormode, Cecilia M. Procopiuc, Divesh Srivastava, and Xiaokui
 """
 
 def get_dataset_file(dataset_name):
-    dataset_folder = '/Privbayes/data/'
+    dataset_folder = '/pribayes-implementation/Privbayes/data/'
     csv_file = f'{dataset_folder}{dataset_name}.csv'
     
     # Check if the CSV file exists
@@ -38,7 +38,7 @@ def preprocess(original_dataset):
     file_name = os.path.splitext(os.path.basename(original_dataset))[0]
 
     # Output directory path
-    output_directory = '/Privbayes/data/'
+    output_directory = '/pribayes-implementation/Privbayes/data/processed-output'
 
     # Output file names
     processed_output_file = output_directory + f'processed_{file_name}.csv'
@@ -161,7 +161,7 @@ def privbayes_inference(domain, measurements, total, file_name):
                 synthetic.loc[idx,col] = np.random.choice(n, N, True, p)
     
     
-    output_folder = '/Privbayes/data/output/'  # Define the output folder path
+    output_folder = '/pribayes-implementation/Privbayes/data/synthetic-output/'  # Define the output folder path
     output_filename = f"synthetic_{file_name}.csv"  # Define the output filename
 
     # Combine output folder path and output filename
