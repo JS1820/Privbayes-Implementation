@@ -38,7 +38,7 @@ def preprocess(original_dataset):
     file_name = os.path.splitext(os.path.basename(original_dataset))[0]
 
     # Output directory path
-    output_directory = '/privbayes-implementation/Privbayes/data/processed-output'
+    output_directory = '/privbayes-implementation/Privbayes/data/processed-output/'
 
     # Output file names
     processed_output_file = output_directory + f'processed_{file_name}.csv'
