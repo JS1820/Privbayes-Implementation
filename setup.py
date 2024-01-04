@@ -10,6 +10,6 @@ setup(
     url='https://github.com/0hex7/Privbayes-implementation.git',
     author='Arun Ashok',
     author_email='iamarunbadri@gmail.com',
-    package_dir={'': 'privbayes'},
+    package_dir={'': 'Privbayes'},
     install_requires=requirements,
 )
