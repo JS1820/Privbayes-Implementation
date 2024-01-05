@@ -1,6 +1,6 @@
 from ektelo.algorithm.privBayes import privBayesSelect
 import numpy as np
-from mbi import Dataset, Factor, FactoredInference, mechanism
+from utils import Dataset, Factor, FactoredInference, mechanism
 from ektelo.matrix import Identity
 import pandas as pd
 import itertools
