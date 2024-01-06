@@ -78,7 +78,10 @@ def preprocess(original_dataset):
 
     # Output directory path
     output_directory = '/privbayes-implementation/Privbayes/data/processed-output/'
-
+    
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+        
     # Output file names
     processed_output_file = output_directory + f'processed_{file_name}.csv'
     domain_output_file = output_directory + f'domain_{file_name}.json'
