@@ -38,14 +38,15 @@ def preprocess(original_dataset):
     file_name = os.path.splitext(os.path.basename(original_dataset))[0]
 
     # Output directory path
-    output_directory = '/privbayes-implementation/Privbayes/data/preprocessed-output'
+    output_directory = '/privbayes-implementation/Privbayes/data/preprocessing-output/'
 
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
     
     # Output file names
-    processed_output_file = output_directory + f'preprocessed_{file_name}.csv'
+    processed_output_file = output_directory + f'processed_{file_name}.csv'
     domain_output_file = output_directory + f'domain_{file_name}.json'
+    domain_correlation_file = output_directory + f'domain_correlation_{file_name}.json'
 
     # Check if processed output file exists, if yes, remove it
     if os.path.isfile(processed_output_file):
@@ -55,8 +56,13 @@ def preprocess(original_dataset):
     if os.path.isfile(domain_output_file):
         os.remove(domain_output_file)
 
+    # Check if domain correlation file exists, if yes, remove it
+    if os.path.isfile(domain_correlation_file):
+        os.remove(domain_correlation_file)
+
     # Initialize an empty dictionary to store domain values for each column
     domain_values = {}
+    domain_correlation_values = {}
 
     # Categorize columns and generate domain values
     processed_data = data.copy()
@@ -73,6 +79,7 @@ def preprocess(original_dataset):
 
         # Store the mapping information in the domain_values dictionary
         domain_values[column] = {str(idx + 1): val for idx, val in enumerate(unique_values)}
+        domain_correlation_values[column] = len(unique_values)
 
     # Save the processed dataset with categorization to the output directory
     processed_data.to_csv(processed_output_file, index=False)
@@ -81,17 +88,21 @@ def preprocess(original_dataset):
     with open(domain_output_file, 'w') as json_file:
         json.dump(domain_values, json_file)
 
-    # Return the processed dataset file path and domain file path
-    return processed_output_file, domain_output_file, file_name
+    # Save domain correlation values as a JSON file in the output directory
+    with open(domain_correlation_file, 'w') as json_file:
+        json.dump(domain_correlation_values, json_file)
+
+    # Return the processed dataset file paths and file names
+    return processed_output_file, domain_output_file, file_name, domain_correlation_file
 
 
-def postprocess(processed_input_dataset, domain_file):
+def postprocess(processed_input_dataset, domain_correlation_file):
     # Load processed input dataset
     processed_data = pd.read_csv(processed_input_dataset)
 
-    # Load domain values for both input and synthetic datasets
-    with open(domain_file, 'r') as json_file:
-        domain_values = json.load(json_file)
+    # Load domain correlation values
+    with open(domain_correlation_file, 'r') as json_file:
+        domain_correlation_values = json.load(json_file)
 
     # Function to convert processed data back to original form
     def convert_to_original(processed_data, domain_values):
@@ -103,10 +114,10 @@ def postprocess(processed_input_dataset, domain_file):
         return processed_data
 
     # Use the function to convert processed data back to its original form
-    original_data = convert_to_original(processed_data, domain_values)
+    original_data = convert_to_original(processed_data, domain_correlation_values)
 
     # Save the processed data after postprocessing
-    output_file = '/privbayes/Privbayes/data/postprocessed-output/final_original_data.csv'  # Define the output file path
+    output_file = '/privbayes-implementation/Privbayes/data/postprocessed-output/final_original_{original_datasetname}.csv'  # Define the output file path
     original_data.to_csv(output_file, index=False)
     print(f"\nProcessed data after postprocessing is saved to: {output_file}")
 
@@ -299,3 +310,27 @@ if __name__ == '__main__':
 
     print('Error of PrivBayes    : %.3f' % np.mean(err_pb))
     print('Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
+    print("\n Now comes the comparing the original and synthetic datasets part..!!")
+     # Perform postprocessing on the synthetic dataset to get the original synthetic dataset
+    original_synthetic_dataset = postprocess(synthetic_dataset, domain_correlation_file)
+
+    # Load the original dataset before preprocessing and display its head
+    original_data_before_preprocess = pd.read_csv(original_dataset_file)
+    print("\nHead of the original dataset before preprocessing:")
+    print(original_data_before_preprocess.head())
+
+    # Load the preprocessed dataset and display its head
+    preprocessed_data = pd.read_csv(processed_output_file)
+    print("\nHead of the preprocessed dataset:")
+    print(preprocessed_data.head())
+
+    # Load the synthetic dataset and display its head
+    synthetic_data = pd.read_csv(synthetic_dataset)
+    print("\nHead of the synthetic dataset:")
+    print(synthetic_data.head())
+
+    # Display the head of the original synthetic dataset (postprocessed synthetic dataset)
+    print("\nHead of the original synthetic dataset (postprocessed synthetic dataset):")
+    print(original_synthetic_dataset.head())
+
+    print("End")
