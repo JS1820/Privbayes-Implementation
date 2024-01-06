@@ -283,7 +283,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     print("=====================================Printing the data-domain")
     
-    with open(data_domain, 'r') as file:
+    with open(domain_correlation_file, 'r') as file:
         domain_values = json.load(file)
         print(json.dumps(domain_values, indent=4))  # Use indent for pretty printing
 
