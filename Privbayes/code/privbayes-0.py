@@ -235,7 +235,7 @@ if __name__ == '__main__':
     total = data.df.shape[0]
 
     measurements = privbayes_measurements(data, 1.0, args.seed) 
-
+    print("est function is being run now...")
     est = privbayes_inference(data.domain, measurements, total=total, file_name=file_name)
 
     elim_order = [m[3][0] for m in measurements][::-1]
