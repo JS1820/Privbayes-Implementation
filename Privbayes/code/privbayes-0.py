@@ -143,9 +143,23 @@ def privbayes_inference(domain, measurements, total, file_name):
         cpt = Factor(dom, y.reshape(dom.shape))
         marg = cpt.project(dep)
         cpt /= marg
-        print(cpt)
+        values_array = cpt.project(proj).values
+        ######################
+        print("Shape of 'values_array':", values_array.shape)
+        print("Contents of 'values_array':")
+        print(values_array)
+        
+        # Print information about other relevant variables used in np.moveaxis()
+        print("Shape of 'cpt':", cpt.shape)  # Assuming 'cpt' is a NumPy array or an object with a 'shape' attribute
+        print("Shape of 'proj':", proj.shape)  # Assuming 'proj' is a NumPy array or an object with a 'shape' attribute
+        ####################### Print other relevant information about 'cpt', 'proj', or related variables
+
         cpt2 = np.moveaxis(cpt.project(proj).values, 0, -1)
-        print(cpt2)
+        #######################
+        print("Shape of 'cpt2' after np.moveaxis():", cpt2.shape)
+        print("Contents of 'cpt2' after np.moveaxis():")
+        print(cpt2)        
+        #######################
         
         # sample current column
         synthetic[col] = 0
