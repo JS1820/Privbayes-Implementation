@@ -133,7 +133,8 @@ def privbayes_inference(domain, measurements, total, file_name):
     y /= y.sum()
     col = proj[0]
     synthetic[col] = np.random.choice(domain[col], total, True, y)
-        
+    print("Running troublesome loop now")
+    
     for _, y, _, proj in measurements[1:]:
         # find the CPT
         col, dep = proj[0], proj[1:]
