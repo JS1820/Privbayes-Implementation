@@ -154,7 +154,7 @@ def privbayes_inference(domain, measurements, total, file_name):
         #print("Shape of 'cpt':", cpt.shape)  # Assuming 'cpt' is a NumPy array or an object with a 'shape' attribute
         #print("Shape of 'proj':", proj.shape)  # Assuming 'proj' is a NumPy array or an object with a 'shape' attribute
         ####################### Print other relevant information about 'cpt', 'proj', or related variables
-
+        print(cpt)
         cpt2 = np.moveaxis(cpt.project(proj).values, 0, -1)
         #######################
         #print("Shape of 'cpt2' after np.moveaxis():", cpt2.shape)
