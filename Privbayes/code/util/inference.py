@@ -35,10 +35,10 @@ class FactoredInference:
         self.history = []
         self.elim_order = elim_order
         if backend == 'torch':
-            from mbi.torch_factor import Factor
+            from util.torch_factor import Factor
             self.Factor = Factor
         else:
-            from mbi import Factor
+            from util import Factor
             self.Factor= Factor
 
         self.structural_zeros = CliqueVector({})
