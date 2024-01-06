@@ -230,7 +230,10 @@ if __name__ == '__main__':
 
     parser.set_defaults(**default_params())
     args = parser.parse_args()
-
+    
+    print("Printing the data-domain")
+    print(data_domain)
+    
     data, workload = benchmarks.adult_benchmark(processed_data, data_domain)
     
     total = data.df.shape[0]
