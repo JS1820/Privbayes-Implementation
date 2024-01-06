@@ -269,7 +269,7 @@ if __name__ == '__main__':
     
     original_dataset = get_dataset_file(dataset_name)
     print("=============DATA PRE-PROCESSING=============")
-    processed_data, data_domain, file_name = preprocess(original_dataset)
+    processed_data, data_domain, file_name, domain_correlation_file  = preprocess(original_dataset)
     print("=============DATA PRE-PROCESSING COMPLETED=============")
     description = ''
     formatter = argparse.ArgumentDefaultsHelpFormatter
