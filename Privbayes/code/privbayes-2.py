@@ -114,9 +114,12 @@ def postprocess(processed_input_dataset, domain_correlation_file):
 
     # Use the function to convert processed data back to its original form
     original_data = convert_to_original(processed_data, domain_correlation_values)
-
+    output_directory = '/privbayes-implementation/Privbayes/data/postprocessed-output/'
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+        
     # Save the processed data after postprocessing
-    output_file = '/privbayes-implementation/Privbayes/data/postprocessed-output/final_original_{original_datasetname}.csv'  # Define the output file path
+    output_file = f'/privbayes-implementation/Privbayes/data/postprocessed-output/final_original_{original_datasetname}.csv'  # Define the output file path
     original_data.to_csv(output_file, index=False)
     print(f"\nProcessed data after postprocessing is saved to: {output_file}")
 
