@@ -47,10 +47,10 @@ class LocalInference:
         self.marginal_oracle = marginal_oracle
         self.inner_iters = inner_iters
         if backend == 'torch':
-            from mbi.torch_factor import Factor
+            from util.torch_factor import Factor
             self.Factor = Factor
         else:
-            from mbi import Factor
+            from util import Factor
             self.Factor= Factor
 
         self.structural_zeros = CliqueVector({})
