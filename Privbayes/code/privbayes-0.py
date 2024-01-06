@@ -103,19 +103,15 @@ def privbayes_measurements(data, eps=1.0, seed=0):
     
     values = np.ascontiguousarray(data.df.values.astype(np.int32))
     print(values)
-    print("12. back to main func loaded successfully")
    
     ans = privBayesSelect.py_get_model(values, config, eps/2, 1.0, seed)
-    print("13. back to main func loaded successfully")
     
     ans = ans.decode('utf-8')[:-1]
-    print("14. back to main func loaded successfully")
 
     projections = []
     for m in ans.split('\n'):
         p = [domain.attrs[int(a)] for a in m.split(',')[::2]]
         projections.append(tuple(p))
-    print("15. back to main func loaded successfully")
   
     prng = np.random.RandomState(seed) 
     measurements = []
@@ -125,7 +121,6 @@ def privbayes_measurements(data, eps=1.0, seed=0):
         I = Identity(x.size)
         y = I.dot(x) + prng.laplace(loc=0, scale=4*delta/eps, size=x.size)
         measurements.append( (I, y, 1.0, proj) )
-    print("16. back to main func loaded successfully")
      
     return measurements
 
@@ -217,20 +212,15 @@ if __name__ == '__main__':
     parser.add_argument('--iters', type=int, help='number of optimization iterations')
     parser.add_argument('--epsilon', type=float, help='privacy  parameter')
     parser.add_argument('--seed', type=int, help='random seed')
-    print("next step is done")
 
     parser.set_defaults(**default_params())
     args = parser.parse_args()
-    print("data set is being loaded into the benchmarks")
 
     data, workload = benchmarks.adult_benchmark(processed_data, data_domain)
-    print("6. back to main func loaded successfully")
     
     total = data.df.shape[0]
-    print("7. back to main func loaded successfully")
 
     measurements = privbayes_measurements(data, 1.0, args.seed) 
-    print("8. back to main func loaded successfully")
 
     est = privbayes_inference(data.domain, measurements, total=total, file_name=file_name)
 
