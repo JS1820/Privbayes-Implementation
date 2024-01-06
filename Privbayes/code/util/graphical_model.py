@@ -191,7 +191,7 @@ class GraphicalModel:
         return CliqueVector(potentials)
 
     def fit(self, data):
-        from mbi import Factor
+        from util import Factor
         assert data.domain.contains(self.domain), 'model domain not compatible with data domain'
         marginals = {}
         for cl in self.cliques:
