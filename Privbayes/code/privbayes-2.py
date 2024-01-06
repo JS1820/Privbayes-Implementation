@@ -38,13 +38,13 @@ def preprocess(original_dataset):
     file_name = os.path.splitext(os.path.basename(original_dataset))[0]
 
     # Output directory path
-    output_directory = '/privbayes-implementation/Privbayes/data/preprocessing-output/'
+    output_directory = '/privbayes-implementation/Privbayes/data/preprocessed-output/'
 
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
     
     # Output file names
-    processed_output_file = output_directory + f'processed_{file_name}.csv'
+    processed_output_file = output_directory + f'preprocessed_{file_name}.csv'
     domain_output_file = output_directory + f'domain_{file_name}.json'
     domain_correlation_file = output_directory + f'domain_correlation_{file_name}.json'
 
@@ -213,7 +213,7 @@ def privbayes_inference(domain, measurements, total, file_name):
     
     
     output_folder = '/privbayes-implementation/Privbayes/data/synthetic-output/'  # Define the output folder path
-    output_filename = f"preprocessed-synthetic_{file_name}.csv"  # Define the output filename
+    output_filename = f"preprocessed_synthetic_{file_name}.csv"  # Define the output filename
 
     # Combine output folder path and output filename
     output_path = os.path.join(output_folder, output_filename)
@@ -306,7 +306,10 @@ if __name__ == '__main__':
 
     
     print("\n Now comes the comparing the original and synthetic datasets part..!!")
-     # Perform postprocessing on the synthetic dataset to get the original synthetic dataset
+    synthetic_df = f'/privbayes-implementation/Privbayes/data/synthetic-output/preprocessed_synthetic_{file_name}.csv'
+    input_df = f'/privbayes-implementation/Privbayes/data/preprocessed-output/preprocessed_{file_name}.csv'
+    original_dataset = f'/privbayes-implementation/Privbayes/data/{file_name}.csv'
+
     original_synthetic_dataset = postprocess(synthetic_df, domain_correlation_file)
 
     # Load the original dataset before preprocessing and display its head
