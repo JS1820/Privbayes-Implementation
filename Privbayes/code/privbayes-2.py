@@ -122,7 +122,7 @@ def postprocess(processed_input_dataset, domain_correlation_file, file_name):
     output_file = f'/privbayes-implementation/Privbayes/data/postprocessed-output/final_original_{file_name}.csv'  # Define the output file path
     original_data.to_csv(output_file, index=False)
     print(f"\nProcessed data after postprocessing is saved to: {output_file}")
-
+    return original_data
 
 def categorize_columns(data):
     # Initialize an empty dictionary to store domain values for each column
