@@ -316,22 +316,25 @@ if __name__ == '__main__':
 
     print('Error of PrivBayes    : %.3f' % np.mean(err_pb))
     print('Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
+
+
+    
     print("\n Now comes the comparing the original and synthetic datasets part..!!")
      # Perform postprocessing on the synthetic dataset to get the original synthetic dataset
-    original_synthetic_dataset = postprocess(synthetic_dataset, domain_correlation_file)
+    original_synthetic_dataset = postprocess(synthetic_df, domain_correlation_file)
 
     # Load the original dataset before preprocessing and display its head
-    original_data_before_preprocess = pd.read_csv(original_dataset_file)
+    original_data_before_preprocess = pd.read_csv(original_dataset)
     print("\nHead of the original dataset before preprocessing:")
     print(original_data_before_preprocess.head())
 
     # Load the preprocessed dataset and display its head
-    preprocessed_data = pd.read_csv(processed_output_file)
+    preprocessed_data = pd.read_csv(input_df)
     print("\nHead of the preprocessed dataset:")
     print(preprocessed_data.head())
 
     # Load the synthetic dataset and display its head
-    synthetic_data = pd.read_csv(synthetic_dataset)
+    synthetic_data = pd.read_csv(synthetic_df)
     print("\nHead of the synthetic dataset:")
     print(synthetic_data.head())
 
