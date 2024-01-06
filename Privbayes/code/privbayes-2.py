@@ -95,7 +95,7 @@ def preprocess(original_dataset):
     # Return the processed dataset file paths and file names
     return processed_output_file, domain_output_file, file_name, domain_correlation_file
 
-def postprocess(processed_input_dataset, domain_correlation_file):
+def postprocess(processed_input_dataset, domain_correlation_file, file_name):
     # Load processed input dataset
     processed_data = pd.read_csv(processed_input_dataset)
 
@@ -104,7 +104,7 @@ def postprocess(processed_input_dataset, domain_correlation_file):
         domain_correlation_values = json.load(json_file)
 
     # Function to convert processed data back to original form
-    def convert_to_original(processed_data, domain_values):
+    def convert_to_original(processed_data, domain_values,original_datasetname):
         for col in processed_data.columns:
             if col in domain_values:
                 # Map numerical representation back to original categorical values using domain_values
@@ -113,7 +113,7 @@ def postprocess(processed_input_dataset, domain_correlation_file):
         return processed_data
 
     # Use the function to convert processed data back to its original form
-    original_data = convert_to_original(processed_data, domain_correlation_values)
+    original_data = convert_to_original(processed_data, domain_correlation_values, file_name)
     output_directory = '/privbayes-implementation/Privbayes/data/postprocessed-output/'
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
