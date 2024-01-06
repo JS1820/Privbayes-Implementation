@@ -86,15 +86,14 @@ def preprocess(original_dataset):
 
     # Save domain values as a JSON file in the output directory
     with open(domain_output_file, 'w') as json_file:
-        json.dump(domain_values, json_file)
+        json.dump(domain_correlation_values, json_file)
 
     # Save domain correlation values as a JSON file in the output directory
     with open(domain_correlation_file, 'w') as json_file:
-        json.dump(domain_correlation_values, json_file)
+        json.dump(domain_values, json_file)
 
     # Return the processed dataset file paths and file names
     return processed_output_file, domain_output_file, file_name, domain_correlation_file
-
 
 def postprocess(processed_input_dataset, domain_correlation_file):
     # Load processed input dataset
