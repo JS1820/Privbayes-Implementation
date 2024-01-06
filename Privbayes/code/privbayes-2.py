@@ -269,14 +269,7 @@ if __name__ == '__main__':
 
     parser.set_defaults(**default_params())
     args = parser.parse_args()
-    print("=====================================Printing the data-domain")
-    
-    with open(domain_correlation_file, 'r') as file:
-        domain_values = json.load(file)
-        print(json.dumps(domain_values, indent=4))  # Use indent for pretty printing
 
-
-    
     data, workload = benchmarks.adult_benchmark(processed_data, data_domain)
     
     total = data.df.shape[0]
