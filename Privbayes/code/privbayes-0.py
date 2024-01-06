@@ -127,13 +127,13 @@ def privbayes_measurements(data, eps=1.0, seed=0):
 def privbayes_inference(domain, measurements, total, file_name):
     file_name = file_name
     synthetic = pd.DataFrame()
-    print(measurements[0])
+    #print(measurements[0])
     _, y, _, proj = measurements[0]
     y = np.maximum(y, 0)
     y /= y.sum()
     col = proj[0]
     synthetic[col] = np.random.choice(domain[col], total, True, y)
-    print("Running troublesome loop now")
+    print("Below Attributes are being measured for Inference")
     
     for _, y, _, proj in measurements[1:]:
         # find the CPT
@@ -154,7 +154,7 @@ def privbayes_inference(domain, measurements, total, file_name):
         #print("Shape of 'cpt':", cpt.shape)  # Assuming 'cpt' is a NumPy array or an object with a 'shape' attribute
         #print("Shape of 'proj':", proj.shape)  # Assuming 'proj' is a NumPy array or an object with a 'shape' attribute
         ####################### Print other relevant information about 'cpt', 'proj', or related variables
-        print(cpt)
+        #print(cpt)
         cpt2 = np.moveaxis(cpt.project(proj).values, 0, -1)
         #######################
         #print("Shape of 'cpt2' after np.moveaxis():", cpt2.shape)
@@ -192,7 +192,7 @@ def privbayes_inference(domain, measurements, total, file_name):
 
     # Save synthetic dataset as CSV file in the specified output path
     synthetic.to_csv(output_path, index=False)
-    print(f"Saved synthetic dataset: {output_path}")
+    print(f"Synthetic Dataset is created and saved at : {output_path}")
     return Dataset(synthetic, domain)
 
 def default_params():
@@ -236,7 +236,7 @@ if __name__ == '__main__':
     total = data.df.shape[0]
 
     measurements = privbayes_measurements(data, 1.0, args.seed) 
-    print("est function is being run now...")
+    #print("est function is being run now...")
     est = privbayes_inference(data.domain, measurements, total=total, file_name=file_name)
 
     elim_order = [m[3][0] for m in measurements][::-1]
