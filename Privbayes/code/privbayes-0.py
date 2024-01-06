@@ -148,7 +148,9 @@ def privbayes_inference(domain, measurements, total, file_name):
         cpt = Factor(dom, y.reshape(dom.shape))
         marg = cpt.project(dep)
         cpt /= marg
+        print(cpt)
         cpt2 = np.moveaxis(cpt.project(proj).values, 0, -1)
+        print(cpt2)
         
         # sample current column
         synthetic[col] = 0
