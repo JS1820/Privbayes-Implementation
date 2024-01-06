@@ -104,7 +104,7 @@ def postprocess(processed_input_dataset, domain_correlation_file, file_name):
         domain_correlation_values = json.load(json_file)
 
     # Function to convert processed data back to original form
-    def convert_to_original(processed_data, domain_values,original_datasetname):
+    def convert_to_original(processed_data, domain_values, file_name):
         for col in processed_data.columns:
             if col in domain_values:
                 # Map numerical representation back to original categorical values using domain_values
@@ -119,7 +119,7 @@ def postprocess(processed_input_dataset, domain_correlation_file, file_name):
         os.makedirs(output_directory)
         
     # Save the processed data after postprocessing
-    output_file = f'/privbayes-implementation/Privbayes/data/postprocessed-output/final_original_{original_datasetname}.csv'  # Define the output file path
+    output_file = f'/privbayes-implementation/Privbayes/data/postprocessed-output/final_original_{file_name}.csv'  # Define the output file path
     original_data.to_csv(output_file, index=False)
     print(f"\nProcessed data after postprocessing is saved to: {output_file}")
 
