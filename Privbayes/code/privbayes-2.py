@@ -195,22 +195,8 @@ def privbayes_inference(domain, measurements, total, file_name):
         marg = cpt.project(dep)
         cpt /= marg
         values_array = cpt.project(proj).values
-        ######################
-        #print("Shape of 'values_array':", values_array.shape)
-        #print("Contents of 'values_array':")
-        #print(values_array)
-        
-        # Print information about other relevant variables used in np.moveaxis()
-        #print("Shape of 'cpt':", cpt.shape)  # Assuming 'cpt' is a NumPy array or an object with a 'shape' attribute
-        #print("Shape of 'proj':", proj.shape)  # Assuming 'proj' is a NumPy array or an object with a 'shape' attribute
-        ####################### Print other relevant information about 'cpt', 'proj', or related variables
-        #print(cpt)
         cpt2 = np.moveaxis(cpt.project(proj).values, 0, -1)
-        #######################
-        #print("Shape of 'cpt2' after np.moveaxis():", cpt2.shape)
-        #print("Contents of 'cpt2' after np.moveaxis():")
-        #print(cpt2)        
-        #######################
+       
         
         # sample current column
         synthetic[col] = 0
@@ -227,7 +213,7 @@ def privbayes_inference(domain, measurements, total, file_name):
     
     
     output_folder = '/privbayes-implementation/Privbayes/data/synthetic-output/'  # Define the output folder path
-    output_filename = f"synthetic_{file_name}.csv"  # Define the output filename
+    output_filename = f"preprocessed-synthetic_{file_name}.csv"  # Define the output filename
 
     # Combine output folder path and output filename
     output_path = os.path.join(output_folder, output_filename)
