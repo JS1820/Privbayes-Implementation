@@ -113,16 +113,16 @@ def postprocess(processed_input_dataset, domain_correlation_file, file_name):
         return processed_data
 
     # Use the function to convert processed data back to its original form
-    original_data = convert_to_original(processed_data, domain_correlation_values, file_name)
+    postprocessed_synthetic_data = convert_to_original(processed_data, domain_correlation_values, file_name)
     output_directory = '/privbayes-implementation/Privbayes/data/postprocessed-output/'
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
         
     # Save the processed data after postprocessing
     output_file = f'/privbayes-implementation/Privbayes/data/postprocessed-output/final_synthetic_{file_name}.csv'  # Define the output file path
-    original_data.to_csv(output_file, index=False)
+    postprocessed_synthetic_data.to_csv(output_file, index=False)
     print(f"\nProcessed data after postprocessing is saved to: {output_file}")
-    return original_data
+    return postprocessed_synthetic_data
 
 def categorize_columns(data):
     # Initialize an empty dictionary to store domain values for each column
@@ -359,7 +359,7 @@ if __name__ == '__main__':
     synthetic_df = f'/privbayes-implementation/Privbayes/data/synthetic-output/preprocessed_synthetic_{file_name}.csv'
     input_df = f'/privbayes-implementation/Privbayes/data/preprocessed-output/preprocessed_{file_name}.csv'
     original_dataset = f'/privbayes-implementation/Privbayes/data/{file_name}.csv'
-
+    
     final_synthetic_dataset = postprocess(synthetic_df, domain_correlation_file, file_name)
 
     # Load the original dataset before preprocessing and display its head
@@ -378,9 +378,9 @@ if __name__ == '__main__':
     print(synthetic_data.head())
 
     # Display the head of the original synthetic dataset (postprocessed synthetic dataset)
-    print("\nHead of the original synthetic dataset (postprocessed synthetic dataset):")
+    print("\nHead of the final synthetic dataset generated (postprocessed synthetic dataset):")
     print(final_synthetic_dataset.head())
 
     print("Now comes comparing the datasets, via a 2way occurance check..??")
-    comparedatasets(input_df, synthetic_df)
+    comparedatasets(original_data_before_preprocess, final_synthetic_dataset)
     print("End")
