@@ -191,10 +191,9 @@ def comparedatasets(input_df, synthetic_df, file_name):
     plt.savefig(save_path)
     plt.close()
     
-    img = plt.imread(save_path)
-    plt.imshow(img)
-    plt.axis('off')
-    plt.show()  # Try with block=True or False
+    img = Image.open(save_path)
+    img.show()
+
 
 
 
