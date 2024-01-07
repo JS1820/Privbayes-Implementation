@@ -141,7 +141,7 @@ def comparedatasets(input_df, synthetic_df, file_name):
     attribute_pairs = sorted(list(itertools.combinations(common_attributes, 2)))
     
     # Define a minimum threshold for co-occurrence counts
-    min_threshold = 30  # Adjust this threshold as needed
+    min_threshold = 20  # Adjust this threshold as needed
     
     # Create a single bar graph for co-occurrence counts of attribute pairs in both datasets
     fig, axs = plt.subplots(len(attribute_pairs), 1, figsize=(15, 5 * len(attribute_pairs)))
