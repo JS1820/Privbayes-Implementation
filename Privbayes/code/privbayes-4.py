@@ -124,10 +124,6 @@ def postprocess(processed_input_dataset, domain_correlation_file, file_name):
     print(f"\nProcessed data after postprocessing is saved to: {output_file}")
     #return postprocessed_synthetic_data
 
-import itertools
-import pandas as pd
-import matplotlib.pyplot as plt
-
 def comparedatasets(input_df, synthetic_df):
     original_columns = input_df.columns.tolist()
     synthetic_columns = synthetic_df.columns.tolist()
@@ -184,9 +180,6 @@ def comparedatasets(input_df, synthetic_df):
     
     plt.tight_layout()
     plt.show()
-
-
-
 
 
 
