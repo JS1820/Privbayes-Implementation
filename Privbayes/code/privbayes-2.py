@@ -143,6 +143,10 @@ def categorize_columns(data):
     return data, domain_values
 
 
+import itertools
+import pandas as pd
+import matplotlib.pyplot as plt
+
 def comparedatasets(input_df, synthetic_df):
     original_columns = input_df.columns.tolist()
     synthetic_columns = synthetic_df.columns.tolist()
@@ -177,23 +181,27 @@ def comparedatasets(input_df, synthetic_df):
         # Calculate the maximum count across both datasets for the current attribute pair
         max_count_pair = max(max_input_count, max_synthetic_count)
     
+        # Adjust minimum limit for the y-axis
+        min_limit = 0.1  # Set a small non-zero value to prevent setting the limits to zero
+    
         # Plotting the counts of co-occurrences as bar plots for input_df and synthetic_df
         input_plot = axs[i, 0].bar(input_attribute_counts.apply(lambda x: f"{x[attribute_pair[0]]} - {x[attribute_pair[1]]}", axis=1), input_attribute_counts['Count'])
         axs[i, 0].set_xlabel(f"{attribute_pair[0]} - {attribute_pair[1]}")
         axs[i, 0].set_ylabel('Count')
         axs[i, 0].set_title(f"Co-occurrence of {attribute_pair[0]} and {attribute_pair[1]} in input_df")
         axs[i, 0].tick_params(axis='x', rotation=90)
-        axs[i, 0].set_ylim(0, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
+        axs[i, 0].set_ylim(min_limit, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
     
         synthetic_plot = axs[i, 1].bar(synthetic_attribute_counts.apply(lambda x: f"{x[attribute_pair[0]]} - {x[attribute_pair[1]]}", axis=1), synthetic_attribute_counts['Count'])
         axs[i, 1].set_xlabel(f"{attribute_pair[0]} - {attribute_pair[1]}")
         axs[i, 1].set_ylabel('Count')
         axs[i, 1].set_title(f"Co-occurrence of {attribute_pair[0]} and {attribute_pair[1]} in synthetic_df")
         axs[i, 1].tick_params(axis='x', rotation=90)
-        axs[i, 1].set_ylim(0, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
+        axs[i, 1].set_ylim(min_limit, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
     
     plt.tight_layout()
     plt.show()
+
 
 
 
