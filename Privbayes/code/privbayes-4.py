@@ -189,6 +189,8 @@ def comparedatasets(input_df, synthetic_df, file_name):
     # Save the graph
     save_path = os.path.join(save_dir, f"comparision_graph_{file_name}.png")
     plt.savefig(save_path)
+    plt.close()
+    
     img = plt.imread(save_path)
     plt.imshow(img)
     plt.axis('off')
