@@ -344,6 +344,9 @@ if __name__ == '__main__':
     print('Error of PrivBayes    : %.3f' % np.mean(err_pb))
     print('Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
 
+
+    
+    synthetic_df = f'/privbayes-implementation/Privbayes/data/synthetic-output/preprocessed_synthetic_{file_name}.csv'
     print("Postprocessing the generated synthetic file..!!")
     postprocess(synthetic_df, domain_correlation_file, file_name)
     print("done..!")
