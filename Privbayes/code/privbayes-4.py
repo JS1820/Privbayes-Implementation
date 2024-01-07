@@ -10,6 +10,8 @@ import os
 import json
 import sys
 import matplotlib.pyplot as plt
+from PIL import Image
+
 
 """
 This file implements PrivBayes.
