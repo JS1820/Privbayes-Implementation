@@ -195,6 +195,10 @@ def comparedatasets(input_df, synthetic_df, file_name):
     plt.close()
     
     display(Image.open(save_path))
+    
+    from IPython.display import Image
+    Image(filename='save_path')
+
 
 
 
