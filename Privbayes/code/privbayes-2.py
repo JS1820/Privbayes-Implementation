@@ -359,7 +359,7 @@ if __name__ == '__main__':
     input_df = f'/privbayes-implementation/Privbayes/data/preprocessed-output/preprocessed_{file_name}.csv'
     original_dataset = f'/privbayes-implementation/Privbayes/data/{file_name}.csv'
 
-    original_synthetic_dataset = postprocess(synthetic_df, domain_correlation_file, file_name)
+    final_synthetic_dataset = postprocess(synthetic_df, domain_correlation_file, file_name)
 
     # Load the original dataset before preprocessing and display its head
     original_data_before_preprocess = pd.read_csv(original_dataset)
@@ -378,7 +378,7 @@ if __name__ == '__main__':
 
     # Display the head of the original synthetic dataset (postprocessed synthetic dataset)
     print("\nHead of the original synthetic dataset (postprocessed synthetic dataset):")
-    print(original_synthetic_dataset.head())
+    print(final_synthetic_dataset.head())
 
     print("Now comes comparing the datasets, via a 2way occurance check..??")
     comparedatasets(input_df, synthetic_df)
