@@ -195,11 +195,7 @@ def comparedatasets(input_df, synthetic_df, file_name):
     plt.savefig(save_path)
     plt.close()
     
-    display(Image.open(save_path))
-    
-    Image(filename='save_path')
-    image = Image.open(save_path)
-    image.show()
+    return save_path
 
 
 
@@ -396,5 +392,8 @@ if __name__ == '__main__':
 
     print("Now comes comparing the datasets, via a 2way occurance check..??")
     
-    comparedatasets(original_data_before_preprocess, final_synthetic_dataset, file_name)
+    image_path = comparedatasets(original_data_before_preprocess, final_synthetic_dataset, file_name)
+    print(image_path)
+    Image(filename=image_path)
+
     print("End")
