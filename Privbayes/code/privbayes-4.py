@@ -11,6 +11,7 @@ import json
 import sys
 import matplotlib.pyplot as plt
 from PIL import Image
+from IPython.display import display
 
 
 """
@@ -193,8 +194,8 @@ def comparedatasets(input_df, synthetic_df, file_name):
     plt.savefig(save_path)
     plt.close()
     
-    img = Image.open(save_path)
-    img.show()
+    display(Image.open(save_path))
+
 
 
 
