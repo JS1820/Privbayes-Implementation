@@ -12,6 +12,7 @@ import sys
 import matplotlib.pyplot as plt
 from PIL import Image
 from IPython.display import display
+from IPython.display import Image
 
 
 """
@@ -196,7 +197,6 @@ def comparedatasets(input_df, synthetic_df, file_name):
     
     display(Image.open(save_path))
     
-    from IPython.display import Image
     Image(filename='save_path')
 
 
