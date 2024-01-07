@@ -137,14 +137,14 @@ def comparedatasets(input_df, synthetic_df, file_name):
     # Find common attributes between original and synthetic datasets
     common_attributes = set(original_columns) & set(synthetic_columns)
     
-    # Generate attribute pairs for the common attributes
-    attribute_pairs = list(itertools.combinations(common_attributes, 2))
+    # Generate attribute pairs for the common attributes and sort them for consistency
+    attribute_pairs = sorted(list(itertools.combinations(common_attributes, 2)))
     
     # Define a minimum threshold for co-occurrence counts
     min_threshold = 30  # Adjust this threshold as needed
     
-    # Create subplots for co-occurrence graphs for each attribute pair
-    fig, axs = plt.subplots(len(attribute_pairs), 2, figsize=(15, 5 * len(attribute_pairs)))
+    # Create a single bar graph for co-occurrence counts of attribute pairs in both datasets
+    fig, axs = plt.subplots(len(attribute_pairs), 1, figsize=(15, 5 * len(attribute_pairs)))
     
     for i, attribute_pair in enumerate(attribute_pairs):
         # Calculate the counts of occurrences for each unique pair of values in input_df
@@ -157,33 +157,25 @@ def comparedatasets(input_df, synthetic_df, file_name):
         input_attribute_counts = input_attribute_counts[input_attribute_counts['Count'] >= min_threshold]
         synthetic_attribute_counts = synthetic_attribute_counts[synthetic_attribute_counts['Count'] >= min_threshold]
     
-        # Update the maximum counts within the current attribute pair for input and synthetic datasets
-        max_input_count = input_attribute_counts['Count'].max() if not input_attribute_counts.empty else 0
-        max_synthetic_count = synthetic_attribute_counts['Count'].max() if not synthetic_attribute_counts.empty else 0
+        # Merge the co-occurrence counts for attribute pairs in both datasets
+        merged_counts = pd.merge(input_attribute_counts, synthetic_attribute_counts, on=list(attribute_pair), how='outer', suffixes=('_original', '_synthetic'))
+        merged_counts = merged_counts.fillna(0)  # Replace NaNs with 0s
     
-        # Calculate the maximum count across both datasets for the current attribute pair
-        max_count_pair = max(max_input_count, max_synthetic_count)
-    
-        # Adjust minimum limit for the y-axis
-        min_limit = 0.1  # Set a small non-zero value to prevent setting the limits to zero
-    
-        # Plotting the counts of co-occurrences as bar plots for input_df and synthetic_df
-        input_plot = axs[i, 0].bar(input_attribute_counts.apply(lambda x: f"{x[attribute_pair[0]]} - {x[attribute_pair[1]]}", axis=1), input_attribute_counts['Count'])
-        axs[i, 0].set_xlabel(f"{attribute_pair[0]} - {attribute_pair[1]}")
-        axs[i, 0].set_ylabel('Count')
-        axs[i, 0].set_title(f"Co-occurrence of {attribute_pair[0]} and {attribute_pair[1]} in input_df")
-        axs[i, 0].tick_params(axis='x', rotation=90)
-        axs[i, 0].set_ylim(min_limit, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
-    
-        synthetic_plot = axs[i, 1].bar(synthetic_attribute_counts.apply(lambda x: f"{x[attribute_pair[0]]} - {x[attribute_pair[1]]}", axis=1), synthetic_attribute_counts['Count'])
-        axs[i, 1].set_xlabel(f"{attribute_pair[0]} - {attribute_pair[1]}")
-        axs[i, 1].set_ylabel('Count')
-        axs[i, 1].set_title(f"Co-occurrence of {attribute_pair[0]} and {attribute_pair[1]} in synthetic_df")
-        axs[i, 1].tick_params(axis='x', rotation=90)
-        axs[i, 1].set_ylim(min_limit, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
+        # Plotting the counts of co-occurrences as a single bar plot for both datasets
+        bar_width = 0.35
+        index = np.arange(len(merged_counts))
+        original_bars = axs[i].bar(index, merged_counts['Count_original'], bar_width, label='Original', color='blue')
+        synthetic_bars = axs[i].bar(index + bar_width, merged_counts['Count_synthetic'], bar_width, label='Synthetic', color='orange')
+        axs[i].set_xlabel(f"{attribute_pair[0]} - {attribute_pair[1]}")
+        axs[i].set_ylabel('Count')
+        axs[i].set_title(f"Co-occurrence of {attribute_pair[0]} and {attribute_pair[1]}")
+        axs[i].set_xticks(index + bar_width / 2)
+        axs[i].set_xticklabels(merged_counts.apply(lambda x: f"{x[attribute_pair[0]]} - {x[attribute_pair[1]]}", axis=1), rotation=90)
+        axs[i].legend()
     
     plt.tight_layout()
-        # Directory to save the graphs
+    
+    # Directory to save the graphs
     save_dir = '/privbayes-implementation/Privbayes/data/graphs/'
 
     # Check if the directory exists, if not, create it
@@ -196,7 +188,6 @@ def comparedatasets(input_df, synthetic_df, file_name):
     plt.close()
     
     return save_path
-
 
 
 
