@@ -179,7 +179,7 @@ def comparedatasets(input_df, synthetic_df):
         axs[i, 1].set_ylim(min_limit, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
     
     plt.tight_layout()
-    plt.show()
+    plt.show(block=True)  # Try with block=True or False
 
 
 
