@@ -179,7 +179,18 @@ def comparedatasets(input_df, synthetic_df):
         axs[i, 1].set_ylim(min_limit, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
     
     plt.tight_layout()
-    plt.show(block=True)  # Try with block=True or False
+        # Directory to save the graphs
+    save_dir = '/privbayes-implementation/Privbayes/data/graphs/'
+    
+    # Check if the directory exists, if not, create it
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+    
+    # Save the graph
+    save_path = os.path.join(save_dir, f"comparision_graph_{file_name}.png")
+    plt.savefig(save_path)
+    
+    plt.show()  # Try with block=True or False
 
 
 
@@ -373,5 +384,5 @@ if __name__ == '__main__':
 
     print("Now comes comparing the datasets, via a 2way occurance check..??")
     
-    comparedatasets(original_data_before_preprocess, final_synthetic_dataset)
+    comparedatasets(original_data_before_preprocess, final_synthetic_dataset, file_name)
     print("End")
