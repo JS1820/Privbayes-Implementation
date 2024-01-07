@@ -158,7 +158,7 @@ def comparedatasets(input_df, synthetic_df):
     attribute_pairs = list(itertools.combinations(common_attributes, 2))
     
     # Define a minimum threshold for co-occurrence counts
-    min_threshold = 30  # Adjust this threshold as needed
+    min_threshold = 00  # Adjust this threshold as needed
     
     # Create subplots for co-occurrence graphs for each attribute pair
     fig, axs = plt.subplots(len(attribute_pairs), 2, figsize=(15, 5 * len(attribute_pairs)))
