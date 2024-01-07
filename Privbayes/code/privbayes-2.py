@@ -9,7 +9,7 @@ import benchmarks
 import os
 import json
 import sys
-
+import matplotlib.pyplot as plt
 
 """
 This file implements PrivBayes.
@@ -141,6 +141,59 @@ def categorize_columns(data):
         domain_values[column] = len(value_mapping)
 
     return data, domain_values
+
+
+def comparedatasets(input_df, synthetic_df)
+  original_columns = input_df.columns.tolist()
+  synthetic_columns = synthetic_df.columns.tolist()
+
+  # Find common attributes between original and synthetic datasets
+  common_attributes = set(original_columns) & set(synthetic_columns)
+
+  # Generate attribute pairs for the common attributes
+  attribute_pairs = list(itertools.combinations(common_attributes, 2))
+
+  # Define a minimum threshold for co-occurrence counts
+  min_threshold = 30  # Adjust this threshold as needed
+
+  # Create subplots for co-occurrence graphs for each attribute pair
+  fig, axs = plt.subplots(len(attribute_pairs), 2, figsize=(15, 5 * len(attribute_pairs)))
+
+  for i, attribute_pair in enumerate(attribute_pairs):
+      # Calculate the counts of occurrences for each unique pair of values in input_df
+      input_attribute_counts = input_df.groupby(list(attribute_pair)).size().reset_index(name='Count')
+
+      # Calculate the counts of occurrences for each unique pair of values in synthetic_df
+      synthetic_attribute_counts = synthetic_df.groupby(list(attribute_pair)).size().reset_index(name='Count')
+
+      # Filter insignificant co-occurrences based on the threshold
+      input_attribute_counts = input_attribute_counts[input_attribute_counts['Count'] >= min_threshold]
+      synthetic_attribute_counts = synthetic_attribute_counts[synthetic_attribute_counts['Count'] >= min_threshold]
+
+      # Update the maximum counts within the current attribute pair for input and synthetic datasets
+      max_input_count = input_attribute_counts['Count'].max() if not input_attribute_counts.empty else 0
+      max_synthetic_count = synthetic_attribute_counts['Count'].max() if not synthetic_attribute_counts.empty else 0
+
+      # Calculate the maximum count across both datasets for the current attribute pair
+      max_count_pair = max(max_input_count, max_synthetic_count)
+
+      # Plotting the counts of co-occurrences as bar plots for input_df and synthetic_df
+      input_plot = axs[i, 0].bar(input_attribute_counts.apply(lambda x: f"{x[attribute_pair[0]]} - {x[attribute_pair[1]]}", axis=1), input_attribute_counts['Count'])
+      axs[i, 0].set_xlabel(f"{attribute_pair[0]} - {attribute_pair[1]}")
+      axs[i, 0].set_ylabel('Count')
+      axs[i, 0].set_title(f"Co-occurrence of {attribute_pair[0]} and {attribute_pair[1]} in input_df")
+      axs[i, 0].tick_params(axis='x', rotation=90)
+      axs[i, 0].set_ylim(0, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
+
+      synthetic_plot = axs[i, 1].bar(synthetic_attribute_counts.apply(lambda x: f"{x[attribute_pair[0]]} - {x[attribute_pair[1]]}", axis=1), synthetic_attribute_counts['Count'])
+      axs[i, 1].set_xlabel(f"{attribute_pair[0]} - {attribute_pair[1]}")
+      axs[i, 1].set_ylabel('Count')
+      axs[i, 1].set_title(f"Co-occurrence of {attribute_pair[0]} and {attribute_pair[1]} in synthetic_df")
+      axs[i, 1].tick_params(axis='x', rotation=90)
+      axs[i, 1].set_ylim(0, max_count_pair * 1.1)  # Set y-axis limits based on the max count of both datasets
+
+  plt.tight_layout()
+  plt.show()
 
 
 
@@ -327,4 +380,6 @@ if __name__ == '__main__':
     print("\nHead of the original synthetic dataset (postprocessed synthetic dataset):")
     print(original_synthetic_dataset.head())
 
+    print("Now comes comparing the datasets, via a 2way occurance check..??")
+    comparedatasets(input_df, synthetic_df)
     print("End")
