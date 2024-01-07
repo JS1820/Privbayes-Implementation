@@ -198,6 +198,8 @@ def comparedatasets(input_df, synthetic_df, file_name):
     display(Image.open(save_path))
     
     Image(filename='save_path')
+    image = Image.open(save_path)
+    image.show()
 
 
 
