@@ -181,7 +181,7 @@ def comparedatasets(input_df, synthetic_df, file_name):
     plt.tight_layout()
         # Directory to save the graphs
     save_dir = '/privbayes-implementation/Privbayes/data/graphs/'
-    
+
     # Check if the directory exists, if not, create it
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
@@ -189,7 +189,9 @@ def comparedatasets(input_df, synthetic_df, file_name):
     # Save the graph
     save_path = os.path.join(save_dir, f"comparision_graph_{file_name}.png")
     plt.savefig(save_path)
-    
+    img = plt.imread(save_path)
+    plt.imshow(img)
+    plt.axis('off')
     plt.show()  # Try with block=True or False
 
 
