@@ -128,7 +128,7 @@ def postprocess(processed_input_dataset, domain_correlation_file, file_name):
     print(f"\n[+] Post-processed data is saved to: {output_file}")
     #return postprocessed_synthetic_data
 
-def comparedatasets(input_df, synthetic_df, file_name):
+def comparedatasets(input_df, synthetic_df, file_name, min_threshold):
     original_columns = input_df.columns.tolist()
     synthetic_columns = synthetic_df.columns.tolist()
     #print(original_columns)
@@ -141,7 +141,7 @@ def comparedatasets(input_df, synthetic_df, file_name):
     attribute_pairs = sorted(list(itertools.combinations(common_attributes, 2)))
     
     # Define a minimum threshold for co-occurrence counts
-    min_threshold = 40  # Adjust this threshold as needed
+    #min_threshold = 40  # Adjust this threshold as needed
     
     # Create a single bar graph for co-occurrence counts of attribute pairs in both datasets
     fig, axs = plt.subplots(len(attribute_pairs), 1, figsize=(15, 5 * len(attribute_pairs)))
@@ -381,7 +381,7 @@ if __name__ == '__main__':
 
     print("\n[+] Datasets comparision using 2 way occurances")
     
-    image_path = comparedatasets(original_data_before_preprocess, final_synthetic_dataset, file_name)
+    image_path = comparedatasets(original_data_before_preprocess, final_synthetic_dataset, file_name, 40)
     #print(image_path)
     Image(filename=image_path)
 
