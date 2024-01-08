@@ -29,7 +29,7 @@ def get_dataset_file(dataset_name):
     if os.path.isfile(csv_file):
         return csv_file
     else:
-        print(f"\n [-] {dataset_name}.csv not found.")
+        print(f"\n[-] {dataset_name}.csv not found.")
         sys.exit(1)
 
 
@@ -125,7 +125,7 @@ def postprocess(processed_input_dataset, domain_correlation_file, file_name):
     # Save the processed data after postprocessing
     output_file = f'/privbayes-implementation/Privbayes/data/postprocessed-output/final_synthetic_{file_name}.csv'  # Define the output file path
     postprocessed_synthetic_data.to_csv(output_file, index=False)
-    print(f"\n [+] Post-processed data is saved to: {output_file}")
+    print(f"\n[+] Post-processed data is saved to: {output_file}")
     #return postprocessed_synthetic_data
 
 def comparedatasets(input_df, synthetic_df, file_name):
@@ -279,7 +279,7 @@ def privbayes_inference(domain, measurements, total, file_name):
 
     # Save synthetic dataset as CSV file in the specified output path
     synthetic.to_csv(output_path, index=False)
-    print(f"\n [+] Synthetic Dataset is saved to : {output_path}")
+    print(f"\n[+] Synthetic Dataset is saved to : {output_path}")
     return Dataset(synthetic, domain)
 
 def default_params():
@@ -297,16 +297,16 @@ def default_params():
     return params
 
 if __name__ == '__main__':
-    dataset_name = input("\n > Enter the dataset name: ").strip()
+    dataset_name = input("\n[>] Enter the dataset name: ").strip()
     
     if not dataset_name:
-        print("\n [-] No dataset name entered. Exiting.")
+        print("\n[-] No dataset name entered. Exiting.")
         sys.exit(1)
     
     original_dataset = get_dataset_file(dataset_name)
-    print("[+] Data Pre-processing")
+    print("\n[+] Data Pre-processing on the input dataset")
     processed_data, data_domain, file_name, domain_correlation_file  = preprocess(original_dataset)
-    print("[+] Data pre-processing completed")
+    print("\n[+] Data pre-processing completed")
     description = ''
     formatter = argparse.ArgumentDefaultsHelpFormatter
     parser = argparse.ArgumentParser(description=description, formatter_class=formatter)
@@ -343,8 +343,8 @@ if __name__ == '__main__':
         err_pb.append(err(true, pb))
         err_pgm.append(err(true, pgm))
 
-    print('\n > Error of PrivBayes    : %.3f' % np.mean(err_pb))
-    print('\n > Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
+    print('\n[>] Error of PrivBayes    : %.3f' % np.mean(err_pb))
+    print('\n[>] Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
 
 
     
@@ -379,11 +379,11 @@ if __name__ == '__main__':
     #print("\nHead of the final synthetic dataset generated (postprocessed synthetic dataset):")
     #print(final_synthetic_dataset.head())
 
-    print("\n [+] Datasets comparision using 2 way occurances")
+    print("\n[+] Datasets comparision using 2 way occurances")
     
     image_path = comparedatasets(original_data_before_preprocess, final_synthetic_dataset, file_name)
-    print(image_path)
+    #print(image_path)
     Image(filename=image_path)
 
     print(f"\n[+] Comparison Graph image is saved to : {image_path}")
-    print("\n [*] Exiting .. ")
+    print("\n[*] Exiting .. ")
