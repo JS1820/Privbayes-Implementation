@@ -6,7 +6,7 @@ class CallBack:
     """ A CallBack is a function called after every iteration of an iterative optimization procedure
     It is useful for tracking loss and other metrics over time.
     """
-    def __init__(self, engine, frequency = 50):
+    def __init__(self, engine, frequency = 1000):
         """ Initialize the callback objet
 
         :param engine: the FactoredInference object that is performing the optimization
