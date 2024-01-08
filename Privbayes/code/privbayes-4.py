@@ -344,7 +344,7 @@ if __name__ == '__main__':
         err_pgm.append(err(true, pgm))
 
     print('\n[>] Error of PrivBayes    : %.3f' % np.mean(err_pb))
-    print('__[>] Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
+    print('[>] Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
 
 
     
