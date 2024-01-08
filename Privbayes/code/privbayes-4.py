@@ -349,9 +349,9 @@ if __name__ == '__main__':
 
     
     synthetic_df = f'/privbayes-implementation/Privbayes/data/synthetic-output/preprocessed_synthetic_{file_name}.csv'
-    print("[+] Post-processing the generated synthetic file")
+    print("\n[+] Post-processing the generated synthetic file")
     postprocess(synthetic_df, domain_correlation_file, file_name)
-    print("[+] Postprocessing is completed")
+    print("\n[+] Post-processing is completed")
 
     
     synthetic_df = f'/privbayes-implementation/Privbayes/data/synthetic-output/preprocessed_synthetic_{file_name}.csv'
