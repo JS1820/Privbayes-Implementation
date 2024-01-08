@@ -328,7 +328,7 @@ if __name__ == '__main__':
     elim_order = [m[3][0] for m in measurements][::-1]
 
     projections = [m[3] for m in measurements]
-    est2, _, _ = mechanism.run(data, projections, eps=args.epsilon, frequency=1000, seed=args.seed, iters=args.iters)
+    est2, _, _ = mechanism.run(data, projections, eps=args.epsilon, frequency=200, seed=args.seed, iters=args.iters)
 
     def err(true, est):
 
