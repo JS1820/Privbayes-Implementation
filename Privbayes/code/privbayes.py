@@ -279,7 +279,7 @@ def privbayes_inference(domain, measurements, total, file_name):
 
     # Save synthetic dataset as CSV file in the specified output path
     synthetic.to_csv(output_path, index=False)
-    print(f"\n[+] Synthetic Dataset is saved to : {output_path}")
+    print(f"\n[+] Synthetic Dataset file path is set to : {output_path}")
     return Dataset(synthetic, domain)
 
 def default_params():
@@ -344,7 +344,7 @@ if __name__ == '__main__':
         err_pgm.append(err(true, pgm))
 
     print('\n[>] Error of PrivBayes    : %.3f' % np.mean(err_pb))
-    print('[>] Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
+    #print('[>] Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
 
 
     
