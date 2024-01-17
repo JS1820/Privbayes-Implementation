@@ -46,7 +46,7 @@ class Logger(CallBack):
         model = self.engine.model
         total = sum(model.domain.size(cl) for cl in model.cliques)
         #print('Total clique size:', total, flush=True)
-        print("\n[+] Synthetic data is being generated for 10000 rows\n")
+        print("\n[+] Synthetic data is being generated down below, via callback function\n")
         #cl = max(model.cliques, key=lambda cl: model.domain.size(cl))
         #print('Maximal clique', cl, model.domain.size(cl), flush=True)
         cols = ['iteration', 'time', 'l1_loss', 'l2_loss', 'feasibility']
