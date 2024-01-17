@@ -222,7 +222,8 @@ class LocalInference:
             if self.warm_start and hasattr(self, 'model'):
                 model.potentials.combine(self.model.potentials)
         self.model = model  
- 
+        self.model.show()  # Display the region graph
+
         # group the measurements into model cliques 
         cliques = self.model.cliques
         #self.groups = { cl : [] for cl in cliques }
