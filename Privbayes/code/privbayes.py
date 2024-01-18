@@ -361,23 +361,23 @@ if __name__ == '__main__':
     
     # Load the original dataset before preprocessing and display its head
     original_data_before_preprocess = pd.read_csv(original_dataset)
-    #print("\nHead of the original dataset before preprocessing:")
-    #print(original_data_before_preprocess.head())
+    print("\nHead of the original dataset before preprocessing:")
+    print(original_data_before_preprocess.head())
 
     # Load the preprocessed dataset and display its head
     preprocessed_data = pd.read_csv(input_df)
-    #print("\nHead of the preprocessed dataset:")
-    #print(preprocessed_data.head())
+    print("\nHead of the preprocessed dataset:")
+    print(preprocessed_data.head())
 
     # Load the synthetic dataset and display its head
     synthetic_data = pd.read_csv(synthetic_df)
-    #print("\nHead of the synthetic dataset:")
-    #print(synthetic_data.head())
+    print("\nHead of the synthetic dataset:")
+    print(synthetic_data.head())
 
     # Display the head of the original synthetic dataset (postprocessed synthetic dataset)
     final_synthetic_dataset = pd.read_csv(final_synthetic_data)
-    #print("\nHead of the final synthetic dataset generated (postprocessed synthetic dataset):")
-    #print(final_synthetic_dataset.head())
+    print("\nHead of the final synthetic dataset generated (postprocessed synthetic dataset):")
+    print(final_synthetic_dataset.head())
 
     print("\n[+] Datasets comparision using 2 way occurances")
     
