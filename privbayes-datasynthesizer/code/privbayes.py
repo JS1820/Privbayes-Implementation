@@ -15,6 +15,7 @@ def main():
     parser.add_argument('--epsilon', type=float, default=1.5, help='Epsilon value for differential privacy')
     parser.add_argument('--rows', type=int, default=5000, help='Number of synthetic rows to generate')
     parser.add_argument('--bayesian', type=int, default=3, help='Degree of Bayesian network')
+    parser.add_argument('--categorical',type=str, help='Give the names of attributes that are categorical in nature, Use Correct attribute names')
     parser.add_argument('--compare', type=str, help='Specify which comparison functions to invoke (comma-separated)')
     args = parser.parse_args()
     print("\n=============================================Start=================================================\n")
@@ -37,9 +38,11 @@ def main():
     synthetic_data = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/sythetic_dataset.csv'
 
     threshold_value = 15
-    #categorical_attributes = {'education': True, 'marital-status': True}
-    # Specify all attributes as categorical
-    categorical_attributes = {col: True for col in df.columns}
+    if args.categorical:
+        categorical_attributes = {attr: True for attr in args.categorical.split(',')}
+        print("\nCategorical attributes are :", categorical_attributes)
+    else:
+        categorical_attributes = {col: True for col in df.columns}
 
     candidate_keys = {}
 
