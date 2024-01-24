@@ -18,7 +18,7 @@ def main():
     parser.add_argument('--categorical',type=str, help='Give the names of attributes that are categorical in nature, Use Correct attribute names')
     parser.add_argument('--compare', type=str, help='Specify which comparison functions to invoke (comma-separated)')
     args = parser.parse_args()
-    print("\n=============================================Start=================================================\n")
+    print("\n========================== Start ==========================\n")
     
     output_folder = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/'
     Path(output_folder).mkdir(parents=True, exist_ok=True)
@@ -31,7 +31,7 @@ def main():
     degree_of_bayesian_network = args.bayesian
 
     df = pd.read_csv(input_data)
-    print(df.head())
+    print("\nPrinting the head of the input_df\n",df.head())
 
     mode = 'correlated_attribute_mode'
     description_file = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/original_dataset_description.json'
@@ -40,11 +40,12 @@ def main():
     threshold_value = 15
     if args.categorical:
         categorical_attributes = {attr: True for attr in args.categorical.split(',')}
-        print("\nCategorical attributes are :", categorical_attributes)
+        print("\nCategorical attributes are :", categorical_attributes,"\n")
     else:
         categorical_attributes = {col: True for col in df.columns}
 
     candidate_keys = {}
+    print("\n======== Data being Described for Bayesian Network ===========\n")
 
     describer = DataDescriber(category_threshold=threshold_value)
     describer.describe_dataset_in_correlated_attribute_mode(dataset_file=input_data,
@@ -53,7 +54,9 @@ def main():
                                                             attribute_to_is_categorical=categorical_attributes,
                                                             attribute_to_is_candidate_key=candidate_keys)
     describer.save_dataset_description_to_file(description_file)
+    print("\nData description file is being saved into /Privbayes-implementation/privbayes-datasynthesizer/Output/corelated_attribute_mode/\n")
     display_bayesian_network(describer.bayesian_network)
+    print("\n=============== Synthetic Data being Generated ===============\n")
 
     generator = DataGenerator()
     generator.generate_dataset_in_correlated_attribute_mode(num_tuples_to_generate, description_file)
@@ -72,14 +75,14 @@ def main():
 
     if args.compare and '3' in args.compare:
         comparedatasets3way(input_df, synthetic_df)
-    print("\n=============================================Completed=================================================\n")
+    print("\n======================== Completed ==========================\n")
     print(f"\nFinal contents of the output folder {output_folder}:\n")
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
 
 def comparedatasets1way(input_df,synthetic_df):
     #from DataSynthesizer.ModelInspector import ModelInspector
     #inspector = ModelInspector(input_df, synthetic_df, attribute_description)
-    print(f"\n\n=========================COMPARING THE DATASETS USING 1 WAY OCCURRENCES==============================\n\n")
+    print(f"\n\n===== COMPARING THE DATASETS USING 1 WAY OCCURRENCES =====\n\n")
     """
     Compare individual attributes between the original and synthetic datasets using bar graphs.
     
@@ -135,7 +138,7 @@ def comparedatasets1way(input_df,synthetic_df):
 
 
 def comparedatasets2way(input_df, synthetic_df):
-    print("\n\n=========================COMPARING THE DATASETS USING 2 WAY OCCURANCES==============================\n\n")
+    print(f"\n\n===== COMPARING THE DATASETS USING 2 WAY OCCURRENCES =====\n\n")
 
     # Assuming you have your input_df and synthetic_df already loaded
     
@@ -192,7 +195,7 @@ def comparedatasets2way(input_df, synthetic_df):
 
 
 def comparedatasets3way(input_df, synthetic_df):
-    print("\n\n=========================COMPARING THE DATASETS USING 3 WAY OCCURANCES==============================\n\n")
+    print(f"\n\n===== COMPARING THE DATASETS USING 3 WAY OCCURRENCES =====\n\n")
 
     # Assuming you have your input_df and synthetic_df already loaded
     
