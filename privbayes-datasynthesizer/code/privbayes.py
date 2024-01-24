@@ -7,6 +7,7 @@ from DataSynthesizer.DataGenerator import DataGenerator
 from DataSynthesizer.ModelInspector import ModelInspector
 from DataSynthesizer.lib.utils import read_json_file, display_bayesian_network
 from pathlib import Path
+import os
 
 def main():
     parser = argparse.ArgumentParser(description='Generate and compare synthetic data using PrivBayes.')
