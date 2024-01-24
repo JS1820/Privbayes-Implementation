@@ -20,7 +20,7 @@ def main():
     output_folder = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/'
     Path(output_folder).mkdir(parents=True, exist_ok=True)
     print(f"Initial contents of the output folder {output_folder}:\n")
-    print("\n".join(listdir(output_folder)))
+    print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
 
     
     input_data = args.dataset
