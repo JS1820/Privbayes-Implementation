@@ -15,6 +15,7 @@ def main():
     parser.add_argument('--epsilon', type=float, default=0, help='Epsilon value for differential privacy')
     parser.add_argument('--syntheticrows', type=int, default=5000, help='Number of synthetic rows to generate')
     parser.add_argument('--bayesian', type=int, default=3, help='Degree of Bayesian network')
+    parser.add_argument('--compare', type=str, help='Specify which comparison functions to invoke (comma-separated)')
     args = parser.parse_args()
     
     output_folder = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/'
@@ -22,7 +23,6 @@ def main():
     print(f"Initial contents of the output folder {output_folder}:\n")
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
 
-    
     input_data = args.dataset
     epsilon = args.epsilon
     num_tuples_to_generate = args.syntheticrows
@@ -55,18 +55,20 @@ def main():
     input_df = pd.read_csv(input_data, skipinitialspace=True)
     synthetic_df = pd.read_csv(synthetic_data)
     attribute_description = read_json_file(description_file)['attribute_description']
-    
-    print("\n\n=========================COMPARING THE DATASETS USING 1 WAY OCCURANCES==============================\n\n")
-    inspector = ModelInspector(input_df, synthetic_df, attribute_description)
-    for attribute in synthetic_df.columns:
-        inspector.compare_histograms(attribute)
 
-    
-    comparedatasets2way(input_df, synthetic_df)
+    if args.compare and '1' in args.compare:
+        print(f"\n\n=========================COMPARING THE DATASETS USING 1 WAY OCCURRENCES==============================\n\n")
 
-    comparedatasets3way(input_df, synthetic_df)
+        for attribute in synthetic_df.columns:
+            inspector = ModelInspector(input_df, synthetic_df, attribute_description)
+            inspector.compare_histograms(attribute)
 
-    
+    if args.compare and '2' in args.compare:
+        comparedatasets2way(input_df, synthetic_df)
+
+    if args.compare and '3' in args.compare:
+        comparedatasets3way(input_df, synthetic_df)
+
     print(f"\nFinal contents of the output folder {output_folder}:\n")
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
 
