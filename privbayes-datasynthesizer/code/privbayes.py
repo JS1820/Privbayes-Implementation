@@ -80,8 +80,7 @@ def main():
     print(f"\nFinal contents of the output folder {output_folder}:\n")
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
     print("\n")
-    df = pd.read_csv(synthetic_df)
-    print("\nPrinting the head of the Synthetic dataset generated :\n",df.head())
+    print("\nPrinting the head of the Synthetic dataset generated :\n",synthetic_df.head())
 
 def comparedatasets1way(input_df,synthetic_df):
     #from DataSynthesizer.ModelInspector import ModelInspector
