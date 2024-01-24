@@ -17,6 +17,7 @@ def main():
     args = parser.parse_args()
     
     output_folder = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/'
+    Path(output_folder).mkdir(parents=True, exist_ok=True)
     print(f"Initial contents of the output folder {output_folder}:\n")
     print("\n".join(listdir(output_folder)))
 
