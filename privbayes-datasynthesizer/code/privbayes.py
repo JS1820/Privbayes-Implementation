@@ -57,11 +57,7 @@ def main():
     attribute_description = read_json_file(description_file)['attribute_description']
 
     if args.compare and '1' in args.compare:
-        print(f"\n\n=========================COMPARING THE DATASETS USING 1 WAY OCCURRENCES==============================\n\n")
-
-        for attribute in synthetic_df.columns:
-            inspector = ModelInspector(input_df, synthetic_df, attribute_description)
-            inspector.compare_histograms(attribute)
+        comparedatasets1way()
 
     if args.compare and '2' in args.compare:
         comparedatasets2way(input_df, synthetic_df)
@@ -71,6 +67,13 @@ def main():
 
     print(f"\nFinal contents of the output folder {output_folder}:\n")
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
+
+def comparedatasets1way():
+    print(f"\n\n=========================COMPARING THE DATASETS USING 1 WAY OCCURRENCES==============================\n\n")
+    for attribute in synthetic_df.columns:
+        inspector.compare_histograms(attribute)
+    print("\n\n\n\n")
+
 
 def comparedatasets2way(input_df, synthetic_df):
     print("\n\n=========================COMPARING THE DATASETS USING 2 WAY OCCURANCES==============================\n\n")
@@ -126,6 +129,7 @@ def comparedatasets2way(input_df, synthetic_df):
     
     plt.tight_layout()
     plt.show()
+    print("\n\n\n\n")
 
 
 def comparedatasets3way(input_df, synthetic_df):
@@ -182,6 +186,7 @@ def comparedatasets3way(input_df, synthetic_df):
     
     plt.tight_layout()
     plt.show()
+    print("\n\n\n\n\")
     
 
 if __name__ == "__main__":
