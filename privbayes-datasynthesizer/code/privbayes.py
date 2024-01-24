@@ -37,7 +37,10 @@ def main():
     synthetic_data = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/sythetic_dataset.csv'
 
     threshold_value = 15
-    categorical_attributes = {'education': True, 'marital-status': True}
+    #categorical_attributes = {'education': True, 'marital-status': True}
+    # Specify all attributes as categorical
+    categorical_attributes = {col: True for col in df.columns}
+
     candidate_keys = {}
 
     describer = DataDescriber(category_threshold=threshold_value)
