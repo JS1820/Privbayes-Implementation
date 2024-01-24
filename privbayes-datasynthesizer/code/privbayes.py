@@ -186,7 +186,7 @@ def comparedatasets3way(input_df, synthetic_df):
     
     plt.tight_layout()
     plt.show()
-    print("\n\n\n\n\")
+    print("\n\n\n\n")
     
 
 if __name__ == "__main__":
