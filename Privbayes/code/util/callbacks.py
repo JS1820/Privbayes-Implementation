@@ -53,7 +53,7 @@ class Logger(CallBack):
         if self.true_answers is not None:
             cols.append('variation')
         self.results = pd.DataFrame(columns=cols)
-        print('\t\t'.join(cols), flush=True)
+        #print('\t\t'.join(cols), flush=True)
 
     def variational_distances(self, marginals):
         errors = []
@@ -99,4 +99,4 @@ class Logger(CallBack):
         self.results.loc[self.idx] = row
         self.idx += 1
         
-        print('\t\t'.join(['%.2f' % v for v in row]), flush=True)
+        #print('\t\t'.join(['%.2f' % v for v in row]), flush=True)
