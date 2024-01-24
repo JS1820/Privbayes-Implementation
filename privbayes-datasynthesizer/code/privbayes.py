@@ -55,16 +55,15 @@ def main():
     input_df = pd.read_csv(input_data, skipinitialspace=True)
     synthetic_df = pd.read_csv(synthetic_data)
     attribute_description = read_json_file(description_file)['attribute_description']
+    
     print("\n\n=========================COMPARING THE DATASETS USING 1 WAY OCCURANCES==============================\n\n")
     inspector = ModelInspector(input_df, synthetic_df, attribute_description)
     for attribute in synthetic_df.columns:
         inspector.compare_histograms(attribute)
 
     
-    print("\n\n=========================COMPARING THE DATASETS USING 2 WAY OCCURANCES==============================\n\n")
     comparedatasets2way(input_df, synthetic_df)
 
-    print("\n\n=========================COMPARING THE DATASETS USING 3 WAY OCCURANCES==============================\n\n")
     comparedatasets3way(input_df, synthetic_df)
 
     
@@ -72,6 +71,7 @@ def main():
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
 
 def comparedatasets2way(input_df, synthetic_df):
+    print("\n\n=========================COMPARING THE DATASETS USING 2 WAY OCCURANCES==============================\n\n")
 
     # Assuming you have your input_df and synthetic_df already loaded
     
@@ -126,7 +126,9 @@ def comparedatasets2way(input_df, synthetic_df):
     plt.show()
 
 
-def comparedatasets2way(input_df, synthetic_df):
+def comparedatasets3way(input_df, synthetic_df):
+    print("\n\n=========================COMPARING THE DATASETS USING 3 WAY OCCURANCES==============================\n\n")
+
     # Assuming you have your input_df and synthetic_df already loaded
     
     # Get columns (attributes) from both original and synthetic datasets
