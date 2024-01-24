@@ -61,7 +61,7 @@ def main():
 
     
     print(f"\nFinal contents of the output folder {output_folder}:\n")
-    print("\n".join(listdir(output_folder)))
+    print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
 
 def comparedatasets(input_df, synthetic_df):
   original_columns = input_df.columns.tolist()
