@@ -18,7 +18,7 @@ def main():
     parser.add_argument('--categorical',type=str, help='Give the names of attributes that are categorical in nature, Use Correct attribute names')
     parser.add_argument('--compare', type=str, help='Specify which comparison functions to invoke (comma-separated)')
     args = parser.parse_args()
-    print("\n============================= Start =============================\n")
+    print("\n============================== Start ==============================\n")
     
     output_folder = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/'
     Path(output_folder).mkdir(parents=True, exist_ok=True)
@@ -76,14 +76,17 @@ def main():
 
     if args.compare and '3' in args.compare:
         comparedatasets3way(input_df, synthetic_df)
-    print("\n=========================== Completed =============================\n")
+    print("\n============================= Completed ===============================\n")
     print(f"\nFinal contents of the output folder {output_folder}:\n")
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
+    print("\n")
+    df = pd.read_csv(synthetic_df)
+    print("\nPrinting the head of the Synthetic dataset generated :\n",df.head())
 
 def comparedatasets1way(input_df,synthetic_df):
     #from DataSynthesizer.ModelInspector import ModelInspector
     #inspector = ModelInspector(input_df, synthetic_df, attribute_description)
-    print(f"\n\n======== Comparing the datasets using 1 way occurances ========\n\n")
+    print(f"\n\n========== Comparing the datasets using 1 way occurances ==========\n\n")
     """
     Compare individual attributes between the original and synthetic datasets using bar graphs.
     
@@ -139,7 +142,7 @@ def comparedatasets1way(input_df,synthetic_df):
 
 
 def comparedatasets2way(input_df, synthetic_df):
-    print(f"\n\n======== Comparing the datasets using 2 way occurances ========\n\n")
+    print(f"\n\n========== Comparing the datasets using 2 way occurances ==========\n\n")
 
     # Assuming you have your input_df and synthetic_df already loaded
     
@@ -196,7 +199,7 @@ def comparedatasets2way(input_df, synthetic_df):
 
 
 def comparedatasets3way(input_df, synthetic_df):
-    print(f"\n\n======== Comparing the datasets using 3 way occurances ========\n\n")
+    print(f"\n\n========== Comparing the datasets using 3 way occurances ==========\n\n")
 
     # Assuming you have your input_df and synthetic_df already loaded
     
