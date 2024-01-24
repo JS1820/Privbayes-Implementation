@@ -8,6 +8,7 @@ from DataSynthesizer.ModelInspector import ModelInspector
 from DataSynthesizer.lib.utils import read_json_file, display_bayesian_network
 from pathlib import Path
 import os
+import time
 
 def main():
     parser = argparse.ArgumentParser(description='Generate and compare synthetic data using PrivBayes.')
@@ -58,11 +59,14 @@ def main():
     print("\nData description file saved to : /Privbayes-implementation/privbayes-datasynthesizer/Output/corelated_attribute_mode/\n")
 
     print("\n================== Synthetic Data being Generated ==================\n")
-
+    start_time = time.time()
     generator = DataGenerator()
     generator.generate_dataset_in_correlated_attribute_mode(num_tuples_to_generate, description_file)
     generator.save_synthetic_data(synthetic_data)
-    print("\nSynthetic data generation is completed.\n")
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("\nSynthetic data generation process has been completed.\n")
+    print(f"\nTime taken to complete generating {args.rows} rows: {elapsed_time:.2f} seconds\n")
 
     
     input_df = pd.read_csv(input_data, skipinitialspace=True)
