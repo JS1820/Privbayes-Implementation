@@ -27,7 +27,8 @@ def adult_benchmark(processed_data, data_domain):
     for proj in projections:
         W = workload.Kronecker([lookup[a] for a in proj])
         workloads.append((proj, W))
-    #print(data, workloads)
+    print("\n[+] Projections for Bayesian network are added based on the domain file")
+    #print(projections)
     return data, workloads
 
 def process_dataset(csv_path, domain_path):
