@@ -382,8 +382,11 @@ if __name__ == '__main__':
     est2, _, _ = mechanism.run(data, projections, eps=args.epsilon, frequency=200, seed=args.seed, iters=args.iters)
 
     def err(true, est):
-
-        return np.sum(np.abs(true - est)) / true.sum()
+        denominator = true.sum()
+        # Check if denominator is zero to avoid division by zero
+        if denominator == 0:
+            return 0
+        return np.sum(np.abs(true - est)) / denominator
 
     err_pb = []
     err_pgm = []
