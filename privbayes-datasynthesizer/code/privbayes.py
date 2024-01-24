@@ -57,7 +57,7 @@ def main():
     attribute_description = read_json_file(description_file)['attribute_description']
 
     if args.compare and '1' in args.compare:
-        comparedatasets1way()
+        comparedatasets1way(synthetic_df)
 
     if args.compare and '2' in args.compare:
         comparedatasets2way(input_df, synthetic_df)
@@ -68,8 +68,9 @@ def main():
     print(f"\nFinal contents of the output folder {output_folder}:\n")
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
 
-def comparedatasets1way():
+def comparedatasets1way(synthetic_df):
     print(f"\n\n=========================COMPARING THE DATASETS USING 1 WAY OCCURRENCES==============================\n\n")
+    
     for attribute in synthetic_df.columns:
         inspector.compare_histograms(attribute)
     print("\n\n\n\n")
