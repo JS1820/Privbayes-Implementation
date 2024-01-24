@@ -34,7 +34,7 @@ def get_dataset_file(dataset_name):
 
 
 
-def preprocess(original_dataset):
+def preprocess(original_dataset, numeric_bin_size=5):
     # Load your dataset
     data = pd.read_csv(original_dataset)
 
@@ -46,7 +46,7 @@ def preprocess(original_dataset):
 
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
-    
+
     # Output file names
     processed_output_file = output_directory + f'preprocessed_{file_name}.csv'
     domain_output_file = output_directory + f'domain_{file_name}.json'
@@ -71,62 +71,113 @@ def preprocess(original_dataset):
     # Categorize columns and generate domain values
     processed_data = data.copy()
     for column in data.columns:
-        # Create a mapping of unique categorical values to numeric labels
-        unique_values = data[column].unique()
-        value_mapping = {val: idx + 1 for idx, val in enumerate(unique_values)}
+        if data[column].dtype == 'O':  # If the column contains object (string) values
+            # Create a mapping of unique categorical values to numeric labels
+            unique_values = data[column].unique()
+            value_mapping = {val: idx + 1 for idx, val in enumerate(unique_values)}
 
-        # Map categorical values to numeric labels in the dataset
-        processed_data[column] = processed_data[column].map(value_mapping)
+            # Map categorical values to numeric labels in the dataset
+            processed_data[column] = processed_data[column].map(value_mapping)
 
-        # Convert int64 values to native int before storing in domain_values
-        unique_values = [val.item() if isinstance(val, np.int64) else val for val in unique_values]
+            # Convert int64 values to native int before storing in domain_values
+            unique_values = [val.item() if isinstance(val, np.int64) else val for val in unique_values]
 
-        # Store the mapping information in the domain_values dictionary
-        domain_values[column] = {str(idx + 1): val for idx, val in enumerate(unique_values)}
-        domain_correlation_values[column] = len(unique_values)
+            # Store the mapping information in the domain_values dictionary
+            domain_values[column] = {str(idx + 1): val for idx, val in enumerate(unique_values)}
+            #print(domain_values,"__________is domain values for ",column)
+           
+            domain_correlation_values[column] = len(unique_values)
+            #print("\nDomain Values for Column",column," is :\n",domain_values)
+
+        else:  # If the column contains numerical values
+            # Determine bin edges based on highest, lowest, and total number of unique values
+            highest = data[column].max()
+            lowest = data[column].min()
+            total_values = len(data[column].unique())
+            bin_size = min(numeric_bin_size, total_values)  # Choose the minimum of specified size and total unique values
+
+            # Generate bins
+            bins = np.linspace(lowest, highest, bin_size + 1)
+            #print(bins, "_______is bins")
+
+            # Categorize numerical values into bins
+            processed_data[column] = pd.cut(processed_data[column], bins, labels=False) + 1
+            #print(processed_data, "___________is processed data")
+            # Convert bin edges to integers for domain values
+            integer_bins = [int(edge) for edge in bins]
+
+            # Store the mapping information in the domain_values dictionary
+            domain_values[column] = {str(idx + 1): {'min': integer_bins[idx], 'max': integer_bins[idx + 1]} for idx in range(bin_size)}
+            #print(domain_values, "__________is domain values for ", column)
+
+            # Store the bin size in domain_correlation_values
+            domain_correlation_values[column] = bin_size
+            #print("\nDomain Values for Column",column," is :\n",domain_values)
 
     # Save the processed dataset with categorization to the output directory
     processed_data.to_csv(processed_output_file, index=False)
+    print("\nDomain Values for Columns is :\n",domain_values)
 
     # Save domain values as a JSON file in the output directory
     with open(domain_output_file, 'w') as json_file:
         json.dump(domain_correlation_values, json_file)
-
+    print("\nOverall Correlation values\n",domain_correlation_values)
     # Save domain correlation values as a JSON file in the output directory
     with open(domain_correlation_file, 'w') as json_file:
         json.dump(domain_values, json_file)
+    #print(domain_correlation_file,"____________correlation file")
 
     # Return the processed dataset file paths and file names
     return processed_output_file, domain_output_file, file_name, domain_correlation_file
 
+
 def postprocess(processed_input_dataset, domain_correlation_file, file_name):
     # Load processed input dataset
     processed_data = pd.read_csv(processed_input_dataset)
-
     # Load domain correlation values
     with open(domain_correlation_file, 'r') as json_file:
         domain_correlation_values = json.load(json_file)
+    #print("\n\n\ndomain values+++++",domain_correlation_values)
 
     # Function to convert processed data back to original form
     def convert_to_original(processed_data, domain_values, file_name):
         for col in processed_data.columns:
+            #print(col,"is the column in the data")
+
             if col in domain_values:
-                # Map numerical representation back to original categorical values using domain_values
-                processed_data[col] = processed_data[col].astype(str).map(domain_values[col])
+                #print(col,"is the column in domain")
+                #print(domain_values,"is the domain values...!!!!")
+
+                if isinstance(domain_values[col], dict) and 'min' in domain_values[col].get('1', {}) and 'max' in domain_values[col].get('1', {}):
+                   # print(col,"--------is inside the binned part")
+
+                    # Binned numerical values
+                    processed_data[col] = processed_data[col].apply(lambda x: domain_values[col][str(int(x))]['min'] + (domain_values[col][str(int(x))]['max'] - domain_values[col][str(int(x))]['min']) / 2
+                                                                      if str(int(x)) in domain_values[col] and isinstance(domain_values[col][str(int(x))], dict) and not pd.isnull(x)
+                                                                      else x)
+                    processed_data[col] = processed_data[col].astype(int)
+                elif isinstance(domain_values[col], dict):
+                    #print(col,"++++++++is inside the non binned part")
+
+                    # Map numerical representation back to original categorical values using domain_values
+                    processed_data[col] = processed_data[col].astype(str).map(domain_values[col])
+                    #processed_data[col] = processed_data[col].astype(str).map({str(i): v for i, v in enumerate(domain_values[col])})
+
 
         return processed_data
 
     # Use the function to convert processed data back to its original form
     postprocessed_synthetic_data = convert_to_original(processed_data, domain_correlation_values, file_name)
+    p#ostprocessed_synthetic_data['age'] = postprocessed_synthetic_data['age'].astype(int)
     output_directory = '/privbayes-implementation/Privbayes/data/postprocessed-output/'
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
-        
     # Save the processed data after postprocessing
     output_file = f'/privbayes-implementation/Privbayes/data/postprocessed-output/final_synthetic_{file_name}.csv'  # Define the output file path
     postprocessed_synthetic_data.to_csv(output_file, index=False)
+    #print("\n\n\n++++++",postprocessed_synthetic_data)
     print(f"\n[+] Post-processed data is saved to: {output_file}")
-    #return postprocessed_synthetic_data
+    return postprocessed_synthetic_data
 
 def comparedatasets(input_df, synthetic_df, file_name, min_threshold):
     original_columns = input_df.columns.tolist()
@@ -298,7 +349,7 @@ def default_params():
 
 if __name__ == '__main__':
     dataset_name = input("\n[>] Enter the dataset name: ").strip()
-    
+    #dataset_name = 'adult_tiny'
     if not dataset_name:
         print("\n[-] No dataset name entered. Exiting.")
         sys.exit(1)
@@ -317,7 +368,7 @@ if __name__ == '__main__':
 
     parser.set_defaults(**default_params())
     args = parser.parse_args()
-
+  
     data, workload = benchmarks.adult_benchmark(processed_data, data_domain)
     
     total = data.df.shape[0]
@@ -343,7 +394,7 @@ if __name__ == '__main__':
         err_pb.append(err(true, pb))
         err_pgm.append(err(true, pgm))
 
-    print('\n[>] Error of PrivBayes    : %.3f' % np.mean(err_pb))
+    #print('\n[>] Error of PrivBayes    : %.3f' % np.mean(err_pb))
     #print('[>] Error of PrivBayes+PGM: %.3f' % np.mean(err_pgm))
 
 
