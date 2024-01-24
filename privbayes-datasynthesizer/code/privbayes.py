@@ -22,7 +22,7 @@ def main():
     
     output_folder = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/'
     Path(output_folder).mkdir(parents=True, exist_ok=True)
-    print(f"Initial contents of the output folder {output_folder}:\n")
+    print(f"Initial contents of the output folder : {output_folder}\n")
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
 
     input_data = args.dataset
@@ -55,14 +55,16 @@ def main():
                                                             attribute_to_is_candidate_key=candidate_keys)
     describer.save_dataset_description_to_file(description_file)
     display_bayesian_network(describer.bayesian_network)
-    print("\nData description file is being saved into /Privbayes-implementation/privbayes-datasynthesizer/Output/corelated_attribute_mode/\n")
+    print("\nData description file saved to : /Privbayes-implementation/privbayes-datasynthesizer/Output/corelated_attribute_mode/\n")
 
     print("\n================== Synthetic Data being Generated ==================\n")
 
     generator = DataGenerator()
     generator.generate_dataset_in_correlated_attribute_mode(num_tuples_to_generate, description_file)
     generator.save_synthetic_data(synthetic_data)
+    print("\nSynthetic data generation is completed.\n")
 
+    
     input_df = pd.read_csv(input_data, skipinitialspace=True)
     synthetic_df = pd.read_csv(synthetic_data)
     attribute_description = read_json_file(description_file)['attribute_description']
