@@ -16,7 +16,7 @@ def main():
     parser.add_argument('--bayesian', type=int, default=3, help='Degree of Bayesian network')
     args = parser.parse_args()
     
-    output_folder = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/'
+    output_folder = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/'
     Path(output_folder).mkdir(parents=True, exist_ok=True)
     print(f"Initial contents of the output folder {output_folder}:\n")
     print("\n".join(listdir(output_folder)))
@@ -31,8 +31,8 @@ def main():
     print(df.head())
 
     mode = 'correlated_attribute_mode'
-    description_file = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/original_dataset_description.json'
-    synthetic_data = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/sythetic_dataset.csv'
+    description_file = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/original_dataset_description.json'
+    synthetic_data = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/sythetic_dataset.csv'
 
     threshold_value = 15
     categorical_attributes = {'education': True, 'marital-status': True}
