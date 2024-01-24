@@ -15,7 +15,13 @@ def main():
     parser.add_argument('--syntheticrows', type=int, default=5000, help='Number of synthetic rows to generate')
     parser.add_argument('--bayesian', type=int, default=3, help='Degree of Bayesian network')
     args = parser.parse_args()
+    
+    
+    output_folder = f'../Output/{mode}/'
+    print(f"Initial contents of the output folder {output_folder}:\n")
+    print("\n".join(listdir(output_folder)))
 
+    
     input_data = args.dataset
     epsilon = args.epsilon
     num_tuples_to_generate = args.syntheticrows
@@ -25,8 +31,8 @@ def main():
     print(df.head())
 
     mode = 'correlated_attribute_mode'
-    description_file = f'/Output/{mode}/description.json'
-    synthetic_data = f'/Output/{mode}/sythetic_data.csv'
+    description_file = f'../Output/{mode}/description.json'
+    synthetic_data = f'../Output/{mode}/sythetic_data.csv'
 
     threshold_value = 15
     categorical_attributes = {'education': True, 'marital-status': True}
@@ -51,6 +57,10 @@ def main():
 
     inspector = ModelInspector(input_df, synthetic_df, attribute_description)
     comparedatasets(input_df, synthetic_df)
+
+    
+    print(f"\nFinal contents of the output folder {output_folder}:\n")
+    print("\n".join(listdir(output_folder)))
 
 def comparedatasets(input_df, synthetic_df):
   original_columns = input_df.columns.tolist()
