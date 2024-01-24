@@ -98,5 +98,5 @@ class Logger(CallBack):
             row.append(100*variational)
         self.results.loc[self.idx] = row
         self.idx += 1
-        
+        print("Generating..", flush=True)
         #print('\t\t'.join(['%.2f' % v for v in row]), flush=True)
