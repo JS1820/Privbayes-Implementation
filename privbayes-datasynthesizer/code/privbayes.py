@@ -88,17 +88,9 @@ def main():
     print("\n")
     print("\nPrinting the head of the Synthetic dataset generated :\n",synthetic_df.head())
 
-def comparedatasets1way(input_df,synthetic_df):
-    #from DataSynthesizer.ModelInspector import ModelInspector
-    #inspector = ModelInspector(input_df, synthetic_df, attribute_description)
-    print(f"\n\n========== Comparing the datasets using 1 way occurances ==========\n\n")
-    """
-    Compare individual attributes between the original and synthetic datasets using bar graphs.
-    
-    Parameters:
-        input_df (pd.DataFrame): The original dataset.
-        synthetic_df (pd.DataFrame): The synthetic dataset.
-    """
+def comparedatasets1way(input_df, synthetic_df):
+    print(f"\n\n========== Comparing the datasets using 1 way occurrences ==========\n\n")
+
     # Get columns (attributes) from both original and synthetic datasets
     original_columns = input_df.columns.tolist()
     synthetic_columns = synthetic_df.columns.tolist()
@@ -106,39 +98,30 @@ def comparedatasets1way(input_df,synthetic_df):
     # Find common attributes between original and synthetic datasets
     common_attributes = set(original_columns) & set(synthetic_columns)
 
-    # Define a minimum threshold for occurrence counts
-    min_threshold = 20  # Adjust this threshold as needed
-
-    # Initialize variables to keep track of maximum counts in both dataframes
-    max_input_count = 0
-    max_synthetic_count = 0
-
     # Create subplots for attribute comparison
     fig, axs = plt.subplots(len(common_attributes), 1, figsize=(10, 5 * len(common_attributes)))
 
     for i, attribute in enumerate(common_attributes):
-        # Calculate the counts of occurrences for each unique value in input_df
-        input_attribute_counts = input_df[attribute].value_counts().reset_index(name='Count')
+        # Calculate the proportions of occurrences for each unique value in input_df
+        input_attribute_proportions = input_df[attribute].value_counts(normalize=True).reset_index(name='Proportion')
 
-        # Calculate the counts of occurrences for each unique value in synthetic_df
-        synthetic_attribute_counts = synthetic_df[attribute].value_counts().reset_index(name='Count')
+        # Calculate the proportions of occurrences for each unique value in synthetic_df
+        synthetic_attribute_proportions = synthetic_df[attribute].value_counts(normalize=True).reset_index(name='Proportion')
 
-        # Filter insignificant occurrences based on the threshold
-        input_attribute_counts = input_attribute_counts[input_attribute_counts['Count'] >= min_threshold]
-        synthetic_attribute_counts = synthetic_attribute_counts[synthetic_attribute_counts['Count'] >= min_threshold]
+        # Combine unique values from both datasets
+        unique_values = set(input_attribute_proportions['index']).union(set(synthetic_attribute_proportions['index']))
 
-        # Update the maximum counts
-        max_input_count = max(max_input_count, input_attribute_counts['Count'].max())
-        max_synthetic_count = max(max_synthetic_count, synthetic_attribute_counts['Count'].max())
+        # Merge the proportions for each unique value
+        merged_proportions = pd.merge(input_attribute_proportions, synthetic_attribute_proportions,
+                                      how='outer', on='index', suffixes=('_InputDF', '_SyntheticDF')).fillna(0)
 
-        # Plotting the counts of occurrences as bar plots for input_df and synthetic_df
-        axs[i].bar(input_attribute_counts['index'], input_attribute_counts['Count'], color='blue', label='Input DF')
-        axs[i].bar(synthetic_attribute_counts['index'], synthetic_attribute_counts['Count'], color='red', alpha=0.5, label='Synthetic DF')
+        # Plotting the proportions of occurrences as bar plots for input_df and synthetic_df
+        axs[i].bar(merged_proportions['index'], merged_proportions['Proportion_InputDF'], color='blue', label='Input DF')
+        axs[i].bar(merged_proportions['index'], merged_proportions['Proportion_SyntheticDF'], color='red', alpha=0.5, label='Synthetic DF')
         axs[i].set_xlabel(attribute)
-        axs[i].set_ylabel('Count')
+        axs[i].set_ylabel('Proportion of Occurrences')
         axs[i].set_title(f'Comparison of {attribute} between Input DF and Synthetic DF')
         axs[i].tick_params(axis='x', rotation=90)
-        axs[i].set_ylim(0, max(max_input_count, max_synthetic_count))
         axs[i].legend()
 
     plt.tight_layout()
@@ -147,118 +130,133 @@ def comparedatasets1way(input_df,synthetic_df):
 
 
 def comparedatasets2way(input_df, synthetic_df):
-    print(f"\n\n========== Comparing the datasets using 2 way occurances ==========\n\n")
+    print(f"\n\n========== Comparing the datasets using 2-way occurrences ==========\n\n")
 
-    # Assuming you have your input_df and synthetic_df already loaded
-    
     # Get columns (attributes) from both original and synthetic datasets
     original_columns = input_df.columns.tolist()
     synthetic_columns = synthetic_df.columns.tolist()
-    
+
     # Find common attributes between original and synthetic datasets
     common_attributes = set(original_columns) & set(synthetic_columns)
-    
+
     # Generate attribute pairs for the common attributes
     attribute_pairs = list(itertools.combinations(common_attributes, 2))
-    
-    # Define a minimum threshold for co-occurrence counts
-    min_threshold = 20  # Adjust this threshold as needed
-    
-    # Initialize variables to keep track of maximum counts in both dataframes
-    max_input_count = 0
-    max_synthetic_count = 0
-    
+
     # Create subplots for co-occurrence graphs for each attribute pair
-    fig, axs = plt.subplots(len(attribute_pairs), 1, figsize=(10, 8 * len(attribute_pairs)))
-    
+    fig, axs = plt.subplots(min(len(attribute_pairs), 25), 1, figsize=(10, 8 * min(len(attribute_pairs), 25)))
+
+    filtered_attribute_pairs = []
+
     for i, attribute_pair in enumerate(attribute_pairs):
-        # Calculate the counts of occurrences for each unique pair of values in input_df
-        input_attribute_counts = input_df.groupby(list(attribute_pair)).size().reset_index(name='Count')
-    
-        # Calculate the counts of occurrences for each unique pair of values in synthetic_df
-        synthetic_attribute_counts = synthetic_df.groupby(list(attribute_pair)).size().reset_index(name='Count')
-    
-        # Filter insignificant co-occurrences based on the threshold
-        input_attribute_counts = input_attribute_counts[input_attribute_counts['Count'] >= min_threshold]
-        synthetic_attribute_counts = synthetic_attribute_counts[synthetic_attribute_counts['Count'] >= min_threshold]
-    
-        # Update the maximum counts
-        max_input_count = max(max_input_count, input_attribute_counts['Count'].max())
-        max_synthetic_count = max(max_synthetic_count, synthetic_attribute_counts['Count'].max())
-    
-        # Plotting the counts of co-occurrences as bar plots for input_df and synthetic_df
-        axs[i].bar(input_attribute_counts.apply(lambda x: f"{x[attribute_pair[0]]} - {x[attribute_pair[1]]}", axis=1),
-                   input_attribute_counts['Count'], color='blue', label='Input DF')
-        axs[i].bar(synthetic_attribute_counts.apply(lambda x: f"{x[attribute_pair[0]]} - {x[attribute_pair[1]]}", axis=1),
-                   synthetic_attribute_counts['Count'], color='red', alpha=0.5, label='Synthetic DF')
+        # Calculate the relative occurrences for each unique pair of values in input_df
+        input_attribute_counts = input_df.groupby(list(attribute_pair)).size() / len(input_df)
+
+        # Calculate the relative occurrences for each unique pair of values in synthetic_df
+        synthetic_attribute_counts = synthetic_df.groupby(list(attribute_pair)).size() / len(synthetic_df)
+
+        # Combine and get the highest and lowest values
+        combined_values = pd.concat([input_attribute_counts, synthetic_attribute_counts], axis=0)
+        highest_value = combined_values.max()
+        lowest_value = combined_values.min()
+
+        # Calculate the median
+        median_value = combined_values.median()
+
+        # Check if the highest value is greater than the median
+        if highest_value > median_value:
+            # Check the difference between input_df and synthetic_df
+            value_difference = abs(input_attribute_counts - synthetic_attribute_counts).max()
+
+            # Store the value difference for sorting
+            filtered_attribute_pairs.append((attribute_pair, value_difference))
+
+    # Sort attribute pairs based on value difference
+    filtered_attribute_pairs.sort(key=lambda x: x[1])
+
+    # Select the first 25 attribute pairs or all if less than 25
+    selected_attribute_pairs = filtered_attribute_pairs[:min(25, len(filtered_attribute_pairs))]
+
+    for i, (attribute_pair, _) in enumerate(selected_attribute_pairs):
+        input_attribute_counts = input_df.groupby(list(attribute_pair)).size() / len(input_df)
+        synthetic_attribute_counts = synthetic_df.groupby(list(attribute_pair)).size() / len(synthetic_df)
+
+        input_attribute_counts.plot(kind='bar', color='blue', alpha=0.7, label='Input DF', ax=axs[i])
+        synthetic_attribute_counts.plot(kind='bar', color='red', alpha=0.5, label='Synthetic DF', ax=axs[i])
+
         axs[i].set_xlabel(f"{attribute_pair[0]} - {attribute_pair[1]}")
-        axs[i].set_ylabel('Count')
-        axs[i].set_title(f"Co-occurrence of {attribute_pair[0]} and {attribute_pair[1]}")
+        axs[i].set_ylabel('Relative Occurrences')
+        axs[i].set_title(f"Relative Co-occurrence of {attribute_pair[0]} and {attribute_pair[1]}")
         axs[i].tick_params(axis='x', rotation=90)
-        axs[i].set_ylim(0, max(max_input_count, max_synthetic_count))
         axs[i].legend()
-    
+
     plt.tight_layout()
     plt.show()
     print("\n\n\n\n")
 
-
 def comparedatasets3way(input_df, synthetic_df):
-    print(f"\n\n========== Comparing the datasets using 3 way occurances ==========\n\n")
+    print(f"\n\n========== Comparing the datasets using 3-way occurrences ==========\n\n")
 
-    # Assuming you have your input_df and synthetic_df already loaded
-    
     # Get columns (attributes) from both original and synthetic datasets
     original_columns = input_df.columns.tolist()
     synthetic_columns = synthetic_df.columns.tolist()
-    
+
     # Find common attributes between original and synthetic datasets
     common_attributes = set(original_columns) & set(synthetic_columns)
-    
+
     # Generate attribute trios for the common attributes
     attribute_trios = list(itertools.combinations(common_attributes, 3))
-    
-    # Define a minimum threshold for co-occurrence counts
-    min_threshold = 50  # Adjust this threshold as needed
-    
-    # Initialize variables to keep track of maximum counts in both dataframes
-    max_input_count = 0
-    max_synthetic_count = 0
-    
+
     # Create subplots for co-occurrence graphs for each attribute trio
-    fig, axs = plt.subplots(len(attribute_trios), 1, figsize=(10, 8 * len(attribute_trios)))
-    
+    fig, axs = plt.subplots(min(len(attribute_trios), 25), 1, figsize=(10, 8 * min(len(attribute_trios), 25)))
+
+    filtered_attribute_trios = []
+
     for i, attribute_trio in enumerate(attribute_trios):
-        # Calculate the counts of occurrences for each unique trio of values in input_df
-        input_attribute_counts = input_df.groupby(list(attribute_trio)).size().reset_index(name='Count')
-    
-        # Calculate the counts of occurrences for each unique trio of values in synthetic_df
-        synthetic_attribute_counts = synthetic_df.groupby(list(attribute_trio)).size().reset_index(name='Count')
-    
-        # Filter insignificant co-occurrences based on the threshold
-        input_attribute_counts = input_attribute_counts[input_attribute_counts['Count'] >= min_threshold]
-        synthetic_attribute_counts = synthetic_attribute_counts[synthetic_attribute_counts['Count'] >= min_threshold]
-    
-        # Update the maximum counts
-        max_input_count = max(max_input_count, input_attribute_counts['Count'].max())
-        max_synthetic_count = max(max_synthetic_count, synthetic_attribute_counts['Count'].max())
-    
-        # Plotting the counts of co-occurrences as bar plots for input_df and synthetic_df
-        axs[i].bar(input_attribute_counts.apply(lambda x: f"{x[attribute_trio[0]]} - {x[attribute_trio[1]]} - {x[attribute_trio[2]]}", axis=1),
-                   input_attribute_counts['Count'], color='blue', label='Input DF')
-        axs[i].bar(synthetic_attribute_counts.apply(lambda x: f"{x[attribute_trio[0]]} - {x[attribute_trio[1]]} - {x[attribute_trio[2]]}", axis=1),
-                   synthetic_attribute_counts['Count'], color='red', alpha=0.5, label='Synthetic DF')
+        # Calculate the relative occurrences for each unique trio of values in input_df
+        input_attribute_counts = input_df.groupby(list(attribute_trio)).size() / len(input_df)
+
+        # Calculate the relative occurrences for each unique trio of values in synthetic_df
+        synthetic_attribute_counts = synthetic_df.groupby(list(attribute_trio)).size() / len(synthetic_df)
+
+        # Combine and get the highest and lowest values
+        combined_values = pd.concat([input_attribute_counts, synthetic_attribute_counts], axis=0)
+        highest_value = combined_values.max()
+        lowest_value = combined_values.min()
+
+        # Calculate the median
+        median_value = combined_values.median()
+
+        # Check if the highest value is greater than the median
+        if highest_value > median_value:
+            # Check the difference between input_df and synthetic_df
+            value_difference = abs(input_attribute_counts - synthetic_attribute_counts).max()
+
+            # Store the value difference for sorting
+            filtered_attribute_trios.append((attribute_trio, value_difference))
+
+    # Sort attribute trios based on value difference
+    filtered_attribute_trios.sort(key=lambda x: x[1])
+
+    # Select the first 25 attribute trios or all if less than 25
+    selected_attribute_trios = filtered_attribute_trios[:min(25, len(filtered_attribute_trios))]
+
+    for i, (attribute_trio, _) in enumerate(selected_attribute_trios):
+        input_attribute_counts = input_df.groupby(list(attribute_trio)).size() / len(input_df)
+        synthetic_attribute_counts = synthetic_df.groupby(list(attribute_trio)).size() / len(synthetic_df)
+
+        input_attribute_counts.plot(kind='bar', color='blue', alpha=0.7, label='Input DF', ax=axs[i])
+        synthetic_attribute_counts.plot(kind='bar', color='red', alpha=0.5, label='Synthetic DF', ax=axs[i])
+
         axs[i].set_xlabel(f"{attribute_trio[0]} - {attribute_trio[1]} - {attribute_trio[2]}")
-        axs[i].set_ylabel('Count')
-        axs[i].set_title(f"Co-occurrence of {attribute_trio[0]}, {attribute_trio[1]}, and {attribute_trio[2]}")
+        axs[i].set_ylabel('Relative Occurrences')
+        axs[i].set_title(f"Relative Co-occurrence of {attribute_trio[0]}, {attribute_trio[1]}, and {attribute_trio[2]}")
         axs[i].tick_params(axis='x', rotation=90)
-        axs[i].set_ylim(0, max(max_input_count, max_synthetic_count))
         axs[i].legend()
-    
+
     plt.tight_layout()
     plt.show()
     print("\n\n\n\n")
-    
+
 
 if __name__ == "__main__":
     main()
