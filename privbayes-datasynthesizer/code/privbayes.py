@@ -17,6 +17,7 @@ def main():
     parser.add_argument('--bayesian', type=int, default=3, help='Degree of Bayesian network')
     parser.add_argument('--compare', type=str, help='Specify which comparison functions to invoke (comma-separated)')
     args = parser.parse_args()
+    print("\n=============================================Start=================================================\n")
     
     output_folder = f'/Privbayes-Implementation/privbayes-datasynthesizer/Output/correlated_attribute_mode/'
     Path(output_folder).mkdir(parents=True, exist_ok=True)
@@ -65,7 +66,7 @@ def main():
 
     if args.compare and '3' in args.compare:
         comparedatasets3way(input_df, synthetic_df)
-
+    print("\n=============================================Completed=================================================\n")
     print(f"\nFinal contents of the output folder {output_folder}:\n")
     print("\n".join(os.listdir(output_folder)))  # Use os.listdir() instead of listdir()
 
