@@ -1,0 +1,1622 @@
+class TNM_explains_death_before_training_with_TNM7_priors
+{
+    inputs = ();
+    outputs = ();
+    node_size = (80 40);
+    HR_Desc = "";
+    HR_OOBN_CheckConsistency = "1";
+    HR_OOBN_FitExpand = "1";
+    HR_Zoom_ZoomFactor = "100";
+    HR_Groups_GroupColors = "";
+    HR_Groups_GroupNames = "";
+    HR_Groups_UserGroupsNo = "0";
+    HR_Color_Interface = "21";
+    HR_Color_Instance = "0";
+    HR_Color_Function = "4";
+    HR_Color_Utility = "36";
+    HR_Color_Decision = "17";
+    HR_Color_ContinuousChance = "48";
+    HR_Color_DiscreteChance = "16";
+    HR_Monitor_InitSD = "2";
+    HR_Monitor_Utility_Arrange = "0";
+    HR_Monitor_Mean_Variance = "1";
+    HR_Monitor_Chance_Utility = "1";
+    HR_Monitor_InitStates = "10";
+    HR_Monitor_OpenGraph = "0";
+    HR_Monitor_GraphPrecision = "100";
+    HR_Monitor_AutoUpdGraph = "0";
+    HR_Compile_MaxMinimalSeparators = "100000";
+    HR_Compile_ApproxEpsilon = "1.0E-5";
+    HR_Compile_Approximate = "0";
+    HR_Compile_SaveToMemory = "0";
+    HR_Compile_Compress = "0";
+    HR_Compile_TriangMethod = "0";
+    HR_Propagate_AutoNormal = "1";
+    HR_Propagate_AutoSum = "1";
+    HR_Propagate_Auto = "1";
+    HR_Font_Italic = "0";
+    HR_Font_Weight = "400";
+    HR_Font_Size = "-12";
+    HR_Font_Name = "javax.swing.plaf.FontUIResource[family=DejaVu Sans,name=DejaVu Sans,style=plain,size=12]";
+    HR_Grid_GridShow = "0";
+    HR_Grid_GridSnap = "0";
+    HR_Grid_Y = "40";
+    HR_Grid_X = "40";
+
+    node TNM
+    {
+	label = "";
+	position = (750 447);
+	states = ("1A" "1B" "2A" "2B" "3A" "3B" "4" "X");
+	HR_LinkControlPoints = "";
+	HR_LinkMode = "";
+	HR_State_0 = "";
+	HR_State_1 = "";
+	HR_State_2 = "";
+	HR_State_3 = "";
+	HR_State_4 = "";
+	HR_State_5 = "";
+	HR_State_6 = "";
+	HR_State_7 = "";
+	HR_State_8 = "";
+	HR_State_9 = "";
+	HR_State_10 = "";
+	HR_Desc = "";
+	HR_Group = "0";
+    }
+
+    node cTNM
+    {
+	label = "";
+	position = (460 474);
+	states = ("1A" "1B" "2A" "2B" "3A" "3B" "4" "X");
+	HR_Group = "0";
+	HR_Desc = "";
+	HR_State_10 = "";
+	HR_State_9 = "";
+	HR_State_8 = "";
+	HR_State_7 = "";
+	HR_State_6 = "";
+	HR_State_5 = "";
+	HR_State_4 = "";
+	HR_State_3 = "";
+	HR_State_2 = "";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    node T
+    {
+	label = "";
+	position = (586 170);
+	states = ("1A" "1B" "2A" "2B" "3" "4" "X");
+	HR_LinkMode = "[cT:0][N:0][M:0][death:0][TNM:0]";
+	HR_LinkControlPoints = "";
+	HR_State_0 = "";
+	HR_State_1 = "";
+	HR_Desc = "";
+	HR_State_2 = "";
+	HR_State_3 = "";
+	HR_State_4 = "";
+	HR_State_5 = "";
+	HR_State_6 = "";
+	HR_State_7 = "";
+	HR_State_8 = "";
+	HR_Group = "0";
+    }
+
+    node M
+    {
+	label = "";
+	position = (584 405);
+	states = ("0" "1A" "1B");
+	HR_LinkMode = "[cM:0][death:0][TNM:0]";
+	HR_State_0 = "";
+	HR_State_1 = "";
+	HR_Desc = "";
+	HR_State_2 = "";
+	HR_State_3 = "";
+	HR_Group = "0";
+    }
+
+    node N
+    {
+	label = "";
+	position = (542 273);
+	states = ("0" "1" "2" "3");
+	HR_LinkMode = "[cN:0][death:0][M:0][TNM:0]";
+	HR_LinkControlPoints = "";
+	HR_State_0 = "";
+	HR_State_1 = "";
+	HR_Desc = "";
+	HR_State_2 = "";
+	HR_State_3 = "";
+	HR_State_4 = "";
+	HR_Group = "0";
+    }
+
+    node death
+    {
+	label = "";
+	position = (737 238);
+	states = ("0-30 days" "1-4 months" "4-6 months" "6-12 months" "1-2 years" "> 2 years");
+	HR_State_5 = "";
+	HR_State_4 = "";
+	HR_State_3 = "";
+	HR_State_2 = "";
+	HR_Group = "0";
+	HR_Desc = "";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    node edition
+    {
+	label = "";
+	position = (190 274);
+	states = ("TNM 5" "TNM 6" "TNM 7");
+	HR_LinkControlPoints = "";
+	HR_State_2 = "";
+	HR_Group = "0";
+	HR_Desc = "";
+	HR_State_1 = "";
+	HR_State_0 = "";
+	HR_LinkMode = "[C1:0][C2:0][C3:0][cT:0][cN:0][cM:0][cTNM:0]";
+    }
+
+    node cM
+    {
+	label = "";
+	position = (270 414);
+	states = ("0" "1" "1A" "1B");
+	HR_LinkMode = "[cTNM:0]";
+	HR_State_3 = "";
+	HR_State_2 = "";
+	HR_Group = "0";
+	HR_Desc = "";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    node cN
+    {
+	label = "";
+	position = (360 280);
+	states = ("0" "1" "2" "3");
+	HR_State_4 = "";
+	HR_State_3 = "";
+	HR_State_2 = "";
+	HR_Group = "0";
+	HR_Desc = "";
+	HR_State_1 = "";
+	HR_State_0 = "";
+	HR_LinkControlPoints = "";
+	HR_LinkMode = "[cTNM:0]";
+    }
+
+    node cT
+    {
+	label = "";
+	position = (443 184);
+	states = ("1" "1A" "1B" "2" "2A" "2B" "3" "4" "X");
+	HR_State_8 = "";
+	HR_State_7 = "";
+	HR_State_6 = "";
+	HR_State_5 = "";
+	HR_State_4 = "";
+	HR_State_3 = "";
+	HR_State_2 = "";
+	HR_Group = "0";
+	HR_Desc = "";
+	HR_State_1 = "";
+	HR_State_0 = "";
+	HR_LinkControlPoints = "";
+	HR_LinkMode = "[cTNM:0]";
+    }
+
+    potential (TNM | M N T)
+    {
+	data = (((( 1 0 0 0 0 0 0 0 )	%  M=0  N=0  T=1A
+		  ( 1 0 0 0 0 0 0 0 )	%  M=0  N=0  T=1B
+		  ( 0 1 0 0 0 0 0 0 )	%  M=0  N=0  T=2A
+		  ( 0 0 1 0 0 0 0 0 )	%  M=0  N=0  T=2B
+		  ( 0 0 0 1 0 0 0 0 )	%  M=0  N=0  T=3
+		  ( 0 0 0 0 1 0 0 0 )	%  M=0  N=0  T=4
+		  ( 0 0 0 0 0 0 0 1 ))	%  M=0  N=0  T=X
+		 (( 0 0 1 0 0 0 0 0 )	%  M=0  N=1  T=1A
+		  ( 0 0 1 0 0 0 0 0 )	%  M=0  N=1  T=1B
+		  ( 0 0 1 0 0 0 0 0 )	%  M=0  N=1  T=2A
+		  ( 0 0 0 1 0 0 0 0 )	%  M=0  N=1  T=2B
+		  ( 0 0 0 0 1 0 0 0 )	%  M=0  N=1  T=3
+		  ( 0 0 0 0 1 0 0 0 )	%  M=0  N=1  T=4
+		  ( 0 0 0 0 1 0 0 0 ))	%  M=0  N=1  T=X
+		 (( 0 0 0 0 1 0 0 0 )	%  M=0  N=2  T=1A
+		  ( 0 0 0 0 1 0 0 0 )	%  M=0  N=2  T=1B
+		  ( 0 0 0 0 1 0 0 0 )	%  M=0  N=2  T=2A
+		  ( 0 0 0 0 1 0 0 0 )	%  M=0  N=2  T=2B
+		  ( 0 0 0 0 1 0 0 0 )	%  M=0  N=2  T=3
+		  ( 0 0 0 0 0 1 0 0 )	%  M=0  N=2  T=4
+		  ( 0 0 0 0 1 0 0 0 ))	%  M=0  N=2  T=X
+		 (( 0 0 0 0 0 1 0 0 )	%  M=0  N=3  T=1A
+		  ( 0 0 0 0 0 1 0 0 )	%  M=0  N=3  T=1B
+		  ( 0 0 0 0 0 1 0 0 )	%  M=0  N=3  T=2A
+		  ( 0 0 0 0 0 1 0 0 )	%  M=0  N=3  T=2B
+		  ( 0 0 0 0 0 1 0 0 )	%  M=0  N=3  T=3
+		  ( 0 0 0 0 0 1 0 0 )	%  M=0  N=3  T=4
+		  ( 0 0 0 0 0 1 0 0 )))	%  M=0  N=3  T=X
+		((( 0 0 0 0 0 0 1 0 )	%  M=1A  N=0  T=1A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=0  T=1B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=0  T=2A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=0  T=2B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=0  T=3
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=0  T=4
+		  ( 0 0 0 0 0 0 1 0 ))	%  M=1A  N=0  T=X
+		 (( 0 0 0 0 0 0 1 0 )	%  M=1A  N=1  T=1A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=1  T=1B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=1  T=2A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=1  T=2B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=1  T=3
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=1  T=4
+		  ( 0 0 0 0 0 0 1 0 ))	%  M=1A  N=1  T=X
+		 (( 0 0 0 0 0 0 1 0 )	%  M=1A  N=2  T=1A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=2  T=1B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=2  T=2A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=2  T=2B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=2  T=3
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=2  T=4
+		  ( 0 0 0 0 0 0 1 0 ))	%  M=1A  N=2  T=X
+		 (( 0 0 0 0 0 0 1 0 )	%  M=1A  N=3  T=1A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=3  T=1B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=3  T=2A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=3  T=2B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=3  T=3
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1A  N=3  T=4
+		  ( 0 0 0 0 0 0 1 0 )))	%  M=1A  N=3  T=X
+		((( 0 0 0 0 0 0 1 0 )	%  M=1B  N=0  T=1A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=0  T=1B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=0  T=2A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=0  T=2B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=0  T=3
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=0  T=4
+		  ( 0 0 0 0 0 0 1 0 ))	%  M=1B  N=0  T=X
+		 (( 0 0 0 0 0 0 1 0 )	%  M=1B  N=1  T=1A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=1  T=1B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=1  T=2A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=1  T=2B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=1  T=3
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=1  T=4
+		  ( 0 0 0 0 0 0 1 0 ))	%  M=1B  N=1  T=X
+		 (( 0 0 0 0 0 0 1 0 )	%  M=1B  N=2  T=1A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=2  T=1B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=2  T=2A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=2  T=2B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=2  T=3
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=2  T=4
+		  ( 0 0 0 0 0 0 1 0 ))	%  M=1B  N=2  T=X
+		 (( 0 0 0 0 0 0 1 0 )	%  M=1B  N=3  T=1A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=3  T=1B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=3  T=2A
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=3  T=2B
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=3  T=3
+		  ( 0 0 0 0 0 0 1 0 )	%  M=1B  N=3  T=4
+		  ( 0 0 0 0 0 0 1 0 ))));	%  M=1B  N=3  T=X
+	experience
+	     = ((( 0	%  M=0  N=0  T=1A
+		   0	%  M=0  N=0  T=1B
+		   0	%  M=0  N=0  T=2A
+		   0	%  M=0  N=0  T=2B
+		   0	%  M=0  N=0  T=3
+		   0	%  M=0  N=0  T=4
+		   0 )	%  M=0  N=0  T=X
+		 ( 0	%  M=0  N=1  T=1A
+		   0	%  M=0  N=1  T=1B
+		   0	%  M=0  N=1  T=2A
+		   0	%  M=0  N=1  T=2B
+		   0	%  M=0  N=1  T=3
+		   0	%  M=0  N=1  T=4
+		   0 )	%  M=0  N=1  T=X
+		 ( 0	%  M=0  N=2  T=1A
+		   0	%  M=0  N=2  T=1B
+		   0	%  M=0  N=2  T=2A
+		   0	%  M=0  N=2  T=2B
+		   0	%  M=0  N=2  T=3
+		   0	%  M=0  N=2  T=4
+		   0 )	%  M=0  N=2  T=X
+		 ( 0	%  M=0  N=3  T=1A
+		   0	%  M=0  N=3  T=1B
+		   0	%  M=0  N=3  T=2A
+		   0	%  M=0  N=3  T=2B
+		   0	%  M=0  N=3  T=3
+		   0	%  M=0  N=3  T=4
+		   0 ))	%  M=0  N=3  T=X
+		(( 0	%  M=1A  N=0  T=1A
+		   0	%  M=1A  N=0  T=1B
+		   0	%  M=1A  N=0  T=2A
+		   0	%  M=1A  N=0  T=2B
+		   0	%  M=1A  N=0  T=3
+		   0	%  M=1A  N=0  T=4
+		   0 )	%  M=1A  N=0  T=X
+		 ( 0	%  M=1A  N=1  T=1A
+		   0	%  M=1A  N=1  T=1B
+		   0	%  M=1A  N=1  T=2A
+		   0	%  M=1A  N=1  T=2B
+		   0	%  M=1A  N=1  T=3
+		   0	%  M=1A  N=1  T=4
+		   0 )	%  M=1A  N=1  T=X
+		 ( 0	%  M=1A  N=2  T=1A
+		   0	%  M=1A  N=2  T=1B
+		   0	%  M=1A  N=2  T=2A
+		   0	%  M=1A  N=2  T=2B
+		   0	%  M=1A  N=2  T=3
+		   0	%  M=1A  N=2  T=4
+		   0 )	%  M=1A  N=2  T=X
+		 ( 0	%  M=1A  N=3  T=1A
+		   0	%  M=1A  N=3  T=1B
+		   0	%  M=1A  N=3  T=2A
+		   0	%  M=1A  N=3  T=2B
+		   0	%  M=1A  N=3  T=3
+		   0	%  M=1A  N=3  T=4
+		   0 ))	%  M=1A  N=3  T=X
+		(( 0	%  M=1B  N=0  T=1A
+		   0	%  M=1B  N=0  T=1B
+		   0	%  M=1B  N=0  T=2A
+		   0	%  M=1B  N=0  T=2B
+		   0	%  M=1B  N=0  T=3
+		   0	%  M=1B  N=0  T=4
+		   0 )	%  M=1B  N=0  T=X
+		 ( 0	%  M=1B  N=1  T=1A
+		   0	%  M=1B  N=1  T=1B
+		   0	%  M=1B  N=1  T=2A
+		   0	%  M=1B  N=1  T=2B
+		   0	%  M=1B  N=1  T=3
+		   0	%  M=1B  N=1  T=4
+		   0 )	%  M=1B  N=1  T=X
+		 ( 0	%  M=1B  N=2  T=1A
+		   0	%  M=1B  N=2  T=1B
+		   0	%  M=1B  N=2  T=2A
+		   0	%  M=1B  N=2  T=2B
+		   0	%  M=1B  N=2  T=3
+		   0	%  M=1B  N=2  T=4
+		   0 )	%  M=1B  N=2  T=X
+		 ( 0	%  M=1B  N=3  T=1A
+		   0	%  M=1B  N=3  T=1B
+		   0	%  M=1B  N=3  T=2A
+		   0	%  M=1B  N=3  T=2B
+		   0	%  M=1B  N=3  T=3
+		   0	%  M=1B  N=3  T=4
+		   0 )));	%  M=1B  N=3  T=X
+    }
+
+    potential (cTNM | edition cT cN cM)
+    {
+	data = ((((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=1  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=1  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=1  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 5  cT=1  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=1A  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=1A  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=1A  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1A  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 5  cT=1A  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=1B  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=1B  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=1B  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=1B  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 5  cT=1B  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=2  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=2  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=2  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 5  cT=2  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=2A  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=2A  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=2A  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2A  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 5  cT=2A  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=2B  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=2B  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=2B  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=2B  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 5  cT=2B  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=3  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=3  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=3  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=3  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 5  cT=3  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=4  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=4  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=4  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=4  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 5  cT=4  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=X  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=X  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 5  cT=X  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  cT=X  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))))	%  edition=TNM 5  cT=X  cN=3  cM=1B
+		(((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=1  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=1  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=1  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 6  cT=1  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=1A  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=1A  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=1A  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1A  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 6  cT=1A  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=1B  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=1B  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=1B  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=1B  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 6  cT=1B  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=2  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=2  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=2  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 6  cT=2  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=2A  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=2A  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=2A  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2A  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 6  cT=2A  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=2B  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=2B  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=2B  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=2B  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 6  cT=2B  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=3  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=3  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=3  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=3  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 6  cT=3  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=4  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=4  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=4  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=4  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 6  cT=4  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=X  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=X  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 6  cT=X  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  cT=X  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))))	%  edition=TNM 6  cT=X  cN=3  cM=1B
+		(((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=1  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=1  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=1  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 7  cT=1  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=1A  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=1A  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=1A  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1A  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 7  cT=1A  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=1B  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=1B  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=1B  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=1B  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 7  cT=1B  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=2  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=2  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=2  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 7  cT=2  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=2A  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=2A  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=2A  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2A  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 7  cT=2A  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=2B  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=2B  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=2B  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=2B  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 7  cT=2B  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=3  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=3  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=3  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=3  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 7  cT=3  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=4  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=4  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=4  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=4  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))	%  edition=TNM 7  cT=4  cN=3  cM=1B
+		 ((( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=0  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=0  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=0  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=X  cN=0  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=1  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=1  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=1  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=X  cN=1  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=2  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=2  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=2  cM=1A
+		   ( 1 1 1 1 1 1 1 1 ))	%  edition=TNM 7  cT=X  cN=2  cM=1B
+		  (( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=3  cM=0
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=3  cM=1
+		   ( 1 1 1 1 1 1 1 1 )	%  edition=TNM 7  cT=X  cN=3  cM=1A
+		   ( 1 1 1 1 1 1 1 1 )))));	%  edition=TNM 7  cT=X  cN=3  cM=1B
+	experience
+	     = (((( 0	%  edition=TNM 5  cT=1  cN=0  cM=0
+		    0	%  edition=TNM 5  cT=1  cN=0  cM=1
+		    0	%  edition=TNM 5  cT=1  cN=0  cM=1A
+		    0 )	%  edition=TNM 5  cT=1  cN=0  cM=1B
+		  ( 0	%  edition=TNM 5  cT=1  cN=1  cM=0
+		    0	%  edition=TNM 5  cT=1  cN=1  cM=1
+		    0	%  edition=TNM 5  cT=1  cN=1  cM=1A
+		    0 )	%  edition=TNM 5  cT=1  cN=1  cM=1B
+		  ( 0	%  edition=TNM 5  cT=1  cN=2  cM=0
+		    0	%  edition=TNM 5  cT=1  cN=2  cM=1
+		    0	%  edition=TNM 5  cT=1  cN=2  cM=1A
+		    0 )	%  edition=TNM 5  cT=1  cN=2  cM=1B
+		  ( 0	%  edition=TNM 5  cT=1  cN=3  cM=0
+		    0	%  edition=TNM 5  cT=1  cN=3  cM=1
+		    0	%  edition=TNM 5  cT=1  cN=3  cM=1A
+		    0 ))	%  edition=TNM 5  cT=1  cN=3  cM=1B
+		 (( 0	%  edition=TNM 5  cT=1A  cN=0  cM=0
+		    0	%  edition=TNM 5  cT=1A  cN=0  cM=1
+		    0	%  edition=TNM 5  cT=1A  cN=0  cM=1A
+		    0 )	%  edition=TNM 5  cT=1A  cN=0  cM=1B
+		  ( 0	%  edition=TNM 5  cT=1A  cN=1  cM=0
+		    0	%  edition=TNM 5  cT=1A  cN=1  cM=1
+		    0	%  edition=TNM 5  cT=1A  cN=1  cM=1A
+		    0 )	%  edition=TNM 5  cT=1A  cN=1  cM=1B
+		  ( 0	%  edition=TNM 5  cT=1A  cN=2  cM=0
+		    0	%  edition=TNM 5  cT=1A  cN=2  cM=1
+		    0	%  edition=TNM 5  cT=1A  cN=2  cM=1A
+		    0 )	%  edition=TNM 5  cT=1A  cN=2  cM=1B
+		  ( 0	%  edition=TNM 5  cT=1A  cN=3  cM=0
+		    0	%  edition=TNM 5  cT=1A  cN=3  cM=1
+		    0	%  edition=TNM 5  cT=1A  cN=3  cM=1A
+		    0 ))	%  edition=TNM 5  cT=1A  cN=3  cM=1B
+		 (( 0	%  edition=TNM 5  cT=1B  cN=0  cM=0
+		    0	%  edition=TNM 5  cT=1B  cN=0  cM=1
+		    0	%  edition=TNM 5  cT=1B  cN=0  cM=1A
+		    0 )	%  edition=TNM 5  cT=1B  cN=0  cM=1B
+		  ( 0	%  edition=TNM 5  cT=1B  cN=1  cM=0
+		    0	%  edition=TNM 5  cT=1B  cN=1  cM=1
+		    0	%  edition=TNM 5  cT=1B  cN=1  cM=1A
+		    0 )	%  edition=TNM 5  cT=1B  cN=1  cM=1B
+		  ( 0	%  edition=TNM 5  cT=1B  cN=2  cM=0
+		    0	%  edition=TNM 5  cT=1B  cN=2  cM=1
+		    0	%  edition=TNM 5  cT=1B  cN=2  cM=1A
+		    0 )	%  edition=TNM 5  cT=1B  cN=2  cM=1B
+		  ( 0	%  edition=TNM 5  cT=1B  cN=3  cM=0
+		    0	%  edition=TNM 5  cT=1B  cN=3  cM=1
+		    0	%  edition=TNM 5  cT=1B  cN=3  cM=1A
+		    0 ))	%  edition=TNM 5  cT=1B  cN=3  cM=1B
+		 (( 0	%  edition=TNM 5  cT=2  cN=0  cM=0
+		    0	%  edition=TNM 5  cT=2  cN=0  cM=1
+		    0	%  edition=TNM 5  cT=2  cN=0  cM=1A
+		    0 )	%  edition=TNM 5  cT=2  cN=0  cM=1B
+		  ( 0	%  edition=TNM 5  cT=2  cN=1  cM=0
+		    0	%  edition=TNM 5  cT=2  cN=1  cM=1
+		    0	%  edition=TNM 5  cT=2  cN=1  cM=1A
+		    0 )	%  edition=TNM 5  cT=2  cN=1  cM=1B
+		  ( 0	%  edition=TNM 5  cT=2  cN=2  cM=0
+		    0	%  edition=TNM 5  cT=2  cN=2  cM=1
+		    0	%  edition=TNM 5  cT=2  cN=2  cM=1A
+		    0 )	%  edition=TNM 5  cT=2  cN=2  cM=1B
+		  ( 0	%  edition=TNM 5  cT=2  cN=3  cM=0
+		    0	%  edition=TNM 5  cT=2  cN=3  cM=1
+		    0	%  edition=TNM 5  cT=2  cN=3  cM=1A
+		    0 ))	%  edition=TNM 5  cT=2  cN=3  cM=1B
+		 (( 0	%  edition=TNM 5  cT=2A  cN=0  cM=0
+		    0	%  edition=TNM 5  cT=2A  cN=0  cM=1
+		    0	%  edition=TNM 5  cT=2A  cN=0  cM=1A
+		    0 )	%  edition=TNM 5  cT=2A  cN=0  cM=1B
+		  ( 0	%  edition=TNM 5  cT=2A  cN=1  cM=0
+		    0	%  edition=TNM 5  cT=2A  cN=1  cM=1
+		    0	%  edition=TNM 5  cT=2A  cN=1  cM=1A
+		    0 )	%  edition=TNM 5  cT=2A  cN=1  cM=1B
+		  ( 0	%  edition=TNM 5  cT=2A  cN=2  cM=0
+		    0	%  edition=TNM 5  cT=2A  cN=2  cM=1
+		    0	%  edition=TNM 5  cT=2A  cN=2  cM=1A
+		    0 )	%  edition=TNM 5  cT=2A  cN=2  cM=1B
+		  ( 0	%  edition=TNM 5  cT=2A  cN=3  cM=0
+		    0	%  edition=TNM 5  cT=2A  cN=3  cM=1
+		    0	%  edition=TNM 5  cT=2A  cN=3  cM=1A
+		    0 ))	%  edition=TNM 5  cT=2A  cN=3  cM=1B
+		 (( 0	%  edition=TNM 5  cT=2B  cN=0  cM=0
+		    0	%  edition=TNM 5  cT=2B  cN=0  cM=1
+		    0	%  edition=TNM 5  cT=2B  cN=0  cM=1A
+		    0 )	%  edition=TNM 5  cT=2B  cN=0  cM=1B
+		  ( 0	%  edition=TNM 5  cT=2B  cN=1  cM=0
+		    0	%  edition=TNM 5  cT=2B  cN=1  cM=1
+		    0	%  edition=TNM 5  cT=2B  cN=1  cM=1A
+		    0 )	%  edition=TNM 5  cT=2B  cN=1  cM=1B
+		  ( 0	%  edition=TNM 5  cT=2B  cN=2  cM=0
+		    0	%  edition=TNM 5  cT=2B  cN=2  cM=1
+		    0	%  edition=TNM 5  cT=2B  cN=2  cM=1A
+		    0 )	%  edition=TNM 5  cT=2B  cN=2  cM=1B
+		  ( 0	%  edition=TNM 5  cT=2B  cN=3  cM=0
+		    0	%  edition=TNM 5  cT=2B  cN=3  cM=1
+		    0	%  edition=TNM 5  cT=2B  cN=3  cM=1A
+		    0 ))	%  edition=TNM 5  cT=2B  cN=3  cM=1B
+		 (( 0	%  edition=TNM 5  cT=3  cN=0  cM=0
+		    0	%  edition=TNM 5  cT=3  cN=0  cM=1
+		    0	%  edition=TNM 5  cT=3  cN=0  cM=1A
+		    0 )	%  edition=TNM 5  cT=3  cN=0  cM=1B
+		  ( 0	%  edition=TNM 5  cT=3  cN=1  cM=0
+		    0	%  edition=TNM 5  cT=3  cN=1  cM=1
+		    0	%  edition=TNM 5  cT=3  cN=1  cM=1A
+		    0 )	%  edition=TNM 5  cT=3  cN=1  cM=1B
+		  ( 0	%  edition=TNM 5  cT=3  cN=2  cM=0
+		    0	%  edition=TNM 5  cT=3  cN=2  cM=1
+		    0	%  edition=TNM 5  cT=3  cN=2  cM=1A
+		    0 )	%  edition=TNM 5  cT=3  cN=2  cM=1B
+		  ( 0	%  edition=TNM 5  cT=3  cN=3  cM=0
+		    0	%  edition=TNM 5  cT=3  cN=3  cM=1
+		    0	%  edition=TNM 5  cT=3  cN=3  cM=1A
+		    0 ))	%  edition=TNM 5  cT=3  cN=3  cM=1B
+		 (( 0	%  edition=TNM 5  cT=4  cN=0  cM=0
+		    0	%  edition=TNM 5  cT=4  cN=0  cM=1
+		    0	%  edition=TNM 5  cT=4  cN=0  cM=1A
+		    0 )	%  edition=TNM 5  cT=4  cN=0  cM=1B
+		  ( 0	%  edition=TNM 5  cT=4  cN=1  cM=0
+		    0	%  edition=TNM 5  cT=4  cN=1  cM=1
+		    0	%  edition=TNM 5  cT=4  cN=1  cM=1A
+		    0 )	%  edition=TNM 5  cT=4  cN=1  cM=1B
+		  ( 0	%  edition=TNM 5  cT=4  cN=2  cM=0
+		    0	%  edition=TNM 5  cT=4  cN=2  cM=1
+		    0	%  edition=TNM 5  cT=4  cN=2  cM=1A
+		    0 )	%  edition=TNM 5  cT=4  cN=2  cM=1B
+		  ( 0	%  edition=TNM 5  cT=4  cN=3  cM=0
+		    0	%  edition=TNM 5  cT=4  cN=3  cM=1
+		    0	%  edition=TNM 5  cT=4  cN=3  cM=1A
+		    0 ))	%  edition=TNM 5  cT=4  cN=3  cM=1B
+		 (( 0	%  edition=TNM 5  cT=X  cN=0  cM=0
+		    0	%  edition=TNM 5  cT=X  cN=0  cM=1
+		    0	%  edition=TNM 5  cT=X  cN=0  cM=1A
+		    0 )	%  edition=TNM 5  cT=X  cN=0  cM=1B
+		  ( 0	%  edition=TNM 5  cT=X  cN=1  cM=0
+		    0	%  edition=TNM 5  cT=X  cN=1  cM=1
+		    0	%  edition=TNM 5  cT=X  cN=1  cM=1A
+		    0 )	%  edition=TNM 5  cT=X  cN=1  cM=1B
+		  ( 0	%  edition=TNM 5  cT=X  cN=2  cM=0
+		    0	%  edition=TNM 5  cT=X  cN=2  cM=1
+		    0	%  edition=TNM 5  cT=X  cN=2  cM=1A
+		    0 )	%  edition=TNM 5  cT=X  cN=2  cM=1B
+		  ( 0	%  edition=TNM 5  cT=X  cN=3  cM=0
+		    0	%  edition=TNM 5  cT=X  cN=3  cM=1
+		    0	%  edition=TNM 5  cT=X  cN=3  cM=1A
+		    0 )))	%  edition=TNM 5  cT=X  cN=3  cM=1B
+		((( 0	%  edition=TNM 6  cT=1  cN=0  cM=0
+		    0	%  edition=TNM 6  cT=1  cN=0  cM=1
+		    0	%  edition=TNM 6  cT=1  cN=0  cM=1A
+		    0 )	%  edition=TNM 6  cT=1  cN=0  cM=1B
+		  ( 0	%  edition=TNM 6  cT=1  cN=1  cM=0
+		    0	%  edition=TNM 6  cT=1  cN=1  cM=1
+		    0	%  edition=TNM 6  cT=1  cN=1  cM=1A
+		    0 )	%  edition=TNM 6  cT=1  cN=1  cM=1B
+		  ( 0	%  edition=TNM 6  cT=1  cN=2  cM=0
+		    0	%  edition=TNM 6  cT=1  cN=2  cM=1
+		    0	%  edition=TNM 6  cT=1  cN=2  cM=1A
+		    0 )	%  edition=TNM 6  cT=1  cN=2  cM=1B
+		  ( 0	%  edition=TNM 6  cT=1  cN=3  cM=0
+		    0	%  edition=TNM 6  cT=1  cN=3  cM=1
+		    0	%  edition=TNM 6  cT=1  cN=3  cM=1A
+		    0 ))	%  edition=TNM 6  cT=1  cN=3  cM=1B
+		 (( 0	%  edition=TNM 6  cT=1A  cN=0  cM=0
+		    0	%  edition=TNM 6  cT=1A  cN=0  cM=1
+		    0	%  edition=TNM 6  cT=1A  cN=0  cM=1A
+		    0 )	%  edition=TNM 6  cT=1A  cN=0  cM=1B
+		  ( 0	%  edition=TNM 6  cT=1A  cN=1  cM=0
+		    0	%  edition=TNM 6  cT=1A  cN=1  cM=1
+		    0	%  edition=TNM 6  cT=1A  cN=1  cM=1A
+		    0 )	%  edition=TNM 6  cT=1A  cN=1  cM=1B
+		  ( 0	%  edition=TNM 6  cT=1A  cN=2  cM=0
+		    0	%  edition=TNM 6  cT=1A  cN=2  cM=1
+		    0	%  edition=TNM 6  cT=1A  cN=2  cM=1A
+		    0 )	%  edition=TNM 6  cT=1A  cN=2  cM=1B
+		  ( 0	%  edition=TNM 6  cT=1A  cN=3  cM=0
+		    0	%  edition=TNM 6  cT=1A  cN=3  cM=1
+		    0	%  edition=TNM 6  cT=1A  cN=3  cM=1A
+		    0 ))	%  edition=TNM 6  cT=1A  cN=3  cM=1B
+		 (( 0	%  edition=TNM 6  cT=1B  cN=0  cM=0
+		    0	%  edition=TNM 6  cT=1B  cN=0  cM=1
+		    0	%  edition=TNM 6  cT=1B  cN=0  cM=1A
+		    0 )	%  edition=TNM 6  cT=1B  cN=0  cM=1B
+		  ( 0	%  edition=TNM 6  cT=1B  cN=1  cM=0
+		    0	%  edition=TNM 6  cT=1B  cN=1  cM=1
+		    0	%  edition=TNM 6  cT=1B  cN=1  cM=1A
+		    0 )	%  edition=TNM 6  cT=1B  cN=1  cM=1B
+		  ( 0	%  edition=TNM 6  cT=1B  cN=2  cM=0
+		    0	%  edition=TNM 6  cT=1B  cN=2  cM=1
+		    0	%  edition=TNM 6  cT=1B  cN=2  cM=1A
+		    0 )	%  edition=TNM 6  cT=1B  cN=2  cM=1B
+		  ( 0	%  edition=TNM 6  cT=1B  cN=3  cM=0
+		    0	%  edition=TNM 6  cT=1B  cN=3  cM=1
+		    0	%  edition=TNM 6  cT=1B  cN=3  cM=1A
+		    0 ))	%  edition=TNM 6  cT=1B  cN=3  cM=1B
+		 (( 0	%  edition=TNM 6  cT=2  cN=0  cM=0
+		    0	%  edition=TNM 6  cT=2  cN=0  cM=1
+		    0	%  edition=TNM 6  cT=2  cN=0  cM=1A
+		    0 )	%  edition=TNM 6  cT=2  cN=0  cM=1B
+		  ( 0	%  edition=TNM 6  cT=2  cN=1  cM=0
+		    0	%  edition=TNM 6  cT=2  cN=1  cM=1
+		    0	%  edition=TNM 6  cT=2  cN=1  cM=1A
+		    0 )	%  edition=TNM 6  cT=2  cN=1  cM=1B
+		  ( 0	%  edition=TNM 6  cT=2  cN=2  cM=0
+		    0	%  edition=TNM 6  cT=2  cN=2  cM=1
+		    0	%  edition=TNM 6  cT=2  cN=2  cM=1A
+		    0 )	%  edition=TNM 6  cT=2  cN=2  cM=1B
+		  ( 0	%  edition=TNM 6  cT=2  cN=3  cM=0
+		    0	%  edition=TNM 6  cT=2  cN=3  cM=1
+		    0	%  edition=TNM 6  cT=2  cN=3  cM=1A
+		    0 ))	%  edition=TNM 6  cT=2  cN=3  cM=1B
+		 (( 0	%  edition=TNM 6  cT=2A  cN=0  cM=0
+		    0	%  edition=TNM 6  cT=2A  cN=0  cM=1
+		    0	%  edition=TNM 6  cT=2A  cN=0  cM=1A
+		    0 )	%  edition=TNM 6  cT=2A  cN=0  cM=1B
+		  ( 0	%  edition=TNM 6  cT=2A  cN=1  cM=0
+		    0	%  edition=TNM 6  cT=2A  cN=1  cM=1
+		    0	%  edition=TNM 6  cT=2A  cN=1  cM=1A
+		    0 )	%  edition=TNM 6  cT=2A  cN=1  cM=1B
+		  ( 0	%  edition=TNM 6  cT=2A  cN=2  cM=0
+		    0	%  edition=TNM 6  cT=2A  cN=2  cM=1
+		    0	%  edition=TNM 6  cT=2A  cN=2  cM=1A
+		    0 )	%  edition=TNM 6  cT=2A  cN=2  cM=1B
+		  ( 0	%  edition=TNM 6  cT=2A  cN=3  cM=0
+		    0	%  edition=TNM 6  cT=2A  cN=3  cM=1
+		    0	%  edition=TNM 6  cT=2A  cN=3  cM=1A
+		    0 ))	%  edition=TNM 6  cT=2A  cN=3  cM=1B
+		 (( 0	%  edition=TNM 6  cT=2B  cN=0  cM=0
+		    0	%  edition=TNM 6  cT=2B  cN=0  cM=1
+		    0	%  edition=TNM 6  cT=2B  cN=0  cM=1A
+		    0 )	%  edition=TNM 6  cT=2B  cN=0  cM=1B
+		  ( 0	%  edition=TNM 6  cT=2B  cN=1  cM=0
+		    0	%  edition=TNM 6  cT=2B  cN=1  cM=1
+		    0	%  edition=TNM 6  cT=2B  cN=1  cM=1A
+		    0 )	%  edition=TNM 6  cT=2B  cN=1  cM=1B
+		  ( 0	%  edition=TNM 6  cT=2B  cN=2  cM=0
+		    0	%  edition=TNM 6  cT=2B  cN=2  cM=1
+		    0	%  edition=TNM 6  cT=2B  cN=2  cM=1A
+		    0 )	%  edition=TNM 6  cT=2B  cN=2  cM=1B
+		  ( 0	%  edition=TNM 6  cT=2B  cN=3  cM=0
+		    0	%  edition=TNM 6  cT=2B  cN=3  cM=1
+		    0	%  edition=TNM 6  cT=2B  cN=3  cM=1A
+		    0 ))	%  edition=TNM 6  cT=2B  cN=3  cM=1B
+		 (( 0	%  edition=TNM 6  cT=3  cN=0  cM=0
+		    0	%  edition=TNM 6  cT=3  cN=0  cM=1
+		    0	%  edition=TNM 6  cT=3  cN=0  cM=1A
+		    0 )	%  edition=TNM 6  cT=3  cN=0  cM=1B
+		  ( 0	%  edition=TNM 6  cT=3  cN=1  cM=0
+		    0	%  edition=TNM 6  cT=3  cN=1  cM=1
+		    0	%  edition=TNM 6  cT=3  cN=1  cM=1A
+		    0 )	%  edition=TNM 6  cT=3  cN=1  cM=1B
+		  ( 0	%  edition=TNM 6  cT=3  cN=2  cM=0
+		    0	%  edition=TNM 6  cT=3  cN=2  cM=1
+		    0	%  edition=TNM 6  cT=3  cN=2  cM=1A
+		    0 )	%  edition=TNM 6  cT=3  cN=2  cM=1B
+		  ( 0	%  edition=TNM 6  cT=3  cN=3  cM=0
+		    0	%  edition=TNM 6  cT=3  cN=3  cM=1
+		    0	%  edition=TNM 6  cT=3  cN=3  cM=1A
+		    0 ))	%  edition=TNM 6  cT=3  cN=3  cM=1B
+		 (( 0	%  edition=TNM 6  cT=4  cN=0  cM=0
+		    0	%  edition=TNM 6  cT=4  cN=0  cM=1
+		    0	%  edition=TNM 6  cT=4  cN=0  cM=1A
+		    0 )	%  edition=TNM 6  cT=4  cN=0  cM=1B
+		  ( 0	%  edition=TNM 6  cT=4  cN=1  cM=0
+		    0	%  edition=TNM 6  cT=4  cN=1  cM=1
+		    0	%  edition=TNM 6  cT=4  cN=1  cM=1A
+		    0 )	%  edition=TNM 6  cT=4  cN=1  cM=1B
+		  ( 0	%  edition=TNM 6  cT=4  cN=2  cM=0
+		    0	%  edition=TNM 6  cT=4  cN=2  cM=1
+		    0	%  edition=TNM 6  cT=4  cN=2  cM=1A
+		    0 )	%  edition=TNM 6  cT=4  cN=2  cM=1B
+		  ( 0	%  edition=TNM 6  cT=4  cN=3  cM=0
+		    0	%  edition=TNM 6  cT=4  cN=3  cM=1
+		    0	%  edition=TNM 6  cT=4  cN=3  cM=1A
+		    0 ))	%  edition=TNM 6  cT=4  cN=3  cM=1B
+		 (( 0	%  edition=TNM 6  cT=X  cN=0  cM=0
+		    0	%  edition=TNM 6  cT=X  cN=0  cM=1
+		    0	%  edition=TNM 6  cT=X  cN=0  cM=1A
+		    0 )	%  edition=TNM 6  cT=X  cN=0  cM=1B
+		  ( 0	%  edition=TNM 6  cT=X  cN=1  cM=0
+		    0	%  edition=TNM 6  cT=X  cN=1  cM=1
+		    0	%  edition=TNM 6  cT=X  cN=1  cM=1A
+		    0 )	%  edition=TNM 6  cT=X  cN=1  cM=1B
+		  ( 0	%  edition=TNM 6  cT=X  cN=2  cM=0
+		    0	%  edition=TNM 6  cT=X  cN=2  cM=1
+		    0	%  edition=TNM 6  cT=X  cN=2  cM=1A
+		    0 )	%  edition=TNM 6  cT=X  cN=2  cM=1B
+		  ( 0	%  edition=TNM 6  cT=X  cN=3  cM=0
+		    0	%  edition=TNM 6  cT=X  cN=3  cM=1
+		    0	%  edition=TNM 6  cT=X  cN=3  cM=1A
+		    0 )))	%  edition=TNM 6  cT=X  cN=3  cM=1B
+		((( 0	%  edition=TNM 7  cT=1  cN=0  cM=0
+		    0	%  edition=TNM 7  cT=1  cN=0  cM=1
+		    0	%  edition=TNM 7  cT=1  cN=0  cM=1A
+		    0 )	%  edition=TNM 7  cT=1  cN=0  cM=1B
+		  ( 0	%  edition=TNM 7  cT=1  cN=1  cM=0
+		    0	%  edition=TNM 7  cT=1  cN=1  cM=1
+		    0	%  edition=TNM 7  cT=1  cN=1  cM=1A
+		    0 )	%  edition=TNM 7  cT=1  cN=1  cM=1B
+		  ( 0	%  edition=TNM 7  cT=1  cN=2  cM=0
+		    0	%  edition=TNM 7  cT=1  cN=2  cM=1
+		    0	%  edition=TNM 7  cT=1  cN=2  cM=1A
+		    0 )	%  edition=TNM 7  cT=1  cN=2  cM=1B
+		  ( 0	%  edition=TNM 7  cT=1  cN=3  cM=0
+		    0	%  edition=TNM 7  cT=1  cN=3  cM=1
+		    0	%  edition=TNM 7  cT=1  cN=3  cM=1A
+		    0 ))	%  edition=TNM 7  cT=1  cN=3  cM=1B
+		 (( 0	%  edition=TNM 7  cT=1A  cN=0  cM=0
+		    0	%  edition=TNM 7  cT=1A  cN=0  cM=1
+		    0	%  edition=TNM 7  cT=1A  cN=0  cM=1A
+		    0 )	%  edition=TNM 7  cT=1A  cN=0  cM=1B
+		  ( 0	%  edition=TNM 7  cT=1A  cN=1  cM=0
+		    0	%  edition=TNM 7  cT=1A  cN=1  cM=1
+		    0	%  edition=TNM 7  cT=1A  cN=1  cM=1A
+		    0 )	%  edition=TNM 7  cT=1A  cN=1  cM=1B
+		  ( 0	%  edition=TNM 7  cT=1A  cN=2  cM=0
+		    0	%  edition=TNM 7  cT=1A  cN=2  cM=1
+		    0	%  edition=TNM 7  cT=1A  cN=2  cM=1A
+		    0 )	%  edition=TNM 7  cT=1A  cN=2  cM=1B
+		  ( 0	%  edition=TNM 7  cT=1A  cN=3  cM=0
+		    0	%  edition=TNM 7  cT=1A  cN=3  cM=1
+		    0	%  edition=TNM 7  cT=1A  cN=3  cM=1A
+		    0 ))	%  edition=TNM 7  cT=1A  cN=3  cM=1B
+		 (( 0	%  edition=TNM 7  cT=1B  cN=0  cM=0
+		    0	%  edition=TNM 7  cT=1B  cN=0  cM=1
+		    0	%  edition=TNM 7  cT=1B  cN=0  cM=1A
+		    0 )	%  edition=TNM 7  cT=1B  cN=0  cM=1B
+		  ( 0	%  edition=TNM 7  cT=1B  cN=1  cM=0
+		    0	%  edition=TNM 7  cT=1B  cN=1  cM=1
+		    0	%  edition=TNM 7  cT=1B  cN=1  cM=1A
+		    0 )	%  edition=TNM 7  cT=1B  cN=1  cM=1B
+		  ( 0	%  edition=TNM 7  cT=1B  cN=2  cM=0
+		    0	%  edition=TNM 7  cT=1B  cN=2  cM=1
+		    0	%  edition=TNM 7  cT=1B  cN=2  cM=1A
+		    0 )	%  edition=TNM 7  cT=1B  cN=2  cM=1B
+		  ( 0	%  edition=TNM 7  cT=1B  cN=3  cM=0
+		    0	%  edition=TNM 7  cT=1B  cN=3  cM=1
+		    0	%  edition=TNM 7  cT=1B  cN=3  cM=1A
+		    0 ))	%  edition=TNM 7  cT=1B  cN=3  cM=1B
+		 (( 0	%  edition=TNM 7  cT=2  cN=0  cM=0
+		    0	%  edition=TNM 7  cT=2  cN=0  cM=1
+		    0	%  edition=TNM 7  cT=2  cN=0  cM=1A
+		    0 )	%  edition=TNM 7  cT=2  cN=0  cM=1B
+		  ( 0	%  edition=TNM 7  cT=2  cN=1  cM=0
+		    0	%  edition=TNM 7  cT=2  cN=1  cM=1
+		    0	%  edition=TNM 7  cT=2  cN=1  cM=1A
+		    0 )	%  edition=TNM 7  cT=2  cN=1  cM=1B
+		  ( 0	%  edition=TNM 7  cT=2  cN=2  cM=0
+		    0	%  edition=TNM 7  cT=2  cN=2  cM=1
+		    0	%  edition=TNM 7  cT=2  cN=2  cM=1A
+		    0 )	%  edition=TNM 7  cT=2  cN=2  cM=1B
+		  ( 0	%  edition=TNM 7  cT=2  cN=3  cM=0
+		    0	%  edition=TNM 7  cT=2  cN=3  cM=1
+		    0	%  edition=TNM 7  cT=2  cN=3  cM=1A
+		    0 ))	%  edition=TNM 7  cT=2  cN=3  cM=1B
+		 (( 0	%  edition=TNM 7  cT=2A  cN=0  cM=0
+		    0	%  edition=TNM 7  cT=2A  cN=0  cM=1
+		    0	%  edition=TNM 7  cT=2A  cN=0  cM=1A
+		    0 )	%  edition=TNM 7  cT=2A  cN=0  cM=1B
+		  ( 0	%  edition=TNM 7  cT=2A  cN=1  cM=0
+		    0	%  edition=TNM 7  cT=2A  cN=1  cM=1
+		    0	%  edition=TNM 7  cT=2A  cN=1  cM=1A
+		    0 )	%  edition=TNM 7  cT=2A  cN=1  cM=1B
+		  ( 0	%  edition=TNM 7  cT=2A  cN=2  cM=0
+		    0	%  edition=TNM 7  cT=2A  cN=2  cM=1
+		    0	%  edition=TNM 7  cT=2A  cN=2  cM=1A
+		    0 )	%  edition=TNM 7  cT=2A  cN=2  cM=1B
+		  ( 0	%  edition=TNM 7  cT=2A  cN=3  cM=0
+		    0	%  edition=TNM 7  cT=2A  cN=3  cM=1
+		    0	%  edition=TNM 7  cT=2A  cN=3  cM=1A
+		    0 ))	%  edition=TNM 7  cT=2A  cN=3  cM=1B
+		 (( 0	%  edition=TNM 7  cT=2B  cN=0  cM=0
+		    0	%  edition=TNM 7  cT=2B  cN=0  cM=1
+		    0	%  edition=TNM 7  cT=2B  cN=0  cM=1A
+		    0 )	%  edition=TNM 7  cT=2B  cN=0  cM=1B
+		  ( 0	%  edition=TNM 7  cT=2B  cN=1  cM=0
+		    0	%  edition=TNM 7  cT=2B  cN=1  cM=1
+		    0	%  edition=TNM 7  cT=2B  cN=1  cM=1A
+		    0 )	%  edition=TNM 7  cT=2B  cN=1  cM=1B
+		  ( 0	%  edition=TNM 7  cT=2B  cN=2  cM=0
+		    0	%  edition=TNM 7  cT=2B  cN=2  cM=1
+		    0	%  edition=TNM 7  cT=2B  cN=2  cM=1A
+		    0 )	%  edition=TNM 7  cT=2B  cN=2  cM=1B
+		  ( 0	%  edition=TNM 7  cT=2B  cN=3  cM=0
+		    0	%  edition=TNM 7  cT=2B  cN=3  cM=1
+		    0	%  edition=TNM 7  cT=2B  cN=3  cM=1A
+		    0 ))	%  edition=TNM 7  cT=2B  cN=3  cM=1B
+		 (( 0	%  edition=TNM 7  cT=3  cN=0  cM=0
+		    0	%  edition=TNM 7  cT=3  cN=0  cM=1
+		    0	%  edition=TNM 7  cT=3  cN=0  cM=1A
+		    0 )	%  edition=TNM 7  cT=3  cN=0  cM=1B
+		  ( 0	%  edition=TNM 7  cT=3  cN=1  cM=0
+		    0	%  edition=TNM 7  cT=3  cN=1  cM=1
+		    0	%  edition=TNM 7  cT=3  cN=1  cM=1A
+		    0 )	%  edition=TNM 7  cT=3  cN=1  cM=1B
+		  ( 0	%  edition=TNM 7  cT=3  cN=2  cM=0
+		    0	%  edition=TNM 7  cT=3  cN=2  cM=1
+		    0	%  edition=TNM 7  cT=3  cN=2  cM=1A
+		    0 )	%  edition=TNM 7  cT=3  cN=2  cM=1B
+		  ( 0	%  edition=TNM 7  cT=3  cN=3  cM=0
+		    0	%  edition=TNM 7  cT=3  cN=3  cM=1
+		    0	%  edition=TNM 7  cT=3  cN=3  cM=1A
+		    0 ))	%  edition=TNM 7  cT=3  cN=3  cM=1B
+		 (( 0	%  edition=TNM 7  cT=4  cN=0  cM=0
+		    0	%  edition=TNM 7  cT=4  cN=0  cM=1
+		    0	%  edition=TNM 7  cT=4  cN=0  cM=1A
+		    0 )	%  edition=TNM 7  cT=4  cN=0  cM=1B
+		  ( 0	%  edition=TNM 7  cT=4  cN=1  cM=0
+		    0	%  edition=TNM 7  cT=4  cN=1  cM=1
+		    0	%  edition=TNM 7  cT=4  cN=1  cM=1A
+		    0 )	%  edition=TNM 7  cT=4  cN=1  cM=1B
+		  ( 0	%  edition=TNM 7  cT=4  cN=2  cM=0
+		    0	%  edition=TNM 7  cT=4  cN=2  cM=1
+		    0	%  edition=TNM 7  cT=4  cN=2  cM=1A
+		    0 )	%  edition=TNM 7  cT=4  cN=2  cM=1B
+		  ( 0	%  edition=TNM 7  cT=4  cN=3  cM=0
+		    0	%  edition=TNM 7  cT=4  cN=3  cM=1
+		    0	%  edition=TNM 7  cT=4  cN=3  cM=1A
+		    0 ))	%  edition=TNM 7  cT=4  cN=3  cM=1B
+		 (( 0	%  edition=TNM 7  cT=X  cN=0  cM=0
+		    0	%  edition=TNM 7  cT=X  cN=0  cM=1
+		    0	%  edition=TNM 7  cT=X  cN=0  cM=1A
+		    0 )	%  edition=TNM 7  cT=X  cN=0  cM=1B
+		  ( 0	%  edition=TNM 7  cT=X  cN=1  cM=0
+		    0	%  edition=TNM 7  cT=X  cN=1  cM=1
+		    0	%  edition=TNM 7  cT=X  cN=1  cM=1A
+		    0 )	%  edition=TNM 7  cT=X  cN=1  cM=1B
+		  ( 0	%  edition=TNM 7  cT=X  cN=2  cM=0
+		    0	%  edition=TNM 7  cT=X  cN=2  cM=1
+		    0	%  edition=TNM 7  cT=X  cN=2  cM=1A
+		    0 )	%  edition=TNM 7  cT=X  cN=2  cM=1B
+		  ( 0	%  edition=TNM 7  cT=X  cN=3  cM=0
+		    0	%  edition=TNM 7  cT=X  cN=3  cM=1
+		    0	%  edition=TNM 7  cT=X  cN=3  cM=1A
+		    0 ))));	%  edition=TNM 7  cT=X  cN=3  cM=1B
+    }
+
+    potential (T)
+    {
+	data = ( 0.109626 0.0955152 0.205807 0.0803442 0.188142 0.259986 0.0605802 );
+	experience = 0;
+    }
+
+    potential (M | N T)
+    {
+	data = ((( 0.905799 0.0240453 0.0701556 )	%  N=0  T=1A
+		 ( 0.85609 0.0352987 0.108611 )	%  N=0  T=1B
+		 ( 0.786486 0.0567568 0.156757 )	%  N=0  T=2A
+		 ( 0.781273 0.0426966 0.17603 )	%  N=0  T=2B
+		 ( 0.717466 0.084453 0.198081 )	%  N=0  T=3
+		 ( 0.558992 0.17764 0.263367 )	%  N=0  T=4
+		 ( 0.551331 0.228137 0.220532 ))	%  N=0  T=X
+		(( 0.680272 0.047619 0.272109 )	%  N=1  T=1A
+		 ( 0.643875 0.045584 0.310541 )	%  N=1  T=1B
+		 ( 0.587973 0.0601336 0.351893 )	%  N=1  T=2A
+		 ( 0.60401 0.0526316 0.343358 )	%  N=1  T=2B
+		 ( 0.598389 0.0701956 0.331415 )	%  N=1  T=3
+		 ( 0.469761 0.115331 0.414909 )	%  N=1  T=4
+		 ( 0.355072 0.210145 0.434783 ))	%  N=1  T=X
+		(( 0.534161 0.0720497 0.393789 )	%  N=2  T=1A
+		 ( 0.443625 0.089568 0.466807 )	%  N=2  T=1B
+		 ( 0.441225 0.11988 0.438894 )	%  N=2  T=2A
+		 ( 0.459584 0.0900693 0.450346 )	%  N=2  T=2B
+		 ( 0.435431 0.119893 0.444676 )	%  N=2  T=3
+		 ( 0.354262 0.168091 0.477648 )	%  N=2  T=4
+		 ( 0.229651 0.233527 0.536822 ))	%  N=2  T=X
+		(( 0.369735 0.0858034 0.544462 )	%  N=3  T=1A
+		 ( 0.344011 0.0891365 0.566852 )	%  N=3  T=1B
+		 ( 0.296584 0.122671 0.580745 )	%  N=3  T=2A
+		 ( 0.327731 0.0996399 0.572629 )	%  N=3  T=2B
+		 ( 0.30593 0.132075 0.561995 )	%  N=3  T=3
+		 ( 0.196758 0.190095 0.613147 )	%  N=3  T=4
+		 ( 0.201883 0.155858 0.642259 )));	%  N=3  T=X
+	experience
+	     = (( 0	%  N=0  T=1A
+		  0	%  N=0  T=1B
+		  0	%  N=0  T=2A
+		  0	%  N=0  T=2B
+		  0	%  N=0  T=3
+		  0	%  N=0  T=4
+		  0 )	%  N=0  T=X
+		( 0	%  N=1  T=1A
+		  0	%  N=1  T=1B
+		  0	%  N=1  T=2A
+		  0	%  N=1  T=2B
+		  0	%  N=1  T=3
+		  0	%  N=1  T=4
+		  0 )	%  N=1  T=X
+		( 0	%  N=2  T=1A
+		  0	%  N=2  T=1B
+		  0	%  N=2  T=2A
+		  0	%  N=2  T=2B
+		  0	%  N=2  T=3
+		  0	%  N=2  T=4
+		  0 )	%  N=2  T=X
+		( 0	%  N=3  T=1A
+		  0	%  N=3  T=1B
+		  0	%  N=3  T=2A
+		  0	%  N=3  T=2B
+		  0	%  N=3  T=3
+		  0	%  N=3  T=4
+		  0 ));	%  N=3  T=X
+    }
+
+    potential (N | T)
+    {
+	data = (( 0.670142 0.0557346 0.152607 0.121517 )	%  T=1A
+		( 0.560923 0.0763708 0.206484 0.156223 )	%  T=1B
+		( 0.410987 0.0906796 0.303241 0.195092 )	%  T=2A
+		( 0.345318 0.103207 0.336006 0.215468 )	%  T=2B
+		( 0.28775 0.0959903 0.370374 0.245885 )	%  T=3
+		( 0.180895 0.0568345 0.402318 0.359952 )	%  T=4
+		( 0.270669 0.0473413 0.354031 0.327959 ));	%  T=X
+	experience
+	     = ( 0	%  T=1A
+		 0	%  T=1B
+		 0	%  T=2A
+		 0	%  T=2B
+		 0	%  T=3
+		 0	%  T=4
+		 0 );	%  T=X
+    }
+
+    potential (death | M N T)
+    {
+	data = (((( 1 1 1 1 1 1 )	%  M=0  N=0  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=0  N=0  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=0  N=0  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=0  N=0  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=0  N=0  T=3
+		  ( 1 1 1 1 1 1 )	%  M=0  N=0  T=4
+		  ( 1 1 1 1 1 1 ))	%  M=0  N=0  T=X
+		 (( 1 1 1 1 1 1 )	%  M=0  N=1  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=0  N=1  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=0  N=1  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=0  N=1  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=0  N=1  T=3
+		  ( 1 1 1 1 1 1 )	%  M=0  N=1  T=4
+		  ( 1 1 1 1 1 1 ))	%  M=0  N=1  T=X
+		 (( 1 1 1 1 1 1 )	%  M=0  N=2  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=0  N=2  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=0  N=2  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=0  N=2  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=0  N=2  T=3
+		  ( 1 1 1 1 1 1 )	%  M=0  N=2  T=4
+		  ( 1 1 1 1 1 1 ))	%  M=0  N=2  T=X
+		 (( 1 1 1 1 1 1 )	%  M=0  N=3  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=0  N=3  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=0  N=3  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=0  N=3  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=0  N=3  T=3
+		  ( 1 1 1 1 1 1 )	%  M=0  N=3  T=4
+		  ( 1 1 1 1 1 1 )))	%  M=0  N=3  T=X
+		((( 1 1 1 1 1 1 )	%  M=1A  N=0  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=0  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=0  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=0  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=0  T=3
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=0  T=4
+		  ( 1 1 1 1 1 1 ))	%  M=1A  N=0  T=X
+		 (( 1 1 1 1 1 1 )	%  M=1A  N=1  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=1  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=1  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=1  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=1  T=3
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=1  T=4
+		  ( 1 1 1 1 1 1 ))	%  M=1A  N=1  T=X
+		 (( 1 1 1 1 1 1 )	%  M=1A  N=2  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=2  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=2  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=2  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=2  T=3
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=2  T=4
+		  ( 1 1 1 1 1 1 ))	%  M=1A  N=2  T=X
+		 (( 1 1 1 1 1 1 )	%  M=1A  N=3  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=3  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=3  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=3  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=3  T=3
+		  ( 1 1 1 1 1 1 )	%  M=1A  N=3  T=4
+		  ( 1 1 1 1 1 1 )))	%  M=1A  N=3  T=X
+		((( 1 1 1 1 1 1 )	%  M=1B  N=0  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=0  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=0  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=0  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=0  T=3
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=0  T=4
+		  ( 1 1 1 1 1 1 ))	%  M=1B  N=0  T=X
+		 (( 1 1 1 1 1 1 )	%  M=1B  N=1  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=1  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=1  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=1  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=1  T=3
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=1  T=4
+		  ( 1 1 1 1 1 1 ))	%  M=1B  N=1  T=X
+		 (( 1 1 1 1 1 1 )	%  M=1B  N=2  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=2  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=2  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=2  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=2  T=3
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=2  T=4
+		  ( 1 1 1 1 1 1 ))	%  M=1B  N=2  T=X
+		 (( 1 1 1 1 1 1 )	%  M=1B  N=3  T=1A
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=3  T=1B
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=3  T=2A
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=3  T=2B
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=3  T=3
+		  ( 1 1 1 1 1 1 )	%  M=1B  N=3  T=4
+		  ( 1 1 1 1 1 1 ))));	%  M=1B  N=3  T=X
+	experience
+	     = ((( 0	%  M=0  N=0  T=1A
+		   0	%  M=0  N=0  T=1B
+		   0	%  M=0  N=0  T=2A
+		   0	%  M=0  N=0  T=2B
+		   0	%  M=0  N=0  T=3
+		   0	%  M=0  N=0  T=4
+		   0 )	%  M=0  N=0  T=X
+		 ( 0	%  M=0  N=1  T=1A
+		   0	%  M=0  N=1  T=1B
+		   0	%  M=0  N=1  T=2A
+		   0	%  M=0  N=1  T=2B
+		   0	%  M=0  N=1  T=3
+		   0	%  M=0  N=1  T=4
+		   0 )	%  M=0  N=1  T=X
+		 ( 0	%  M=0  N=2  T=1A
+		   0	%  M=0  N=2  T=1B
+		   0	%  M=0  N=2  T=2A
+		   0	%  M=0  N=2  T=2B
+		   0	%  M=0  N=2  T=3
+		   0	%  M=0  N=2  T=4
+		   0 )	%  M=0  N=2  T=X
+		 ( 0	%  M=0  N=3  T=1A
+		   0	%  M=0  N=3  T=1B
+		   0	%  M=0  N=3  T=2A
+		   0	%  M=0  N=3  T=2B
+		   0	%  M=0  N=3  T=3
+		   0	%  M=0  N=3  T=4
+		   0 ))	%  M=0  N=3  T=X
+		(( 0	%  M=1A  N=0  T=1A
+		   0	%  M=1A  N=0  T=1B
+		   0	%  M=1A  N=0  T=2A
+		   0	%  M=1A  N=0  T=2B
+		   0	%  M=1A  N=0  T=3
+		   0	%  M=1A  N=0  T=4
+		   0 )	%  M=1A  N=0  T=X
+		 ( 0	%  M=1A  N=1  T=1A
+		   0	%  M=1A  N=1  T=1B
+		   0	%  M=1A  N=1  T=2A
+		   0	%  M=1A  N=1  T=2B
+		   0	%  M=1A  N=1  T=3
+		   0	%  M=1A  N=1  T=4
+		   0 )	%  M=1A  N=1  T=X
+		 ( 0	%  M=1A  N=2  T=1A
+		   0	%  M=1A  N=2  T=1B
+		   0	%  M=1A  N=2  T=2A
+		   0	%  M=1A  N=2  T=2B
+		   0	%  M=1A  N=2  T=3
+		   0	%  M=1A  N=2  T=4
+		   0 )	%  M=1A  N=2  T=X
+		 ( 0	%  M=1A  N=3  T=1A
+		   0	%  M=1A  N=3  T=1B
+		   0	%  M=1A  N=3  T=2A
+		   0	%  M=1A  N=3  T=2B
+		   0	%  M=1A  N=3  T=3
+		   0	%  M=1A  N=3  T=4
+		   0 ))	%  M=1A  N=3  T=X
+		(( 0	%  M=1B  N=0  T=1A
+		   0	%  M=1B  N=0  T=1B
+		   0	%  M=1B  N=0  T=2A
+		   0	%  M=1B  N=0  T=2B
+		   0	%  M=1B  N=0  T=3
+		   0	%  M=1B  N=0  T=4
+		   0 )	%  M=1B  N=0  T=X
+		 ( 0	%  M=1B  N=1  T=1A
+		   0	%  M=1B  N=1  T=1B
+		   0	%  M=1B  N=1  T=2A
+		   0	%  M=1B  N=1  T=2B
+		   0	%  M=1B  N=1  T=3
+		   0	%  M=1B  N=1  T=4
+		   0 )	%  M=1B  N=1  T=X
+		 ( 0	%  M=1B  N=2  T=1A
+		   0	%  M=1B  N=2  T=1B
+		   0	%  M=1B  N=2  T=2A
+		   0	%  M=1B  N=2  T=2B
+		   0	%  M=1B  N=2  T=3
+		   0	%  M=1B  N=2  T=4
+		   0 )	%  M=1B  N=2  T=X
+		 ( 0	%  M=1B  N=3  T=1A
+		   0	%  M=1B  N=3  T=1B
+		   0	%  M=1B  N=3  T=2A
+		   0	%  M=1B  N=3  T=2B
+		   0	%  M=1B  N=3  T=3
+		   0	%  M=1B  N=3  T=4
+		   0 )));	%  M=1B  N=3  T=X
+    }
+
+    potential (edition)
+    {
+	data = ( 1 1 1 );
+	experience = 0;
+    }
+
+    potential (cM | edition M)
+    {
+	data = ((( 100 1 1 1 )	%  edition=TNM 5  M=0
+		 ( 1 100 1 1 )	%  edition=TNM 5  M=1A
+		 ( 1 100 1 1 ))	%  edition=TNM 5  M=1B
+		(( 100 1 1 1 )	%  edition=TNM 6  M=0
+		 ( 1 100 1 1 )	%  edition=TNM 6  M=1A
+		 ( 1 100 1 1 ))	%  edition=TNM 6  M=1B
+		(( 100 1 1 1 )	%  edition=TNM 7  M=0
+		 ( 1 1 100 1 )	%  edition=TNM 7  M=1A
+		 ( 1 1 1 100 )));	%  edition=TNM 7  M=1B
+	experience
+	     = (( 0	%  edition=TNM 5  M=0
+		  0	%  edition=TNM 5  M=1A
+		  0 )	%  edition=TNM 5  M=1B
+		( 0	%  edition=TNM 6  M=0
+		  0	%  edition=TNM 6  M=1A
+		  0 )	%  edition=TNM 6  M=1B
+		( 0	%  edition=TNM 7  M=0
+		  0	%  edition=TNM 7  M=1A
+		  0 ));	%  edition=TNM 7  M=1B
+    }
+
+    potential (cN | edition N)
+    {
+	data = ((( 100 1 1 1 )	%  edition=TNM 5  N=0
+		 ( 1 100 1 1 )	%  edition=TNM 5  N=1
+		 ( 1 1 100 1 )	%  edition=TNM 5  N=2
+		 ( 1 1 1 100 ))	%  edition=TNM 5  N=3
+		(( 100 1 1 1 )	%  edition=TNM 6  N=0
+		 ( 1 100 1 1 )	%  edition=TNM 6  N=1
+		 ( 1 1 100 1 )	%  edition=TNM 6  N=2
+		 ( 1 1 1 100 ))	%  edition=TNM 6  N=3
+		(( 100 1 1 1 )	%  edition=TNM 7  N=0
+		 ( 1 100 1 1 )	%  edition=TNM 7  N=1
+		 ( 1 1 100 1 )	%  edition=TNM 7  N=2
+		 ( 1 1 1 100 )));	%  edition=TNM 7  N=3
+	experience
+	     = (( 0	%  edition=TNM 5  N=0
+		  0	%  edition=TNM 5  N=1
+		  0	%  edition=TNM 5  N=2
+		  0 )	%  edition=TNM 5  N=3
+		( 0	%  edition=TNM 6  N=0
+		  0	%  edition=TNM 6  N=1
+		  0	%  edition=TNM 6  N=2
+		  0 )	%  edition=TNM 6  N=3
+		( 0	%  edition=TNM 7  N=0
+		  0	%  edition=TNM 7  N=1
+		  0	%  edition=TNM 7  N=2
+		  0 ));	%  edition=TNM 7  N=3
+    }
+
+    potential (cT | edition T)
+    {
+	data = ((( 100 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  T=1A
+		 ( 100 1 1 1 1 1 1 1 1 )	%  edition=TNM 5  T=1B
+		 ( 1 1 1 100 1 1 1 1 1 )	%  edition=TNM 5  T=2A
+		 ( 1 1 1 100 1 1 1 1 1 )	%  edition=TNM 5  T=2B
+		 ( 1 1 1 50 1 1 50 1 1 )	%  edition=TNM 5  T=3
+		 ( 1 1 1 1 1 1 33 66 1 )	%  edition=TNM 5  T=4
+		 ( 1 1 1 1 1 1 1 1 100 ))	%  edition=TNM 5  T=X
+		(( 100 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  T=1A
+		 ( 100 1 1 1 1 1 1 1 1 )	%  edition=TNM 6  T=1B
+		 ( 1 1 1 100 1 1 1 1 1 )	%  edition=TNM 6  T=2A
+		 ( 1 1 1 100 1 1 1 1 1 )	%  edition=TNM 6  T=2B
+		 ( 1 1 1 50 1 1 50 1 1 )	%  edition=TNM 6  T=3
+		 ( 1 1 1 1 1 1 33 66 1 )	%  edition=TNM 6  T=4
+		 ( 1 1 1 1 1 1 1 1 100 ))	%  edition=TNM 6  T=X
+		(( 1 100 1 1 1 1 1 1 1 )	%  edition=TNM 7  T=1A
+		 ( 1 1 100 1 1 1 1 1 1 )	%  edition=TNM 7  T=1B
+		 ( 1 1 1 1 100 1 1 1 1 )	%  edition=TNM 7  T=2A
+		 ( 1 1 1 1 1 100 1 1 1 )	%  edition=TNM 7  T=2B
+		 ( 1 1 1 1 1 1 100 1 1 )	%  edition=TNM 7  T=3
+		 ( 1 1 1 1 1 1 1 100 1 )	%  edition=TNM 7  T=4
+		 ( 1 1 1 1 1 1 1 1 100 )));	%  edition=TNM 7  T=X
+	experience
+	     = (( 0	%  edition=TNM 5  T=1A
+		  0	%  edition=TNM 5  T=1B
+		  0	%  edition=TNM 5  T=2A
+		  0	%  edition=TNM 5  T=2B
+		  0	%  edition=TNM 5  T=3
+		  0	%  edition=TNM 5  T=4
+		  0 )	%  edition=TNM 5  T=X
+		( 0	%  edition=TNM 6  T=1A
+		  0	%  edition=TNM 6  T=1B
+		  0	%  edition=TNM 6  T=2A
+		  0	%  edition=TNM 6  T=2B
+		  0	%  edition=TNM 6  T=3
+		  0	%  edition=TNM 6  T=4
+		  0 )	%  edition=TNM 6  T=X
+		( 0	%  edition=TNM 7  T=1A
+		  0	%  edition=TNM 7  T=1B
+		  0	%  edition=TNM 7  T=2A
+		  0	%  edition=TNM 7  T=2B
+		  0	%  edition=TNM 7  T=3
+		  0	%  edition=TNM 7  T=4
+		  0 ));	%  edition=TNM 7  T=X
+    }
+} % class TNM_explains_death_before_training_with_TNM7_priors
