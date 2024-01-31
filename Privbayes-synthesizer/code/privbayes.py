@@ -859,7 +859,7 @@ def postprocess_dataset(data, bucket_mappings):
 if __name__ == '__main__':
     
     """Main function to demonstrate the usage of PrivBayes and PrivBayesFix."""
-    data_path = '/Users/arun/Desktop/PrivbayesviaSAP/privbayes-datasynthesizer/privbayes-implementation/Privbayes/data/adult.csv'
+    data_path = '../input-data/adult.csv'
     data_original = pd.read_csv(data_path, engine='python')
     # columns = ['age', 'sex', 'education', 'workclass', 'income']
     # data = data.loc[:, columns]
