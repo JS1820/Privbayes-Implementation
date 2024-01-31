@@ -9,15 +9,15 @@ import cProfile
 from concurrent.futures import ProcessPoolExecutor
 import matplotlib.pyplot as plt
 
-import synthesis.synthesizers.utils as utils
-from synthesis.synthesizers._base import BaseDPSynthesizer
+import utils
+from _base import BaseDPSynthesizer
 from thomas.core import BayesianNetwork
-from diffprivlib.mechanisms import Exponential
-from synthesis.evaluation.evaluator import SyntheticDataEvaluator
-from synthesis.evaluation.metrics import MarginalComparison, AssociationsComparison
-from synthesis.evaluation.efficacy import ClassifierComparison
-from synthesis.evaluation._base import BaseMetric
-from synthesis.evaluation.evaluator import DEFAULT_METRICS, SyntheticDataEvaluator
+from mechanisms import Exponential
+from evaluator import SyntheticDataEvaluator
+from metrics import MarginalComparison, AssociationsComparison
+from efficacy import ClassifierComparison
+from _base import BaseMetric
+from evaluator import DEFAULT_METRICS, SyntheticDataEvaluator
 
 APPair = namedtuple('APPair', ['attribute', 'parents'])
 
