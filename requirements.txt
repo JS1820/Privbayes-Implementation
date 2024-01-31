@@ -15,5 +15,5 @@ joblib
 cprofile
 concurrent
 random
-sklearn
+scikit-learn
 argparse
