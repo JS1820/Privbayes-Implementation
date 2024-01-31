@@ -768,7 +768,7 @@ import pandas as pd
 import numpy as np
 
 def preprocess_dataset(input_data, bins = 10):
-    print("\n[+] Preprocessing the dataset to convert numerical values into buckets of size 10:")
+    print(f"\n[+] Preprocessing the dataset to convert numerical values into buckets of size {bins}:")
     # Remove rows with missing values
     input_data = input_data.dropna()
 
