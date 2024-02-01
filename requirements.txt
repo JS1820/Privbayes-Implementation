@@ -13,3 +13,5 @@ dill
 joblib
 scikit-learn
 argparse
+dython
+lifelines
