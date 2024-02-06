@@ -101,13 +101,24 @@ class Factor(object):
         # subtraction, multiplication and division.
         self.values = data.reshape(cardinality)
 
+    # def __repr__(self):
+    #     """repr(f) <==> f.__repr__()"""
+    #     precision = options.get('precision', 4)
+
+    #     if self.states:
+    #         with pd.option_context('precision', precision):
+    #             s = f'{self.display_name}\n{repr(self.as_series())}'
+    #         return s
+
+    #     tpl = '{self.display_name}: {' + 'self.values:.{}f'.format(precision) + '}'
+    #     return tpl.format(**locals())
+
     def __repr__(self):
         """repr(f) <==> f.__repr__()"""
         precision = options.get('precision', 4)
 
         if self.states:
-            with pd.option_context('precision', precision):
-                s = f'{self.display_name}\n{repr(self.as_series())}'
+            s = f'{self.display_name}\n{repr(self.as_series())}'
             return s
 
         tpl = '{self.display_name}: {' + 'self.values:.{}f'.format(precision) + '}'
