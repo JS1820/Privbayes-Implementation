@@ -167,40 +167,40 @@ class Laplace(DPMechanism):
 
         round_count = 0
         negative_sum = 0
-        print("\n\n\n\n\n\n[+START][non-negativity] Initial array before non-negativity enforcement is:\n\n")
-        print(array)
+        # print("\n\n\n\n\n\n[+START][non-negativity] Initial array before non-negativity enforcement is:\n\n")
+        # print(array)
         while round_count < T and abs(sum(x for x in array if x < 0)) > rho:
             round_count += 1
-            print(f"\n\n          ==============================[non-negativity] Inside the non-negativity enforcement loop. Round count is {round_count} :====================================\n")
-            for i in range(len(array)):
-                if array[i] < 0:
-                    print(f"\n     [ROUND {round_count}] [non-negativity] --- negative value found at position {i}:", array[i])
-                else:
-                    print(f"\n     [ROUND {round_count}] [non-negativity] +++ positive value found at position {i}:", array[i])
-            print("\n\n          ")
+            # print(f"\n\n          ==============================[non-negativity] Inside the non-negativity enforcement loop. Round count is {round_count} :====================================\n")
+            # for i in range(len(array)):
+            #     if array[i] < 0:
+            #         print(f"\n     [ROUND {round_count}] [non-negativity] --- negative value found at position {i}:", array[i])
+            #     else:
+            #         print(f"\n     [ROUND {round_count}] [non-negativity] +++ positive value found at position {i}:", array[i])
+            # print("\n\n          ")
             negative_sum = sum(abs(x) for x in array if x < 0)
-            print(f"\n     [ROUND {round_count}] [non-negativity] Absolute Sum of negative numbers above is:", negative_sum)
+            # print(f"\n     [ROUND {round_count}] [non-negativity] Absolute Sum of negative numbers above is:", negative_sum)
             positive_count = sum(1 for x in array if x > 0)  # Count positive values using generator expression
-            print(f"\n     [ROUND {round_count}] [non-negativity] Count of positive numbers above is:", positive_count)
+            # print(f"\n     [ROUND {round_count}] [non-negativity] Count of positive numbers above is:", positive_count)
             
             try:
                 height = negative_sum / positive_count  # Handle potential division by zero
             except ZeroDivisionError:
                 height = 0
 
-            print(f"\n     [ROUND {round_count}] [non-negativity] Height for round no.{round_count} is:", height)
-            print("\n\n          ")
+            # print(f"\n     [ROUND {round_count}] [non-negativity] Height for round no.{round_count} is:", height)
+            # print("\n\n          ")
             for i in range(len(array)):
                 if array[i] > 0:
-                    print(f"\n     [ROUND {round_count}] [non-negativity] +++ positive value at position {i}:", array[i])
+                    # print(f"\n     [ROUND {round_count}] [non-negativity] +++ positive value at position {i}:", array[i])
                     array[i] -= height
-                    print(f"\n     [ROUND {round_count}] [non-negativity] +++ new value at position {i} after subtraction of height :", array[i])
+                    # print(f"\n     [ROUND {round_count}] [non-negativity] +++ new value at position {i} after subtraction of height :", array[i])
                 elif array[i] < 0:
-                    print(f"\n     [ROUND {round_count}] [non-negativity] --- negative value at position {i}:", array[i])
+                    # print(f"\n     [ROUND {round_count}] [non-negativity] --- negative value at position {i}:", array[i])
                     array[i] = 0
-                    print(f"\n     [ROUND {round_count}] [non-negativity] --- new value at position {i} after setting to 0 :", array[i])
+                    # print(f"\n     [ROUND {round_count}] [non-negativity] --- new value at position {i} after setting to 0 :", array[i])
         
-        print("\n          ")
+        # print("\n          ")
         
         
         # if round_count >= T:
@@ -214,29 +214,29 @@ class Laplace(DPMechanism):
         # print(f"\n          [non-negativity] Absolute sum of negative numbers {negative_sum}, And Threshold is {rho} !")
         # print(f"\n          [non-negativity] Count of negative numbers {sum(1 for x in array if x < 0)} !")
         
-        if sum(1 for x in array if x < 0) == 0:
-            print(f"\n     [-QUIT][non-negativity] No more negative numbers found in the array !")
-        elif abs(sum(x for x in array if x < 0)) < rho:
-            print(f"\n     [-QUIT][non-negativity] Absolute sum of negative numbers {abs(sum(x for x in array if x < 0))} is below the threshold {rho} !")
-        elif round_count >= T:
-            print(f"\n     [-QUIT][non-negativity] Number of rounds completed is {round_count}, And its more than {T} !")
+        # if sum(1 for x in array if x < 0) == 0:
+        #     print(f"\n     [-QUIT][non-negativity] No more negative numbers found in the array !")
+        # elif abs(sum(x for x in array if x < 0)) < rho:
+        #     print(f"\n     [-QUIT][non-negativity] Absolute sum of negative numbers {abs(sum(x for x in array if x < 0))} is below the threshold {rho} !")
+        # elif round_count >= T:
+        #     print(f"\n     [-QUIT][non-negativity] Number of rounds completed is {round_count}, And its more than {T} !")
         
         
         
         
         
-        print("\n     [-QUIT][non-negativity] Because of the above reason, we are setting any of the remaining negative values to 0")
+        # print("\n     [-QUIT][non-negativity] Because of the above reason, we are setting any of the remaining negative values to 0")
 
         # Set any remaining negative values to 0
         for i in range(len(array)):
             if array[i] < 0:
-                print(f"\n     [-REPLACE][non-negativity] Previous value at {i}, {array[i]} is replaced with 0")
+                # print(f"\n     [-REPLACE][non-negativity] Previous value at {i}, {array[i]} is replaced with 0")
                 array[i] = 0
                 # print(f"\n          [non-negativity] --- new value at position {i} after setting to 0 :", array[i])
 
-        print("\n[-END][non-negativity] Final array after non-negativity enforcement is:\n\n")
-        print(array)
-        print("\n\n\n\n\n\n")
+        # print("\n[-END][non-negativity] Final array after non-negativity enforcement is:\n\n")
+        # print(array)
+        # print("\n\n\n\n\n\n")
         return array
 
 
