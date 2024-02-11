@@ -84,7 +84,7 @@ class MarginalComparison(BaseMetric):
                 # ax_i.set_xticklabels(column_value_counts_original.keys(), rotation=25)
 
                 if col in bucketized_columns:
-                    print("\n\ninside bucketized columns:",col)
+                    # print("\n\ninside bucketized columns:",col)
                     # print("\n\nprinting the column values from the bucketized columns: ", bucketized_columns[col])
                     # print("tempo check?",[f"[{bucketized_columns[col][i]} - {bucketized_columns[col][i+1]}]" for i in range(len(bucketized_columns[col])-1)])
                     # ax_i.set_xticklabels([f"[{bucketized_columns[col][i]} - {bucketized_columns[col][i+1]}]" for i in range(len(bucketized_columns[col])-1)], rotation=25)
