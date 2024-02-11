@@ -32,24 +32,32 @@ class MarginalComparison(BaseMetric):
                     join='outer', axis=0, fill_value=0
                 )
             self.stats_[c] = jensenshannon(self.stats_original_[c], self.stats_synthetic_[c])
-
+        # print("returning self", self)
         return self
 
     def score(self):
         average_js_distance = sum(self.stats_.values()) / len(self.stats_.keys())
         return average_js_distance
 
-    def plot(self):
+    def plot(self, bucketized_columns):
         column_names = self.stats_original_.keys()
+        #print("\n\n\ncolumn_names: ", column_names)
         fig, ax = plt.subplots(len(column_names), 1, figsize=(8, len(column_names) * 4))
-
+        #print("self labels: ", self.labels)
+        #print("bar position: ", np.arange(len(column_names)))
         for idx, col in enumerate(column_names):
+            # print("idx: ", idx)
+            # print("col: ", col)
             ax_i = ax[idx] if len(column_names) > 1 else ax
-
+            #print("ax_i: ", ax_i)
             column_value_counts_original = self.stats_original_[col]
+            #print("column_value_counts_original: ", column_value_counts_original)
             column_value_counts_synthetic = self.stats_synthetic_[col]
+            #print("column_value_counts_synthetic: ", column_value_counts_synthetic)
 
             bar_position = np.arange(len(column_value_counts_original.values))
+            #print("bar position",bar_position)
+
             bar_width = 0.35
 
             # with small column cardinality plot original distribution as bars, else plot as line
@@ -65,11 +73,64 @@ class MarginalComparison(BaseMetric):
                         color=COLOR_PALETTE[1], label=self.labels[1], width=bar_width)
 
             ax_i.set_xticks(bar_position + bar_width / 2)
+            #print("\n\nBucketized columns: ", bucketized_columns,"\n\n")
+            
+            
+            
             if len(column_value_counts_original.values) <= 25:
-                ax_i.set_xticklabels(column_value_counts_original.keys(), rotation=25)
+                # ax_i.set_xticklabels(column_value_counts_original.keys(), rotation=25)
+                #print("column_value_counts_original.keys(): ", column_value_counts_original.keys())
+                
+                # ax_i.set_xticklabels(column_value_counts_original.keys(), rotation=25)
+
+                if col in bucketized_columns:
+                    print("\n\ninside bucketized columns:",col)
+                    # print("\n\nprinting the column values from the bucketized columns: ", bucketized_columns[col])
+                    # print("tempo check?",[f"[{bucketized_columns[col][i]} - {bucketized_columns[col][i+1]}]" for i in range(len(bucketized_columns[col])-1)])
+                    # ax_i.set_xticklabels([f"[{bucketized_columns[col][i]} - {bucketized_columns[col][i+1]}]" for i in range(len(bucketized_columns[col])-1)], rotation=25)
+                    # print("column_value_counts_original.keys(): ", column_value_counts_original.keys(),"\n\n")
+                    # print("X Labels are as follows",ax_i.set_xticklabels,"\n\n")
+                
+                    max_index = min(len(bucketized_columns[col]), len(ax_i.get_xticks()))
+                    #print("len(bucketized_columns[col]", len(bucketized_columns[col]))
+                    labels = [f"[{bucketized_columns[col][i]} - {bucketized_columns[col][i+1]}]" for i in range(max_index)]
+                    #print("labels: ", labels)
+                    #print("max_index: ", max_index)
+                    #print("ax_i.get_xticks(): ", ax_i.get_xticks())
+                    #print("ax_i.get_xticklabels(): ", ax_i.get_xticklabels())
+                    
+                    ax_i.set_xticklabels(labels, rotation=90)
+
+                
+                else :
+                    #print("\n\nNo bucketized columns:")
+                    ax_i.set_xticklabels(column_value_counts_original.keys(), rotation=90)
+                #print("column_value_counts_original.keys(): ", column_value_counts_original.keys())
             else:
                 ax_i.set_xticklabels('')
 
+            
+            # original_labels = []
+            # print("bucketized_columns are", bucketized_columns)
+            # for i in range(len(bucketized_columns[col]) - 1):
+            #     # Access bucket index instead of unpacking
+            #     bucket_index = bucketized_columns[col][i]
+            #     # Retrieve range from the mapping
+            #     min_value, max_value = bucketized_columns[bucket_index]
+            #     original_labels.append(f"[**{min_value} - {max_value}**]")
+
+
+
+            # # Adapt label display based on number of unique values
+            # if len(original_labels) <= 25:
+            #     ax_i.set_xticks(bar_position + bar_width / 2)
+            #     ax_i.set_xticklabels(original_labels, rotation=25)
+            # else:
+            #     ax_i.set_xticks(bar_position + bar_width / 2)
+            #     ax_i.set_xticklabels([''] * len(original_labels))  # Remove labels if too many
+
+            
+            
             title = r"$\bf{" + col.replace('_', '\_') + "}$" + "\n jensen-shannon distance: {:.2f}".format(self.stats_[col])
             ax_i.set_title(title)
             if self.normalize:
@@ -80,6 +141,9 @@ class MarginalComparison(BaseMetric):
             ax_i.legend()
         fig.tight_layout()
 
+
+
+    
 class AssociationsComparison(BaseMetric):
 
     def __init__(self, labels=None, exclude_columns=None, nom_nom_assoc='theil', nominal_columns='auto'):
