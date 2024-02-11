@@ -874,7 +874,7 @@ if __name__ == '__main__':
     rows = data.shape[0]
     print("\n[+] Number of rows in the dataset is: ",rows)
     
-    print("\n[+] Attribute Parent Pairs are being developed ...\n")
+    print("\n[+] Attribute Parent Pairs (AP Pairs) are being developed ...\n")
     pb = PrivBayes(epsilon, n_cpus=6, score_function='R', verbose=True)
     pb.fit(data)
 
