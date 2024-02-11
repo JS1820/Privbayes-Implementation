@@ -868,7 +868,7 @@ if __name__ == '__main__':
     
     data_original = pd.read_csv(data_path, engine='python')   
     data,bucketized_columns,removed_columns = preprocess_dataset(data_original, bucket)
-    print(bucketized_columns,"\nbucketized_columns")
+    # print(bucketized_columns,"\nbucketized_columns")
     print("\n[+] Head of the 'original' preprocessed dataset is: ")
     print(data.head())
     rows = data.shape[0]
