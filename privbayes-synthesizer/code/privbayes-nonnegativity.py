@@ -799,7 +799,7 @@ def preprocess_dataset(input_data, bins=10):
             print(f"\n[+] {column} is numerical. Bucketized values:")
             # print(bucketized_values.value_counts().sort_index())
             print(f"-- Domain size for {column}: {len(bucketized_values.unique())}")
-            print("\n")
+            # print("\n")
         # Check if all values in the column are the same
         unique_values = input_data[column].unique()
         if len(unique_values) == 1:
