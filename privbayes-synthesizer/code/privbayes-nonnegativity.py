@@ -240,7 +240,7 @@ class PrivBayes(BaseDPSynthesizer):
 
                 cpt_size = utils.cardinality(data[attributes])
                 if self.verbose:
-                    print('\n\n\n-- Learning conditional probabilities: {} - with parents {} '
+                    print('-- Learning conditional probabilities: {} - with parents {} '
                         '~ estimated size: {}'.format(pair.attribute, pair.parents, cpt_size))
 
                 dp_cpt = utils.dp_conditional_distribution(data[attributes], epsilon=local_epsilon)
@@ -776,12 +776,17 @@ import time
 import pandas as pd
 import numpy as np
 
-def preprocess_dataset(input_data, bins):
+import pandas as pd
+
+def preprocess_dataset(input_data, bins=10):
     print(f"\n[+] Preprocessing the dataset to convert numerical values into buckets of size {bins}:")
     # Remove rows with missing values
     input_data = input_data.dropna()
 
     bucket_mappings = {}  # Dictionary to store mapping between original values and bucketized values
+
+    # Column names with the same value for all records and the corresponding value
+    columns_to_remove = {}
 
     for column in input_data.columns:
         if pd.api.types.is_numeric_dtype(input_data[column]):
@@ -792,60 +797,30 @@ def preprocess_dataset(input_data, bins):
             bucket_mappings[column] = mapping.astype(int)
             # Print information about bucketized column
             print(f"\n[+] {column} is numerical. Bucketized values:")
-            #print(bucketized_values.value_counts().sort_index())
+            # print(bucketized_values.value_counts().sort_index())
             print(f"-- Domain size for {column}: {len(bucketized_values.unique())}")
 
-    return input_data, bucket_mappings
+        # Check if all values in the column are the same
+        unique_values = input_data[column].unique()
+        if len(unique_values) == 1:
+            print(f"\n[*] Column '{column}' has the same value ({unique_values[0]}) for all records. Removing from dataset.")
+            columns_to_remove[column] = unique_values[0]
+
+    # Remove columns with the same value for all records
+    input_data.drop(columns=list(columns_to_remove.keys()), inplace=True)
+    
+    print("\n-- Columns removed: ",columns_to_remove)
+
+    return input_data, bucket_mappings, columns_to_remove
 
 
-# import numpy as np
-# import pandas as pd
 
-# def preprocess_dataset(input_data):
-#     print("\n[+] Preprocessing the dataset...")
-
-#     # Remove rows with missing values
-#     input_data = input_data.dropna()
-
-#     bucket_mappings = {}
-
-#     for column in input_data.columns:
-#         if pd.api.types.is_integer_dtype(input_data[column]):
-#             num_unique = len(input_data[column].unique())
-#             print(f"\n[+] {column} is numerical. Number of unique values: {num_unique}")
-
-#             if num_unique < 50:  # Treat as categorical
-#                 print(f"-- Treating {column} as categorical due to low cardinality.")
-#                 input_data[column] = pd.Categorical(input_data[column])
-#                 bucket_mappings[column] = input_data[column].cat.categories
-#             else:
-#                 print(f"-- Bucketizing {column} with adaptive bin size.")
-
-#                 # Handle non-finite values before bucketizing
-#                 input_data[column].replace([np.inf, -np.inf], np.nan, inplace=True)  # Replace inf with NaN
-#                 input_data.dropna(subset=[column], inplace=True)  # Drop rows with NaN in the column
-
-#                 # Determine bin size based on unique values and default numeric_bin_size (5)
-#                 numeric_bin_size = 5
-#                 bin_size = min(numeric_bin_size, num_unique)
-
-#                 # Generate equal-width bins
-#                 lowest = input_data[column].min()
-#                 highest = input_data[column].max()
-#                 bins = np.linspace(lowest, highest, bin_size + 1)
-
-#                 # Categorize numerical values into bins
-#                 bucketized_values = pd.cut(input_data[column], bins, labels=False) + 1  # Start indices from 1
-#                 input_data[column] = bucketized_values.astype(int)
-
-#                 # Store mapping (bin edges)
-#                 bucket_mappings[column] = bins.astype(int)
-
-#     return input_data, bucket_mappings
-
-
-def postprocess_dataset(data, bucket_mappings):
+def postprocess_dataset(data, bucket_mappings, columns_removed):
     converted_data = data.copy()
+
+    # Restore removed columns with the same value for all records
+    for column, value in columns_removed.items():
+        converted_data[column] = value
 
     for column, mapping in bucket_mappings.items():
         if column in converted_data.columns:
@@ -865,6 +840,8 @@ def postprocess_dataset(data, bucket_mappings):
             converted_data[column] = original_values
 
     return converted_data
+
+
 
 import argparse
 
@@ -890,7 +867,8 @@ if __name__ == '__main__':
     epsilon = args.epsilon
     
     data_original = pd.read_csv(data_path, engine='python')   
-    data,bucketized_columns = preprocess_dataset(data_original, bucket)
+    data,bucketized_columns,removed_columns = preprocess_dataset(data_original, bucket)
+    print(bucketized_columns,"\nbucketized_columns")
     print("\n[+] Head of the 'original' preprocessed dataset is: ")
     print(data.head())
     rows = data.shape[0]
@@ -905,7 +883,7 @@ if __name__ == '__main__':
     df_synth_original = pb.sample()
     endtime = time.time()
     print(f"[+] Time taken to generate {rows} records' synthetic dataset is: {endtime - starttime}\n\n")
-    df_synth = postprocess_dataset(df_synth_original, bucketized_columns)
+    df_synth = postprocess_dataset(df_synth_original, bucketized_columns,removed_columns)
     
     print("\n[+] Head of the synthetic dataset is:\n")
     print(df_synth.head())
@@ -925,7 +903,7 @@ if __name__ == '__main__':
     
     marginal_comparison= MarginalComparison().fit(data, df_synth_original)
     print("\n[+] Marginal comparision score is: ",marginal_comparison.score())
-    marginal_comparison.plot()
+    marginal_comparison.plot(bucketized_columns)
     plt.savefig('Marginal_comparision.pdf')
     #plt.show()
     #plt.close()
@@ -943,6 +921,64 @@ if __name__ == '__main__':
 
 
 
+# import sys
+# if __name__ == '__main__':
+#     # Save the original stdout
+#     original_stdout = sys.stdout
+#     # Open a file in write mode to save the output
+#     with open('Console-output-Nonnegativity.txt', 'w') as f:
+#         # Redirect stdout to the file
+#         sys.stdout = f
+
+#         parser = argparse.ArgumentParser(description="Optimized PrivBayes main function")
+#         parser.add_argument("--dataset", type=str, default='../input-data/adult.csv', help="Path to the input dataset file")
+#         parser.add_argument("--bucket", type=int, default=10, help="Size of the buckets for numerical values")
+#         parser.add_argument("--epsilon", type=float, default=1.0, help="Epsilon value for differential privacy")
+
+#         args = parser.parse_args()
+
+#         data_path = args.dataset
+#         bucket = args.bucket
+#         epsilon = args.epsilon
+
+#         data_original = pd.read_csv(data_path, engine='python')
+#         data, bucketized_columns, removed_columns = preprocess_dataset(data_original, bucket)
+#         print("\n[+] Head of the 'original' preprocessed dataset is: ")
+#         print(data.head())
+#         rows = data.shape[0]
+#         print("\n[+] Number of rows in the dataset is: ", rows)
+
+#         print("\n[+] Attribute Parent Pairs are being developed ...\n")
+#         pb = PrivBayes(epsilon, n_cpus=6, score_function='R', verbose=True)
+#         pb.fit(data)
+
+#         starttime = time.time()
+#         # Concatenate the results after all processes are completed
+#         df_synth_original = pb.sample()
+#         endtime = time.time()
+#         print(f"[+] Time taken to generate {rows} records' synthetic dataset is: {endtime - starttime}\n\n")
+#         df_synth = postprocess_dataset(df_synth_original, bucketized_columns, removed_columns)
+
+#         print("\n[+] Head of the synthetic dataset is:\n")
+#         print(df_synth.head())
+
+#         marginal_comparison = MarginalComparison().fit(data_original, df_synth)
+#         print("\n[+] Marginal comparision score is: ", marginal_comparison.score())
+#         marginal_comparison.plot()
+#         plt.savefig('Marginal_comparision.pdf')
+#         print("-- Marginal Comparison Done & Graph is saved as a pdf file")
+
+#         association_comparison = AssociationsComparison().fit(data_original, df_synth)
+#         print("\n[+] Association comparision score is: ", association_comparison.score())
+#         association_comparison.plot()
+#         plt.savefig('Association_comparision.pdf')
+#         print("-- Association Comparison Done & Graph is saved as a pdf file")
+#         print("\n[+] Completed, Exiting...\n")
+
+#     # Restore the original stdout
+#     sys.stdout = original_stdout
+#     # Print a message indicating that the output has been saved to a file
+#     print("Output has been saved to Console-output.txt file")
 
 
 
