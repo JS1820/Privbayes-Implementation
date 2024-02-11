@@ -809,7 +809,7 @@ def preprocess_dataset(input_data, bins=10):
     # Remove columns with the same value for all records
     input_data.drop(columns=list(columns_to_remove.keys()), inplace=True)
     
-    print("-- Columns removed: ",columns_to_remove)
+    print("-- Columns removed: ",columns_to_remove,"\n")
 
     return input_data, bucket_mappings, columns_to_remove
 
@@ -868,7 +868,7 @@ if __name__ == '__main__':
     
     data_original = pd.read_csv(data_path, engine='python')   
     data,bucketized_columns,removed_columns = preprocess_dataset(data_original, bucket)
-    print(bucketized_columns,"\nbucketized_columns")
+    # print(bucketized_columns,"\nbucketized_columns")
     print("\n[+] Head of the 'original' preprocessed dataset is: ")
     print(data.head())
     rows = data.shape[0]
