@@ -1902,7 +1902,7 @@ if __name__ == '__main__':
 #     # Concatenate the results after all processes are completed
 #     df_synth_original = pb.sample()
 #     endtime = time.time()
-#     print(f"[+] Time taken to generate {rows} records' synthetic dataset is: {endtime - starttime}\n\n")
+#     print(f"[+] Time taken to generate {rows} records' synthetic dataset is: {endtime - starttime}\n")
 #     df_synth = postprocess_dataset(df_synth_original, bucketized_columns)
     
 #     print("\n[+] Head of the synthetic dataset is:\n")
