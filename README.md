@@ -51,7 +51,7 @@ The original rights to the PrivBayes paper belong to its authors. The code in th
 
 - [Arun Ashok Badri](https://github.com/0hex7/) : iamarunbadri@gmail.com
 - [Sandhya V](https://github.com/sandxxax/) : vsandhya2912@gmail.com
-- [Pavan Kumar J](https://github.com/Lonelypheonix/) : pavankumarj.cy@gmail.com
+- [Jeevan Satish](https://github.com/JS1820) : jeevansatish89@gmail.com
 
 ## References: Citing the Source Paper
 
